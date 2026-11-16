@@ -832,3 +832,20 @@ svg .venn { fill: var(--cyan); fill-opacity: .1; stroke: var(--cyan); stroke-wid
 .sort-bins button.right { border-color: var(--cyan); background: var(--cyan-well); color: var(--cyan-ink); font-weight: 600; }
 .sort-bins button.wrong { border-color: var(--red); background: var(--red-well); color: var(--red-ink); }
 .sort-bins button:disabled { cursor: default; }
+
+/* ---- Closed-book drill: one question, a blank box to write in, a hidden model answer ---- */
+.drill-item { margin: 1.6rem 0; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+.drill-item .drill-q { margin: 0 0 0.6rem; }
+.drill-item textarea {
+  display: block;
+  width: 100%;
+  min-height: 6.5rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  resize: vertical;
+}
+.drill-item textarea:focus-visible { outline: 2px solid var(--cyan); outline-offset: 1px; }
