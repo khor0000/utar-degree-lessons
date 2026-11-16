@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 3 — Human vs machine</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 3 · Tutorial 1 Q1</div>
+<h1>Who does the extra work?</h1>
+<p><strong>Machine-centred design makes the person adapt to the machine. Human-centred design makes the machine fit the person.</strong></p>
+<p>The two differ in the designer's first question. The machine-centred designer asks "What can this machine do?" and then makes the person fit. The human-centred designer asks "What is the person trying to do?" and then makes the technology fit. An old ATM that asks for an account type code before a student who only wants RM50 can continue is machine-centred: the student must fit.</p>
+<p>Machine-centred design is chosen because it is quicker for the designer, who skips studying people. The cost moves to the user: the view is "quicker and easier for them, though not for the person who finishes up using the product" (Benyon ch1, Box 1.1). It is not a job title, either: "many designers still take the machine-centred view" (ch1, Box 1.1). Programmers can be human-centred too.</p>
+<p>UX is not only about keeping people happy. The book describes it as "high-quality interactive systems, products and services that fit with people and their ways of living" (Benyon ch1, Aims), so fit, usability and enjoyment all count.</p>
+<h2>A flowchart for telling them apart</h2>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 230" role="img" aria-label="Flowchart: who must do the extra work decides machine-centred or human-centred">
+<rect class="box" x="230" y="10" width="260" height="60"/><text x="262" y="46">Something is awkward</text>
+<g data-layer="q"><path class="line" d="M360 70 V95"/><rect class="hot" x="210" y="95" width="300" height="50"/><text x="238" y="126">Who does the extra work?</text></g>
+<g data-layer="m"><path class="line" d="M210 120 H120 V165"/><text x="130" y="110">person</text><rect class="bad" x="10" y="165" width="230" height="55"/><text x="28" y="198">Machine-centred</text></g>
+<g data-layer="h"><path class="line" d="M510 120 H600 V165"/><text x="530" y="110">machine</text><rect class="box" x="480" y="165" width="230" height="55"/><text x="502" y="198">Human-centred</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="">Take one example: entering your date of birth.</p>
+<p data-show="q">Ask one question: must the person memorise, type exactly or decode, or does the system handle that?</p>
+<p data-show="q m">"Type 2004-05-17 exactly, or get an error." The person does the work, so this is <strong>machine-centred</strong>.</p>
+<p data-show="q m h">"Pick a date on a calendar." The system does the work, so this is <strong>human-centred</strong>.</p>
+</div></div>
+<h2>Sort these</h2>
+<div class="sorter" data-sort data-bins="Machine-centred|Human-centred">
+<div data-card="Machine-centred" data-why="The person must decode a number.">A login fails and the screen shows only "Error 401".</div>
+<div data-card="Human-centred" data-why="The system explains what happened and what to do next.">A login fails with "Wrong password. Try again or reset it."</div>
+<div data-card="Machine-centred" data-why="The person must type a long code without a slip.">To pay a stall, you type a 16-digit merchant code.</div>
+<div data-card="Human-centred" data-why="The phone reads the code for you.">To pay a stall, you scan a QR code.</div>
+<div data-card="Machine-centred" data-why="The person pays for the system's limit.">A long form times out and wipes your answers.</div>
+<div data-card="Human-centred" data-why="The system protects the person's work.">A long form saves your answers and warns you before timing out.</div>
+</div>
+<p>These examples match the book's design principles (Benyon ch5, 5.5). A wrong-password message is <strong>feedback</strong> (principle 7). A QR scan instead of typing 16 digits is a <strong>constraint</strong> (principle 9), because it stops the slip from happening. A biometric login after a forgotten PIN is <strong>recovery</strong> through another path (principle 8). Words like "fool-proof" point to a constraint, and "fallback" points to recovery.</p>
+<h2>The formal comparison</h2>
+<p>Neither the slides nor the textbook define "traditional design", so this answer uses the closest textbook idea (Benyon, Box 1.1, PDF p40). Your tutor may phrase it differently.</p>
+<table><thead><tr><th></th><th>Machine-centred (traditional)</th><th>Human-centred (UXD)</th></tr></thead><tbody>
+<tr><td>Starts from</td><td>The product and what it can do</td><td>The person and what they want to do</td></tr>
+<tr><td>Sees people as</td><td>Vague, must adapt to the machine</td><td>Creative, machine should fit them</td></tr>
+<tr><td>Why it exists</td><td>Quicker and easier for the designer</td><td>Better for the person using it</td></tr>
+</tbody></table>
+<details class="reveal"><summary>optional: examples of design decisions</summary>
+<p>Design means deciding how something should work for people, not only how it looks. In an e-wallet:</p>
+<ul>
+<li><strong>Interaction:</strong> tap once to pay, or tap and then confirm.</li>
+<li><strong>Information:</strong> show the amount in large text before the PIN step.</li>
+<li><strong>Visual:</strong> show success with a tick and text, not colour alone.</li>
+<li><strong>Service:</strong> decide what happens if payment succeeds but the owner sees nothing.</li>
+<li><strong>Physical:</strong> place the QR sticker where a wheelchair user can scan it too.</li>
+</ul></details>
+<p>In this course, <strong>UX design</strong> is the activity, a verb. The book says "UX design covers a wide range of activities" (Benyon ch1, 1.2). <strong>The user experience (UX)</strong> is the noun: what the person lives through. The finished thing is the product, service or system.</p>
+<p><strong>Product</strong> means a thing with hardware or software, such as a phone or an app. <strong>Service</strong> means "a sequence of interactions that constitutes a whole, more abstract achievement" (Benyon ch4). Services are intangible, such as Maybank banking or a Grab ride. <strong>Interactive system</strong> is the umbrella term, covering "components, devices, products, services and software systems" (Benyon ch1, 1.2). The book switches between these words case by case.</p>
+<div class="paper-task"><strong class="title">Produce it &bull; closed book</strong><p><strong>T1 Q1:</strong> What is UXD, and how does it differ from traditional design? Write 3–4 sentences.</p></div>
+<details class="reveal"><summary>reveal model answer</summary>
+<p><strong>Q1.</strong> UXD is developing high-quality interactive systems, products and services that are usable and enjoyable, covering the user's whole journey. It aims to meet user needs and be intuitive, accessible and positive to use. Traditional design tends to start from the product or machine, so people must adapt. UXD is human-centred: it starts from people's needs, goals and contexts.</p></details>
+<p>Next: where UX shows up in everyday technology.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0002-product-and-journey.html">&larr; Product and journey</a><a href="0004-ux-applications.html">UX applications &rarr;</a></div>
+<script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>

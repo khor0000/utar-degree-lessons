@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 9 — Technology change cycle</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 9 · Tutorial 1 Q8</div>
+<h1>Change the technology, and the rest changes</h1>
+<p><strong>When technology changes, the activity and its context change too, which creates new requirements for technology, and the cycle repeats.</strong></p>
+<p>In <a href="0008-pact.html">Lesson 8</a> you changed the Contexts box. This lesson changes the Technologies box, and the effect keeps going around.</p>
+<p>Two words first. <strong>Requirements</strong> are what a system must do and the qualities it should have. They are not a finished technology: they are what the activity asks of one. <strong>Opportunities</strong> are new possibilities a technology offers.</p>
+<h2>Watch one full turn</h2>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 240" role="img" aria-label="Cycle between activities in contexts and technologies">
+<rect class="hot" x="30" y="70" width="220" height="90"/><text x="50" y="108">Activities in</text><text x="50" y="130">contexts</text>
+<rect class="hot" x="470" y="70" width="220" height="90"/><text x="490" y="118">Technologies</text>
+<g data-layer="r"><path class="line" d="M250 90 H462 M452 83 L462 90 L452 97"/><text x="300" y="78">requirements</text></g>
+<g data-layer="o"><path class="line" d="M470 140 H258 M268 133 L258 140 L268 147"/><text x="300" y="160">opportunities</text></g>
+<g data-layer="s1"><text class="soft" x="30" y="195">Paying cash at a stall</text></g>
+<g data-layer="s2"><text class="soft" x="470" y="195">QR e-wallet</text></g>
+<g data-layer="s3"><text class="soft" x="30" y="218">Now: carry no cash, pay by phone</text></g>
+<g data-layer="s4"><text class="soft" x="470" y="218">New need: proof of payment</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="s1">Start with an activity in its context: paying cash at a stall.</p>
+<p data-show="s1 r">The activity sets <strong>requirements</strong>: payment must be fast, with no need for exact change.</p>
+<p data-show="s1 r s2">A technology answers them: the QR e-wallet.</p>
+<p data-show="s1 r s2 o">The technology offers <strong>opportunities</strong>: pay to the exact sen, with no wallet in your pocket.</p>
+<p data-show="s1 r s2 o s3">So the activity itself changes. Students stop carrying cash, and phone battery now matters at the stall.</p>
+<p data-show="s1 r s2 o s3 s4">The changed activity sets new requirements: the owner must see proof that the money arrived. The cycle continues.</p>
+</div></div>
+<p>The textbook's example is bus travel: tracker displays and route apps changed what travelling by bus is (Benyon, Figure 2.1, PDF p55). "Technology" here includes communications and content, as well as hardware and software.</p>
+<p>A common shorthand is P + A + C = T: technology should fit people, activities and contexts. It is a useful intuition, not an equation, because the cycle loops: technology offers <strong>opportunities</strong> that change activities, and with them contexts and people. The book's version is that activities and contexts "establish requirements for technologies that in turn offer opportunities that change the nature of activities" (Benyon ch2). A better shorthand is: P, A, C, then requirements, then T, then opportunities, then new A.</p>
+<p>Designing technology to meet changed requirements is only half the cycle. New technology can also come first and create opportunities nobody asked for, as QR payment did for paying at a stall.</p>
+<div class="quiz" data-quiz><p class="prompt">In the cycle, what do technologies give back to activities?</p>
+<button class="opt" data-correct>Opportunities</button><button class="opt">Requirements</button><button class="opt">Contexts</button>
+<div class="feedback good" data-feedback-good>Right. Activities set requirements; technologies offer opportunities.</div>
+<div class="feedback bad" data-feedback-bad>Requirements flow from activities to technologies. What comes back is opportunities.</div></div>
+<div class="sorter" data-sort data-bins="Requirement|Opportunity">
+<div data-card="Requirement" data-why="The activity demands this of the technology.">Payment must work with no exact change.</div>
+<div data-card="Opportunity" data-why="The technology makes this newly possible.">Students can leave their wallets at home.</div>
+<div data-card="Requirement" data-why="The changed activity now demands this.">The owner must see proof the money arrived.</div>
+<div data-card="Opportunity" data-why="The technology makes this newly possible.">Prices can be paid to the exact sen.</div>
+</div>
+<div class="paper-task"><strong class="title">Run it &bull; fresh input</strong><p>A lecturer replaces the paper attendance sheet with a QR code on the projector. Write one turn of the cycle: requirement, technology, opportunity, changed activity, new requirement. Then answer <strong>T1 Q8</strong>: How does a change in technology affect the PACT framework?</p></div>
+<details class="reveal"><summary>reveal model answers</summary>
+<p><strong>Cycle (sample).</strong> Requirement: take attendance quickly in a big hall. Technology: projected QR code. Opportunity: students mark attendance by phone within seconds. Changed activity: no sheet passes around, and every student needs a working phone. New requirement: stop students scanning for absent friends.</p>
+<p><strong>Q8.</strong> A change in technology alters the nature of activities and contexts, and creates new requirements and opportunities. Activities establish requirements for technologies, and technologies offer opportunities that change those activities. The changed activities create new requirements, so the cycle continues. For example, QR payment turned paying at a stall into a phone-based activity.</p></details>
+<p>Primary source: Benyon, chapter 2, PDF p55. This completes Tutorial 1's concepts.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0008b-pact-elements-push-each-other.html">&larr; PACT elements push each other</a><a href="0011-four-activities-loop.html">Next: four activities, one loop &rarr;</a></div>
+<script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>

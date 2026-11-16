@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 8 — PACT</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 8 · Tutorial 1 Q7, Tutorial 5 Q2</div>
+<h1>PACT: four things in one sentence</h1>
+<p><strong>PACT stands for People, Activities, Contexts and Technologies, the four elements to consider when designing an interactive system.</strong> All four fit in one sentence: <em>People use Technologies to do Activities in Contexts.</em></p>
+<p>In <a href="0001-what-ux-design-is.html">Lesson 1</a> the signal, the queue and the stall owner all shaped the experience. PACT is a checklist that stops you forgetting pieces like those. Nothing you've seen in this course works like it yet.</p>
+<h2>Build one sentence</h2>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 210" role="img" aria-label="Four PACT boxes for collecting a parcel">
+<g data-layer="p"><rect class="hot" x="10" y="20" width="165" height="110"/><text x="22" y="48">PEOPLE</text><text class="soft" x="22" y="78">Westlake student</text><text class="soft" x="22" y="100">in a rush</text></g>
+<g data-layer="a"><rect class="hot" x="190" y="20" width="165" height="110"/><text x="202" y="48">ACTIVITIES</text><text class="soft" x="202" y="78">Collect a parcel</text><text class="soft" x="202" y="100">at the shop</text></g>
+<g data-layer="c"><rect class="hot" x="370" y="20" width="165" height="110"/><text x="382" y="48">CONTEXTS</text><text class="soft" x="382" y="78">Crowded, 6 pm</text><text class="soft" x="382" y="100">queue behind you</text></g>
+<g data-layer="c2"><rect class="bad" x="370" y="20" width="165" height="110"/><text x="382" y="48">CONTEXTS</text><text class="soft" x="382" y="78">Crowded, 6 pm</text><text class="soft" x="382" y="100">and no signal</text></g>
+<g data-layer="t"><rect class="hot" x="550" y="20" width="160" height="110"/><text x="562" y="48">TECHNOLOGIES</text><text class="soft" x="562" y="78">Phone app shows</text><text class="soft" x="562" y="100">a pickup QR code</text></g>
+<g data-layer="x"><text x="370" y="170">→ an online-only QR fails.</text><text x="370" y="192">Design: save it offline.</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="p"><strong>People:</strong> who is using it? Here, a student in a rush.</p>
+<p data-show="p a"><strong>Activities:</strong> what are they trying to do? Collect a parcel.</p>
+<p data-show="p a c"><strong>Contexts:</strong> where and under what conditions? A crowded shop at 6 pm.</p>
+<p data-show="p a c t"><strong>Technologies:</strong> what do they use? A phone app showing a QR code. The sentence is complete.</p>
+<p data-show="p a c2 t x">Now change one box: there is no signal. The same person and task need a different design. This is why PACT matters: <strong>the four elements depend on each other</strong>.</p>
+</div></div>
+<h2>Each element, with one example</h2>
+<table><thead><tr><th>Element</th><th>Question</th><th>Library kiosk example</th></tr></thead><tbody>
+<tr><td><strong>People</strong></td><td>Who, and how do they differ?</td><td>Students, staff, first-time users</td></tr>
+<tr><td><strong>Activities</strong></td><td>What do they do?</td><td>Borrow and return books</td></tr>
+<tr><td><strong>Contexts</strong></td><td>In what conditions?</td><td>Quiet library, busy before exams</td></tr>
+<tr><td><strong>Technologies</strong></td><td>What input, output, communication, content?</td><td>Student ID scan, screen, link to library database</td></tr>
+</tbody></table>
+<p>Listing the variety of each element for a real problem is a <strong>PACT analysis</strong>, which scopes the design problem (Lecture 1, p31). The full sub-parts are on the <a href="../reference/0002-pact-sheet.html">PACT sheet</a>.</p>
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Contexts Is Not Activities</strong><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td>Activity: order food. Context: noisy canteen.</td><td>Context: "ordering food"</td></tr></tbody></table></div>
+<div class="quiz" data-quiz><p class="prompt">Bright sun makes an ATM screen hard to read. Which PACT element is the sun?</p>
+<button class="opt" data-correct>Contexts</button><button class="opt">Activities</button><button class="opt">Technologies</button>
+<div class="feedback good" data-feedback-good>Right. Lighting is part of the physical environment, a type of context.</div>
+<div class="feedback bad" data-feedback-bad>The sun is a condition around the task, so it belongs to Contexts (physical environment).</div></div>
+<div class="sorter" data-sort data-bins="People|Activities|Contexts|Technologies">
+<div data-card="People" data-why="A difference between users.">A colour-blind student</div>
+<div data-card="Activities" data-why="What someone is doing.">Ordering food</div>
+<div data-card="Contexts" data-why="The surroundings of the activity.">A noisy canteen</div>
+<div data-card="Technologies" data-why="The tool used.">A QR e-wallet</div>
+<div data-card="Contexts" data-why="The physical environment.">A dim hostel laundry room</div>
+<div data-card="Activities" data-why="Time pressure is a temporal aspect of the activity.">Paying quickly with a queue behind you</div>
+</div>
+<div class="paper-task"><strong class="title">Produce it &bull; closed book</strong><p><strong>Fresh case:</strong> a QR washing-machine system for a Kampar hostel. Write one PACT analysis, with two items per element. Then answer <strong>T1 Q7</strong>: What does PACT stand for, and why is it important in UXD?</p></div>
+<details class="reveal"><summary>reveal model answers</summary>
+<p><strong>Analysis (sample).</strong> People: students, the laundry operator. Activities: pay, start a wash, check if it is finished. Contexts: crowded on weekends, wet and dim laundry room. Technologies: phone camera for QR input, screen output, wi-fi or mobile data, machine status content.</p>
+<p><strong>Q7.</strong> PACT stands for People, Activities, Contexts and Technologies. It is important because it is a human-centred way to understand and scope a design problem. The elements are interdependent, so changing one changes what a good design is. For example, a parcel QR needs offline support if the shop has no signal.</p></details>
+<p>Primary source: Benyon, chapter 2, PDF p55. Next: who does a PACT analysis, when, and what it produces.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0007-usability.html">&larr; Usability</a><a href="0008a-doing-a-pact-analysis.html">Doing a PACT analysis &rarr;</a></div>
+<script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 1 — What UX design is</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 1 · Tutorial 1 Q1–2</div>
+<h1>What UX design is</h1>
+<p><strong>User experience design (UXD) is designing a person's whole journey with a product or service, often across several products, so that it is usable and enjoyable, not only how one screen looks.</strong> The word that matters is <em>journey</em>. A <strong>journey</strong> is the sequence of steps someone takes towards a goal; the <strong>experience</strong> is what they live through along it, feelings included. The thing designed does not have to be physical, because an app or a service counts. A walk in the park has nothing designed in it, so it is not UX design's business.</p>
+<p>You already know a close neighbour: when you polish a page in your own projects, you work on its screens. Keep that in mind, because the box below separates it from UX.</p>
+<h2>One journey, step by step</h2>
+<p>A student pays at a Westlake food stall with a QR e-wallet. Step through it and watch the feeling dots. Each place where a person meets a service is a <strong>touchpoint</strong> (Benyon ch4). Ordering GrabFood involves four: the app, a push notification, the rider at the gate and a bank payment.</p>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 235" role="img" aria-label="Six steps of paying by QR, with feeling rising and falling">
+<text class="soft" x="10" y="18">feeling (higher = better)</text>
+<g data-layer="a"><rect class="box" x="10" y="130" width="105" height="60"/><text x="20" y="165">Queue</text><circle cx="62" cy="70" r="7" fill="var(--cyan)"/></g>
+<g data-layer="b"><rect class="box" x="130" y="130" width="105" height="60"/><text x="140" y="165">Open app</text><circle cx="182" cy="60" r="7" fill="var(--cyan)"/></g>
+<g data-layer="c"><rect class="box" x="250" y="130" width="105" height="60"/><text x="260" y="165">Scan QR</text><circle cx="302" cy="50" r="7" fill="var(--cyan)"/></g>
+<g data-layer="d"><rect class="bad" x="370" y="130" width="105" height="60"/><text x="380" y="165">Spinner…</text><circle cx="422" cy="110" r="7" fill="var(--red)"/></g>
+<g data-layer="e"><rect class="box" x="490" y="130" width="105" height="60"/><text x="500" y="165">Paid ✓</text><circle cx="542" cy="60" r="7" fill="var(--cyan)"/></g>
+<g data-layer="f"><rect class="box" x="610" y="130" width="100" height="60"/><text x="618" y="165">Show stall</text><circle cx="660" cy="40" r="7" fill="var(--cyan)"/></g>
+<g data-layer="g"><path class="line" d="M130 200 V210 H595 V200"/><text class="soft" x="250" y="228">a screen-only view sees just this part</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="a">The experience starts before any app opens: the student is in a queue, hoping the stall takes QR.</p>
+<p data-show="a b">They open the wallet app. Quick, so the feeling holds.</p>
+<p data-show="a b c">They scan the stall's code. Going well.</p>
+<p data-show="a b c d">The signal is weak and a spinner sits there, with people waiting behind. The feeling drops. The screen may look perfect and this still feels bad.</p>
+<p data-show="a b c d e">Payment succeeds. Relief.</p>
+<p data-show="a b c d e f">They show the stall owner the success screen. The journey ends with another person, not on a screen.</p>
+<p data-show="a b c d e f g">The whole row is the <strong>user experience</strong>. Polishing only the screens would miss the queue, the signal and the stall owner.</p>
+</div></div>
+<div class="metaphor"><p><strong>Looks like UI design, but wider.</strong> Both care about screens. UI design shapes the interface. UX covers everything around it too, because the feeling comes from the whole journey. Benyon says it directly: "UX is not just a question of designing interfaces, however." The UI is one touchpoint, and UX covers the whole before, during and after. Norman and Nielsen make the same split: the <a href="https://www.nngroup.com/articles/definition-user-experience/">total user experience differs from the user interface</a>.</p></div>
+<h2>The formal words</h2>
+<p>The slide (Lecture 1, p3) splits the term in two. <strong>User experience</strong> is the holistic journey users go through with a product while their understanding of it changes. <strong>Design</strong> is the discipline exploring the dialogue between products, users and contexts.</p>
+<p>What UX designers work on is an <strong>interactive system</strong>: technology that responds to people's actions and handles content they can perceive. A phone app counts; a chair does not (Benyon, PDF p39).</p>
+<h2>Why Norman coined the term</h2>
+<p><strong>The slide's answer:</strong> Don Norman coined "user experience" in 1988 to label the holistic journey users go through with a product while their perceptions change. It signifies that what counts is the whole journey, not one moment of use.</p>
+<p class="note">The textbook tells it differently: Norman <em>adopted</em> the term in 1993, on joining Apple (Benyon, Box 1.2, PDF p42). Write 1988 here, because T1 Q2 itself says 1988. It is on your ask-the-tutor list in <code>PARKED.md</code>.</p>
+<div class="quiz" data-quiz><p class="prompt">An app has beautiful screens, but its login fails whenever hostel wi-fi is weak. What does this show?</p>
+<button class="opt" data-correct>The experience is more than the screens</button>
+<button class="opt">The screens are not yet beautiful enough</button>
+<button class="opt">The hostel wi-fi is outside the design</button>
+<div class="feedback good" data-feedback-good>Right. The wi-fi moment is part of the journey, so it is part of the experience.</div>
+<div class="feedback bad" data-feedback-bad>The screens are not the problem here. The journey breaks at the login, and UX covers the whole journey.</div></div>
+<div class="paper-task"><strong class="title">Produce it &bull; closed book</strong><p>Write 3–4 sentences. <strong>T1 Q2:</strong> Why did Norman coin the term, and what does it signify?</p></div>
+<details class="reveal"><summary>reveal model answer</summary>
+<p><strong>Q2.</strong> Norman coined the term in 1988 to label the holistic journey users go through as they use a product, while their perceptions of it change. It signifies that design should consider the whole experience, not just one interface or moment.</p></details>
+<p>Primary source: Benyon, chapter 1, PDF p34–42. Next: what "product" and "journey" mean exactly.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session. If you get a check wrong, tell me and it goes in your ledger.</p>
+<div class="nav"><span></span><a href="0002-product-and-journey.html">Product and journey &rarr;</a></div>
+<script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script></body></html>

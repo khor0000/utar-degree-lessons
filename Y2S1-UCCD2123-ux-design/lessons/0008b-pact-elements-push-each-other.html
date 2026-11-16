@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 8b — PACT elements push each other</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 8b · Tutorial 1 Q7–Q8</div>
+<h1>PACT elements push each other</h1>
+<p><strong>PACT elements push each other.</strong> No fixed rule says which element changes which. Any element can push any other, and a PACT analysis is a snapshot that you revisit.</p>
+<p>The book names only one fixed link. It says that "activities (and the contexts within which they take place) establish requirements for technologies that in turn offer opportunities that change the nature of activities."</p>
+<p>Two words first. <strong>Requirements</strong> are what a system must do and the qualities it should have. <strong>Opportunities</strong> are new possibilities a technology offers.</p>
+<p>Lesson 8's no-signal example showed a change without naming it. Here each example says which element pushed which, and in what direction.</p>
+<h2>Four pushes, one per stage</h2>
+<p>A <strong>push</strong> is one element changing another. The arrow runs from the element that changes to the one that is changed. Step through the four examples:</p>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 200" role="img" aria-label="Four examples of one PACT element pushing another, one per stage">
+<g data-layer="s1"><rect class="hot" x="30" y="50" width="250" height="90"/><text x="50" y="80">TECHNOLOGIES</text><text class="soft" x="50" y="108">QR e-wallet</text><rect class="hot" x="440" y="50" width="250" height="90"/><text x="460" y="80">ACTIVITIES</text><text class="soft" x="460" y="108">Paying at a pasar malam</text><path class="line" d="M285 95 H430 M420 88 L430 95 L420 102"/><text x="300" y="82">pushes</text></g>
+<g data-layer="s2"><rect class="hot" x="30" y="50" width="250" height="90"/><text x="50" y="80">CONTEXTS</text><text class="soft" x="50" y="108">MCO lockdown</text><rect class="hot" x="440" y="50" width="250" height="90"/><text x="460" y="80">ACTIVITIES</text><text class="soft" x="460" y="108">Grocery shopping</text><path class="line" d="M285 95 H430 M420 88 L430 95 L420 102"/><text x="300" y="82">pushes</text></g>
+<g data-layer="s3"><rect class="hot" x="30" y="50" width="250" height="90"/><text x="50" y="80">PEOPLE</text><text class="soft" x="50" y="108">Elderly, poor eyesight</text><rect class="hot" x="440" y="50" width="250" height="90"/><text x="460" y="80">TECHNOLOGIES</text><text class="soft" x="460" y="108">Larger text, voice option</text><path class="line" d="M285 95 H430 M420 88 L430 95 L420 102"/><text x="300" y="82">pushes</text></g>
+<g data-layer="s4"><rect class="hot" x="30" y="50" width="250" height="90"/><text x="50" y="80">CONTEXTS</text><text class="soft" x="50" y="108">Noisy kopitiam</text><rect class="hot" x="440" y="50" width="250" height="90"/><text x="460" y="80">TECHNOLOGIES</text><text class="soft" x="460" y="108">Vibration, not a beep</text><path class="line" d="M285 95 H430 M420 88 L430 95 L420 102"/><text x="300" y="82">pushes</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="s1"><strong>Technology pushes activity.</strong> QR e-wallets change how people pay at a pasar malam, with no change to count.</p>
+<p data-show="s2"><strong>Context pushes activity.</strong> The MCO moved grocery shopping online.</p>
+<p data-show="s3"><strong>People push technology.</strong> Elderly users with poor eyesight need larger text and a voice option.</p>
+<p data-show="s4"><strong>Context pushes technology.</strong> In a noisy kopitiam a beep is lost, so the phone vibrates instead.</p>
+</div></div>
+<p>The four arrows point in different directions. There is no chain you must follow.</p>
+<h2>More than one at once</h2>
+<p>Several pushes can happen together. The MCO changed Contexts and Activities, and it also changed People, because older users came online for the first time.</p>
+<h2>Change is not a mistake</h2>
+<p>A PACT analysis is a <strong>snapshot</strong>, a picture of one moment. People, contexts and technologies drift. Before QR e-wallets, most kopitiams took only cash. An earlier analysis is not wrong just because the world has moved on: it was right for its time. Designers revisit it when something changes, or at each <strong>iteration</strong>, one round of designing and checking. Working rule (not in the book): the book sets no schedule for revisiting.</p>
+<h2>Check yourself</h2>
+<div class="quiz" data-quiz><p class="prompt">Grab drivers start using in-app navigation, so they stop carrying paper maps. Which push is this?</p>
+<button class="opt" data-correct>Technology pushes activity: navigation changes how drivers route</button><button class="opt">Activity pushes technology: how drivers route shapes screens</button><button class="opt">Context pushes activity: heavy traffic changes trip times</button><button class="opt">Technology pushes context: navigation changes road traffic flow</button>
+<div class="feedback good" data-feedback-good>Right. The app (technology) changed how drivers find their way (activity).</div>
+<div class="feedback bad" data-feedback-bad>Look at what changed first. The app came in, and then the activity of finding routes changed. The arrow runs from technology to activity.</div></div>
+<div class="quiz" data-quiz><p class="prompt">A kopitiam phone app switches from a beep to vibration, because the stall is too loud to hear one. Which push is this?</p>
+<button class="opt" data-correct>Context pushes technology: stall noise changes the alert</button><button class="opt">Technology pushes context: the alert quietens the stall</button><button class="opt">People push activity: owners ask for quieter stalls</button><button class="opt">Activity pushes context: paying quickly makes stalls noisier</button>
+<div class="feedback good" data-feedback-good>Right. The noise (context) changed the alert the phone uses (technology).</div>
+<div class="feedback bad" data-feedback-bad>Check which changed first. The noise came first, and the alert changed in response, so the arrow runs from context to technology.</div></div>
+<div class="paper-task"><strong class="title">Produce it &bull; fresh input</strong><p>Give one new example each of two different pushes, set on the Kampar campus (for example the library, a hostel or a canteen). Name the direction of each.</p></div>
+<details class="reveal"><summary>reveal model answer</summary>
+<p><strong>Technology pushes activity.</strong> A QR code on the hostel laundry machine means students stop queuing with coins. <strong>Context pushes technology.</strong> A dim corridor outside the hostel door pushes the keypad to add a backlit display.</p></details>
+<p>Primary source: Benyon, chapter 2, section 2.1. Lesson 9 develops this loop: what happens when the technology box changes.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0008a-doing-a-pact-analysis.html">&larr; Doing a PACT analysis</a><a href="0009-technology-change-cycle.html">Technology change &rarr;</a></div>
+<script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>

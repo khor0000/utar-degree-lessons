@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 6b — Touchpoint, interaction, journey</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 6b · Tutorial 1 Q5</div>
+<h1>Touchpoint, interaction, journey</h1>
+<p><strong>A touchpoint is a place or moment where a person meets a service; an interaction is what happens there, the person acts and the system responds.</strong> ID works on the interaction at one touchpoint. UX design works on the whole set of touchpoints along the journey.</p>
+<p>Benyon calls a touchpoint a "(or service moment)" (ch4). You met the journey in <a href="0002-product-and-journey.html">Lesson 2</a>: everything one person goes through to reach one goal. A touchpoint is one stop on that journey.</p>
+<p>Benyon says a service has "multiple touchpoints" where people encounter it, and its interactions "happen over time". So touchpoints should "demonstrate a consistent look and feel, and present consistent values".</p>
+<h2>Where touchpoints sit</h2>
+<p>One product can hold several touchpoints. An e-wallet app has an onboarding screen, a payment screen, a push notification (a message the app sends to your phone) and a help chat, and each one is its own touchpoint.</p>
+<p>Some touchpoints are not products at all. A sign, a cashier and a phone call are touchpoints too, because the person meets the service there.</p>
+<p>ID is not split per product. Two products do not mean two ID jobs. ID works wherever an interaction has to be designed: on a screen, at a counter, or on a phone call.</p>
+<h2>One journey, five touchpoints</h2>
+<p>DuitNow QR is Malaysia's national QR payment code. At a mamak stall, the customer's e-wallet app scans the code on the stall's QR sticker. Paying this way is one journey with five touchpoints. The diagram draws the line first, then zooms into the app.</p>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 310" role="img" aria-label="A journey line with five touchpoint dots. The e-wallet app dot zooms into four interaction steps: scan, amount appears, PIN or biometric, green tick.">
+<g data-layer="journey">
+<path class="line" d="M60 56 V50 H660 V56"/>
+<text x="60" y="36">UX design: every touchpoint, consistent, over time</text>
+<path class="line" d="M60 120 H660"/>
+<circle class="box" cx="100" cy="120" r="12"/>
+<circle class="box" cx="220" cy="120" r="12"/>
+<circle class="hot" cx="340" cy="120" r="12"/>
+<circle class="box" cx="460" cy="120" r="12"/>
+<circle class="box" cx="580" cy="120" r="12"/>
+<text x="100" y="160" text-anchor="middle">Accepted?</text><text class="soft" x="100" y="176" text-anchor="middle">sign</text>
+<text x="220" y="160" text-anchor="middle">DuitNow QR</text><text class="soft" x="220" y="176" text-anchor="middle">sticker</text>
+<text x="340" y="160" text-anchor="middle">e-wallet</text><text class="soft" x="340" y="176" text-anchor="middle">app</text>
+<text x="460" y="160" text-anchor="middle">payment sound</text><text class="soft" x="460" y="176" text-anchor="middle">for owner</text>
+<text x="580" y="160" text-anchor="middle">receipt</text><text class="soft" x="580" y="176" text-anchor="middle">customer</text>
+</g>
+<g data-layer="zoom">
+<path class="line" d="M340 134 V196" stroke-dasharray="4 4"/>
+<rect class="box" x="20" y="200" width="680" height="100" rx="8"/>
+<text x="40" y="224">ID: allocate and sequence the steps</text>
+<rect class="box" x="44" y="238" width="142" height="42" rx="6"/><text x="115" y="263" text-anchor="middle">1 scan QR</text>
+<rect class="box" x="206" y="238" width="142" height="42" rx="6"/><text x="277" y="263" text-anchor="middle">2 amount appears</text>
+<rect class="box" x="368" y="238" width="142" height="42" rx="6"/><text x="439" y="263" text-anchor="middle">3 PIN/biometric</text>
+<rect class="hot" x="530" y="238" width="142" height="42" rx="6"/><text x="601" y="263" text-anchor="middle">4 green tick</text>
+<path class="line" d="M190 259 H202 M198 255 L202 259 L198 263"/>
+<path class="line" d="M352 259 H364 M360 255 L364 259 L360 263"/>
+<path class="line" d="M514 259 H526 M522 255 L526 259 L522 263"/>
+</g>
+</svg>
+<div class="stage-captions">
+<p data-show="journey">Paying at a mamak stall is one journey. Each dot is a place or moment where the customer meets the service. The whole line is UX design, because all five must look and behave consistently.</p>
+<p data-show="journey zoom">Zoom into the e-wallet app and its interaction is four steps in a set order. Deciding which steps the person does, which the app does, and their order is the ID job.</p>
+</div></div>
+<h2>What ID means</h2>
+<p>Benyon defines interaction design as "the allocation of functions to human agency or to technology and with the structuring and sequencing of the interactions" (ch3, 3.2). Plainly: ID decides what the person does, what the phone does, and in what order.</p>
+<p><strong>The test:</strong> if the fix reorders steps or changes what the system does, it is ID; if it adds or changes a touchpoint, or makes touchpoints match each other, it is UX design.</p>
+<div class="quiz" data-quiz><p class="prompt">The pay screen asks for PIN before showing the amount; designers swap the order. Which is it?</p>
+<button class="opt" data-correct>ID: changes the order of steps inside one interaction</button><button class="opt">UX design: adds a new touchpoint across the journey</button><button class="opt">HCI: a study measures error rates for two orders</button>
+<div class="feedback good" data-feedback-good>Right. Reordering steps inside the pay screen is ID.</div>
+<div class="feedback bad" data-feedback-bad>Not quite. Reordering steps inside one interaction is ID, not a new touchpoint or a study.</div></div>
+<div class="quiz" data-quiz><p class="prompt">Stalls add an 'e-wallet accepted' sign and owners get a payment sound. Which is it?</p>
+<button class="opt">ID: orders the steps the customer takes to pay</button><button class="opt" data-correct>UX design: makes sign, sticker and sound feel consistent</button><button class="opt">HCI: a study compares how owners hear payment sounds</button>
+<div class="feedback good" data-feedback-good>Right. A new sign and a sound are new touchpoints, and UX design shapes them as one set.</div>
+<div class="feedback bad" data-feedback-bad>Not quite. Adding a sign and a sound adds touchpoints across the journey, which is UX design.</div></div>
+<div class="paper-task"><strong class="title">Run it &bull; fresh input</strong><p>For Grab food delivery, name three touchpoints, one ID decision at one of them, and one UX design decision across them.</p></div>
+<details class="reveal"><summary>reveal model answer</summary>
+<p><strong>Three touchpoints:</strong> the order screen in the app, the push notification that says the rider is on the way, and the in-app chat with the rider.</p>
+<p><strong>ID decision (order screen):</strong> the app shows the total before it asks for the payment PIN or biometric, so the customer sees what they are paying first. This reorders steps, so it is ID.</p>
+<p><strong>UX design decision (across them):</strong> the order screen, the notification and the chat all use the same status words ("on the way", "arrived") and the same tone, so the customer reads one consistent story over time.</p></details>
+<p>Primary source: Benyon ch4 (service design, touchpoints); ch3, 3.2.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0006a-three-fields-one-example.html">&larr; Three fields, one example</a><a href="0007-usability.html">Usability &rarr;</a></div>
+<script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>
