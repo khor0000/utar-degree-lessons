@@ -4,8 +4,8 @@ Study notes written as interactive micro-lessons, one folder per course.
 
 | Folder | Course | When |
 |---|---|---|
-| `Y1S3-UCCD1024-data-structures/` | UCCD1024 Data Structure and Algorithmic Problem Solving | Year 1, Sem 3 |
-| `Y2S1-UCCD2123-ux-design/` | UCCD2123 User Experience Design | Year 2, Sem 1 |
+| `Y1/Sem3/UCCD1024-Data-Structure-and-Algorithmic-Problem-Solving/` | UCCD1024 Data Structure and Algorithmic Problem Solving | Year 1, Sem 3 |
+| `Y2/Sem1/UCCD2123-User-Experience-Design/` | UCCD2123 User Experience Design | Year 2, Sem 1 |
 
 ## How to use
 
@@ -15,8 +15,10 @@ Study notes written as interactive micro-lessons, one folder per course.
 ## Folder structure
 
 ```
-<course folder>/
-├── assets/      shared CSS and JS for that course's lessons
-├── lessons/     one HTML file per concept
-└── reference/   cheat sheets and glossary (where present)
+Y<year>/
+└── Sem<n>/
+    └── <course code>-<full course name>/
+        ├── assets/      shared CSS and JS for that course's lessons
+        ├── lessons/     one HTML file per concept
+        └── reference/   cheat sheets and glossary (where present)
 ```
