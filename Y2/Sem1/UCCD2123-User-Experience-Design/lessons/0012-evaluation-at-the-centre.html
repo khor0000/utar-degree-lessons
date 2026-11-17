@@ -3,11 +3,10 @@
 <div class="eyebrow">Lesson 12 · Tutorial 2 Q2, Q6</div>
 <h1>Evaluation at the centre</h1>
 <p><strong><dfn>Evaluation</dfn> means checking a design idea, software, product or service against some criteria, and it happens at every stage of the UX design process, not only at the end.</strong></p>
-<p>Picture evaluation as one test near the end of a project, and the picture is wrong. The book says "everything gets evaluated at every step of the process" (Benyon ch3, 3.2, PDF p78). The lecture says the same in its own words: evaluation "can occur at any stage of development, from early concepts to fully implemented systems" (Lecture 9, PDF p3). The book's rule is that "any of the other design activities will be followed by an evaluation" (Benyon ch3, 3.2, PDF p83).</p>
-<div class="note"><p><strong>Why this matters.</strong> Every design you draft in the later lessons gets checked by one of these methods. Knowing which method fits which stage tells you what to do with a draft.</p><p><strong>Focus on.</strong> The four stages where evaluation happens, and the three families of method and how they differ.</p><p><strong>Skip for now.</strong> The detailed steps of a cognitive walkthrough and the statistics behind A/B testing. Tutorial 2 asks for the difference between methods, not how to run each one.</p><p><strong>How you'll be tested.</strong> Tutorial 2 Q2 and Q6, answered in writing, closed book.</p></div>
+<p>Lesson 11 put evaluation at the centre of the loop. This lesson shows where evaluation happens, stage by stage. The book says everything gets evaluated at every step of the process (Benyon ch3, 3.2, PDF p78), and the lecture says evaluation can occur at any stage, from early concepts to fully implemented systems (Lecture 9, PDF p3).</p>
 <div class="metaphor"><p><strong>Looks like the testing step at the end of a software project, but it differs.</strong> A final test checks finished code. UX evaluation starts with a paper sketch, long before anything is built, and it repeats at every stage.</p></div>
 <h2>Where evaluation happens</h2>
-<p>Step through the campus food-ordering app from Lesson 11, one stage at a time. The lecture names four stages, from initial concepts to finished product (Lecture 9, PDF p4). Each stage uses its own kind of evaluation, and the bottom band shows that evaluation runs through all of them.</p>
+<p>Step through the campus food-ordering app from Lesson 11, one stage at a time. The lecture names four stages, from initial concepts to finished product (Lecture 9, PDF p4). Each stage uses its own kind of evaluation, and the bottom band shows evaluation running through all of them.</p>
 <div class="stages" data-stages>
 <svg viewBox="0 0 720 300" role="img" aria-label="Four design stages, each with an evaluation method, and a band showing evaluation runs through every stage">
 <rect class="box" x="15" y="20" width="155" height="50" rx="10"/><text x="92.5" y="50" text-anchor="middle">Initial concepts</text>
@@ -22,36 +21,17 @@
 </svg>
 <div class="stage-captions">
 <p data-show="s1"><strong>Initial concepts.</strong> A paper prototype of the order screen is compared with a competitor app (Lecture 9, PDF p4).</p>
-<p data-show="s1 s2"><strong>Design options.</strong> Two menu layouts are compared in a quick experiment. Once the app is live, A/B testing does this job: real users are randomly split between two versions (Lecture 9, PDF p4; Benyon ch10, PDF p275).</p>
-<p data-show="s1 s2 s3"><strong>Usability testing.</strong> Three students try the prototype. This is formative evaluation, so the results shape the next version (Lecture 9, PDF p4; Benyon ch10, 10.1, PDF p271).</p>
+<p data-show="s1 s2"><strong>Design options.</strong> Two menu layouts are compared in a quick experiment. Once the app is live, A/B testing does this job, with real users (Lecture 9, PDF p4).</p>
+<p data-show="s1 s2 s3"><strong>Usability testing.</strong> Three students try the prototype. Its results shape the next version, so this is formative evaluation (Lecture 9, PDF p4).</p>
 <p data-show="s1 s2 s3 s4"><strong>Finished product.</strong> The released app is checked against a standard such as ISO 9241. That is summative evaluation (Lecture 9, PDF p4). Data analytics then tracks real use.</p>
 </div></div>
-<p>Two stage words need a definition.</p>
-<p class="def"><dfn>Formative evaluation</dfn> is done while the design is still changing, so its results help to form it. <span class="src">Lecture 9, PDF p4</span></p>
-<p class="def"><dfn>Summative evaluation</dfn> is done on a finished product, to judge it against performance criteria or a usability standard. <span class="src">Lecture 9, PDF p4</span></p>
-<h2>Three families of method, compared</h2>
-<p>The book sorts evaluation methods into three types: expert-based, participant-based and data analytics (Benyon ch10, 10.1, PDF p268). The lecture uses the same three (Lecture 9, PDF p4). They differ in who does the checking and when.</p>
-<table>
-<thead><tr><th>Family</th><th>Who does the checking</th><th>Users' role</th><th>Typical methods</th></tr></thead>
-<tbody>
-<tr><td>Expert-based</td><td>A usability expert or UX designer, reviewing an envisioned design</td><td>Not needed</td><td>Heuristic evaluation, cognitive walkthrough</td></tr>
-<tr><td>Participant-based</td><td>People recruited to use an envisioned design</td><td>Real people use it</td><td>User testing, cooperative evaluation, controlled experiments</td></tr>
-<tr><td>Data analytics</td><td>Data gathered once the system is deployed</td><td>Live use data</td><td>A/B testing, page views, heat maps</td></tr>
-</tbody></table>
-<p>The trade-off is speed against realism. Expert-based methods "will often pick up significant usability or UX issues quickly, but experts will sometimes miss detailed issues that real users find difficult" (Benyon ch10, 10.1, PDF p268). That is why participant methods "must be used at some point in the development process" (same page). Heuristic evaluation is formative, not summative (Benyon ch10, 10.3, PDF p277).</p>
-<h2>Two quick checks</h2>
+<h2>Check the stages</h2>
+<p>Lesson 12a names the two stage words, formative and summative. Lesson 12b sorts the methods into three families. For now, the point is that the stages are not one final test.</p>
 <div class="quiz" data-quiz><p class="prompt">Which statement about when evaluation happens is correct?</p>
 <button class="opt">Evaluation is one test done once, at the end, after the finished product is ready for release.</button><button class="opt">Evaluation starts only after usability testing, so early paper sketches are never checked by anyone at all.</button><button class="opt" data-correct>Evaluation can happen at any stage, from an early paper sketch to a fully built, finished product.</button><button class="opt">Evaluation is done by the client alone, at the end, to approve the final design and budget.</button>
 <div class="feedback good" data-feedback-good>Right. Evaluation runs at every stage, from the first sketch to the finished product.</div>
 <div class="feedback bad" data-feedback-bad>Not quite. Evaluation is not a single end test. It runs at every stage, so an early sketch is checked too.</div></div>
-<div class="quiz" data-quiz><p class="prompt">A team wants to know which of two versions of a live checkout page gets more clicks. Which method fits?</p>
-<button class="opt" data-correct>A/B testing, a data analytics method that randomly splits real users between two live versions of the page.</button><button class="opt">Heuristic evaluation, where several experts each check a paper prototype against a list of good design principles independently.</button><button class="opt">Cognitive walkthrough, where an expert simulates a user's experience, one task at a time, on a paper prototype.</button><button class="opt">Controlled user testing, where invited students try a prototype in a lab with no live traffic at all.</button>
-<div class="feedback good" data-feedback-good>Right. A/B testing compares two live versions using real use data.</div>
-<div class="feedback bad" data-feedback-bad>Not quite. The team needs real use data from a live page, and that is data analytics. The other three use an envisioned design, not live traffic.</div></div>
-<div class="paper-task"><strong class="title">Produce it &bull; closed book</strong><p>Close this lesson, and answer <strong>T2 Q2</strong> and <strong>T2 Q6</strong> on paper: Why is evaluation central to the UX design process, and at what stages does it occur? What are some methods used in evaluating UX designs, and how do they differ?</p></div>
-<details class="reveal"><summary>reveal model answer</summary>
-<p>Evaluation is central because everything gets evaluated at every step of the process, so a design is checked against its criteria from the first idea to the finished product. It occurs at initial concepts (paper prototypes compared with competitor products), at design options (quick experiments comparing alternatives), at usability testing (formative, with users trying a prototype) and at the finished product (summative, against a standard such as ISO 9241, plus data analytics after deployment). The main methods are expert-based (heuristic evaluation, cognitive walkthrough), which are quick but can miss problems real users have; participant-based (user testing), which gives a realistic picture from real people; and data analytics (such as A/B testing), which uses data from live use. They differ in who does the checking and when.</p></details>
-<p>Primary source: Benyon, chapter 3, section 3.2 (PDF p78) and chapter 10, sections 10.1, 10.3 and 10.4 (PDF p268, p275, p277, p279). Lecture 9, PDF pages 3, 4, 13 and 14.</p>
+<p>Primary source: Benyon, chapter 3, section 3.2 (PDF p78). Lecture 9, PDF p3 and p4.</p>
 <p class="ask-agent">Anything unclear? Ask me in the session.</p>
-<div class="nav"><a href="0011b-why-the-process-loops.html">&larr; Why the process loops</a><a href="0012a-evaluation-families-in-use.html">Evaluation families in use &rarr;</a></div>
+<div class="nav"><a href="0011f-ideation-two-meanings.html">&larr; Ideation: two meanings</a><a href="0012a-formative-and-summative.html">Next: formative and summative &rarr;</a></div>
 <script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>

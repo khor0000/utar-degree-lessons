@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 17a — Abstraction, not length</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 17a · Tutorial 2 Q8</div>
+<h1>Abstraction, not length</h1>
+<p><strong>The difference between a conceptual and a concrete scenario is the level of abstraction. Length does not decide it: a long scenario that names no device is conceptual, and a short one that names a PC and a two-week diary is concrete.</strong></p>
+<p>Lesson 17 gave the scenario chain. This lesson deals with the most common wrong test, which is length, and says what the right test is.</p>
+<div class="metaphor"><p><strong>Looks like the Lesson 14 split between conceptual and physical design, with two boxes and one line between them.</strong> For scenarios, the book says the line is not clean: the difference is a matter of degree.</p></div>
+<h2>The line is a matter of degree</h2>
+<p>The book says there is not a clean break between conceptual and concrete scenarios. The more specific a scenario is about some aspects, the more concrete it is (Benyon ch3, 3.5, PDF p94). A chapter 9 passage says the same: there are degrees of concreteness (Benyon ch9, 9.4, PDF p249). So a scenario can be concrete about the device and still conceptual about the goal.</p>
+<h2>Abstraction is the difference</h2>
+<p>The book's own booking scenario shows the movement. It could be made more abstract by not saying that the internet is used, or more concrete by saying the booking is made from a computer (Benyon ch3, 3.5, PDF p93). Each added decision about the device, the interface, or who does which part moves the scenario towards concrete.</p>
+<p>This is the same split as Lesson 14: conceptual design asks what the system is for, and a conceptual scenario keeps that question abstract.</p>
+<h2>Length is not the test</h2>
+<p>A long conceptual scenario that names no device is still conceptual. A short scenario that names a PC and a two-week diary is concrete. Length measures words, and the abstraction measures decisions.</p>
+<p>The lecture also says a concrete scenario is used for evaluation and design decisions (Lecture 8, PDF p17). That use is the reason to know which level a scenario is at.</p>
+<div class="quiz" data-quiz><p class="prompt">A scenario says: "Students see the pickup time for their order." Which reading is correct?</p>
+<button class="opt" data-correct>Conceptual, because it names no device, control or split of functions.</button>
+<button class="opt">Concrete, because it says students see something, which needs a screen.</button>
+<button class="opt">Concrete, because it is longer than the story it came from.</button>
+<button class="opt">Conceptual only if it is written as a story with a named person.</button>
+<div class="feedback good" data-feedback-good>Right. Nothing is named and no split of functions is fixed, so the sentence is conceptual. The word "see" does not name a device.</div>
+<div class="feedback bad" data-feedback-bad>Not quite. Apply the test. The sentence names no device, control or split of functions, so it is conceptual. Length does not decide it, and a story is not the test either.</div></div>
+<p>Primary source: Benyon, chapter 3, section 3.5 (PDF p93 to p94), chapter 9, section 9.4 (PDF p249). Lecture 8, PDF p17.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0017-conceptual-vs-concrete-scenarios.html">&larr; Conceptual and concrete scenarios</a><a href="0017b-where-conceptual-ends.html">Next: where conceptual ends &rarr;</a></div>
+<script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>

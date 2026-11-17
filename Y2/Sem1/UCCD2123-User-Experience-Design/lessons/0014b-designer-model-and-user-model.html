@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 14b — The designer's model and the user's model</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 14b · Tutorial 2 Q4</div>
+<h1>The designer's model and the user's model</h1>
+<p><strong>The designer's conceptual model reaches the user only through the system image, the screens, behaviour and documentation. The user builds a mental model from that, so the two pictures can differ.</strong></p>
+<p>Lesson 14a defined the conceptual model as the designer's plan. This lesson shows how that plan reaches the user.</p>
+<div class="metaphor"><p><strong>Looks like the conceptual model, because both name the same things. It differs in whose picture it is.</strong> The conceptual model lives in the designer's diagrams. The mental model lives in the user's head.</p></div>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 240" role="img" aria-label="Designer's conceptual model leads to a system image, which the user turns into a mental model">
+<defs><marker id="ah14b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--ink-soft)"/></marker></defs>
+<g data-layer="d1"><rect class="hot" x="20" y="50" width="190" height="120" rx="12"/><text x="115" y="92" text-anchor="middle">Designer's</text><text x="115" y="114" text-anchor="middle">conceptual model</text><text class="soft" x="115" y="140" text-anchor="middle">objects, attributes, relations</text></g>
+<g data-layer="d2"><path class="line" marker-end="url(#ah14b)" d="M212 110 L256 110"/><rect class="box" x="256" y="50" width="200" height="120" rx="12"/><text x="356" y="92" text-anchor="middle">System image</text><text class="soft" x="356" y="114" text-anchor="middle">screens, behaviour,</text><text class="soft" x="356" y="134" text-anchor="middle">documentation</text></g>
+<g data-layer="d3"><path class="line" marker-end="url(#ah14b)" d="M458 110 L502 110"/><rect class="box" x="502" y="50" width="198" height="120" rx="12"/><text x="601" y="92" text-anchor="middle">User's</text><text x="601" y="114" text-anchor="middle">mental model</text><text class="soft" x="601" y="140" text-anchor="middle">built from what they see</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="d1"><strong>Stage 1, the designer's plan.</strong> The conceptual model lives in the designer's hands and the team's diagrams. No user has seen it yet.</p>
+<p data-show="d1 d2"><strong>Stage 2, the system image.</strong> Users never see the plan. They see only the screens, what the system does, and any manual. The designer can steer the user's picture only through this.</p>
+<p data-show="d1 d2 d3"><strong>Stage 3, the mental model.</strong> The user builds their own picture from the system image. It can differ from the plan, because no single designer's plan fully reaches the user (Benyon ch2, PDF p60).</p>
+</div></div>
+<h2>Two pictures compared</h2>
+<table><thead><tr><th></th><th>Conceptual model</th><th>Mental model</th></tr></thead><tbody>
+<tr><td><strong>Whose picture</strong></td><td>The designer's</td><td>The user's</td></tr>
+<tr><td><strong>How it forms</strong></td><td>Written down by the designer, before the system is built</td><td>Built by the user, by using the system and reading its documentation (Benyon ch2, PDF p60)</td></tr>
+<tr><td><strong>How it behaves</strong></td><td>A stated plan, which the team can discuss and revise</td><td>Incomplete, unstable and not always scientific (Benyon ch2, PDF p61)</td></tr>
+</tbody></table>
+<p>You might reasonably wonder whether the two should match. The book wants the designer's model communicated so clearly that people quickly develop a clear mental model (Benyon ch3, 3.2, PDF p79). That is a goal, not a guarantee. The system image is the only link between the two.</p>
+<div class="quiz" data-quiz><p class="prompt">What is the only link between the designer's conceptual model and the user's mental model?</p>
+<button class="opt">A shared meeting where the designer explains the plan to every user.</button>
+<button class="opt" data-correct>The system image: the interface, the behaviour and the documentation the user actually meets.</button>
+<button class="opt">The conceptual model itself, which users copy line by line.</button>
+<button class="opt">The requirements list, which the user reads before first use.</button>
+<div class="feedback good" data-feedback-good>Right. Users never see the plan. They build their picture from the system image.</div>
+<div class="feedback bad" data-feedback-bad>Not quite. Users see only the system image. The designer's plan reaches them only through screens, behaviour and documentation.</div></div>
+<div class="paper-task"><strong class="title">Produce it &bull; closed book &bull; Tutorial 2 Q4</strong><p>Close lessons 14 to 14b. Answer Q4 on paper: How is conceptual design different from physical design in UX? Then, for a canteen app, define a conceptual model, name one object, one attribute and one relationship with its 1 or m labels, and say how it differs from a mental model.</p></div>
+<details class="reveal"><summary>reveal model answer</summary>
+<p>Conceptual design is abstract: it concerns the information content and functions a system needs to achieve its purpose, and what someone must know to use it, without deciding how they are distributed. Physical design makes it concrete: it structures interactions into logical sequences, allocates functions between people and devices, and fixes the look and feel through colours, shapes and sizes. Conceptual design answers what the system is for, while physical design answers how it works and looks. For the canteen app, a conceptual model is the designer's abstract description of objects, attributes and relationships. The object is Order, the attribute is pickup time, and the relationship is that a Student places many Orders (1 to m). It differs from a mental model in whose picture it is: the conceptual model is the designer's plan, and the mental model is the user's belief, built from the system image, which can be incomplete or unstable.</p></details>
+<p>Primary source: Benyon, chapter 2 (PDF p60 to p61), chapter 3 (PDF p79, p97). Lecture 8, PDF p3 and p4.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0014a-conceptual-model.html">&larr; Conceptual model</a><a href="0015-envisionment.html">Next: envisionment &rarr;</a></div>
+<script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>

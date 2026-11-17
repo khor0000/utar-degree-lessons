@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 11e — Why any activity can send the team back</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 11e · Tutorial 2 Q1</div>
+<h1>Why any activity can send the team back</h1>
+<p><strong>The process is <dfn>iterative</dfn> because evaluation finds problems, and each problem points to the activity that caused it. The team goes back to that activity, repairs the design, and evaluates again. Each round refines the design rather than restarting it.</strong></p>
+<p>Lesson 11d said the process has no fixed order. This lesson shows the return path, and why the return is a round rather than a restart.</p>
+<div class="metaphor"><p><strong>Looks like a parcel sent back to the shop that packed it, not to the start of the whole order.</strong> The return goes to the activity that caused the problem, and the rest of the design stays.</p></div>
+<h2>One problem, one return</h2>
+<p>Take a pick-up screen. Round 1 is a design, and the test shows that students cannot find their tracking number. That problem points to design, so the team returns there. Round 2 changes the screen, and the next test shows the fix works. Step through it.</p>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 240" role="img" aria-label="Five boxes in a row: design, evaluation, design again, evaluation, then understanding. A returning arrow goes from the first evaluation back to the first design">
+<defs><marker id="ah11e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--ink-soft)"/></marker></defs>
+<rect class="box" x="10" y="80" width="110" height="60" rx="12"/><text x="65" y="115" text-anchor="middle">Design v1</text>
+<rect class="box" x="150" y="80" width="110" height="60" rx="12"/><text x="205" y="115" text-anchor="middle">Evaluation</text>
+<rect class="box" x="290" y="80" width="110" height="60" rx="12"/><text x="345" y="115" text-anchor="middle">Design v2</text>
+<rect class="box" x="430" y="80" width="110" height="60" rx="12"/><text x="485" y="115" text-anchor="middle">Evaluation</text>
+<rect class="box" x="570" y="80" width="110" height="60" rx="12"/><text x="625" y="115" text-anchor="middle">Understanding</text>
+<path class="line" marker-end="url(#ah11e)" d="M120 110 L148 110"/>
+<path class="line" marker-end="url(#ah11e)" d="M260 110 L288 110"/>
+<path class="line" marker-end="url(#ah11e)" d="M400 110 L428 110"/>
+<g data-layer="d1"><rect x="10" y="80" width="110" height="60" rx="12" style="fill:none;stroke:var(--cyan);stroke-width:3"/><text class="soft" x="65" y="170" text-anchor="middle">tracking number</text><text class="soft" x="65" y="192" text-anchor="middle">asked first</text></g>
+<g data-layer="e1"><rect x="150" y="80" width="110" height="60" rx="12" style="fill:none;stroke:var(--cyan);stroke-width:3"/><text class="soft" x="205" y="170" text-anchor="middle">3 of 4 cannot</text><text class="soft" x="205" y="192" text-anchor="middle">find the number</text></g>
+<g data-layer="b1"><path class="line" marker-end="url(#ah11e)" d="M200 80 Q135 20 70 80"/><text class="soft" x="135" y="38" text-anchor="middle">problem found: back to design</text></g>
+<g data-layer="d2"><rect x="290" y="80" width="110" height="60" rx="12" style="fill:none;stroke:var(--cyan);stroke-width:3"/><text class="soft" x="345" y="170" text-anchor="middle">phone number</text><text class="soft" x="345" y="192" text-anchor="middle">asked first</text></g>
+<g data-layer="e2"><rect x="430" y="80" width="110" height="60" rx="12" style="fill:none;stroke:var(--cyan);stroke-width:3"/><text class="soft" x="485" y="170" text-anchor="middle">all 4 find</text><text class="soft" x="485" y="192" text-anchor="middle">their parcel</text></g>
+<g data-layer="u"><rect x="570" y="80" width="110" height="60" rx="12" style="fill:none;stroke:var(--cyan);stroke-width:3"/><text class="soft" x="625" y="170" text-anchor="middle">new need:</text><text class="soft" x="625" y="192" text-anchor="middle">a text alert</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="d1"><strong>Round 1, design.</strong> The first pick-up screen asks for the tracking number before anything else.</p>
+<p data-show="d1 e1"><strong>Round 1, evaluation.</strong> Three of four students cannot find their tracking number. That is a problem with the design.</p>
+<p data-show="d1 e1 b1"><strong>Back to design.</strong> The problem sends the team back to the activity that caused it.</p>
+<p data-show="d1 e1 b1 d2"><strong>Round 2, design.</strong> The screen asks for the phone number first, then lists the parcels.</p>
+<p data-show="d1 e1 b1 d2 e2"><strong>Round 2, evaluation.</strong> All four students find their parcel in under 20 seconds. One asks whether a text can say when it is ready.</p>
+<p data-show="d1 e1 b1 d2 e2 u"><strong>Back to understanding.</strong> That new need starts the next round.</p>
+</div></div>
+<h2>Why the return is repeated</h2>
+<p>The lecture gives the same reason in other words: UX design is a cyclic method that keeps learning about users and refining the design (Lecture 2, PDF p3). The book says both the understanding of needs and the design solutions evolve during UX design (Benyon ch3, 3.1, PDF p77). So the team returns to any activity, and each return refines the design.</p>
+<h2>Starting in the middle</h2>
+<p>The process can also begin partway through. The lecture gives three starting points, each with a first move (Lecture 2, PDF p13).</p>
+<table><thead><tr><th>Start</th><th>Example</th><th>First move</th></tr></thead><tbody>
+<tr><td>Design</td><td>A finished visual design is handed over</td><td>Evaluate it with usability testing, to find its flaws</td></tr>
+<tr><td>Evaluation</td><td>The live app has poor user reviews</td><td>Evaluate the live app, before designing a fix</td></tr>
+<tr><td>Envisionment</td><td>A rough prototype shows a feature is possible</td><td>Test the prototype with users, then make the official design</td></tr>
+</tbody></table>
+<div class="quiz" data-quiz><p class="prompt">A parcel pick-up screen fails a test: users stall at the phone-number field. Where does the process go next?</p>
+<button class="opt">Straight to launch, because evaluation is the final step and the design was already tested once by users.</button><button class="opt">Back to understanding every time, because the process must always restart in full from the very first activity.</button><button class="opt" data-correct>Back to design, the activity the problem points to, then envisionment and evaluation again to refine it further.</button><button class="opt">Nowhere, because the design is already approved, so the team can now only fix bugs in the code.</button>
+<div class="feedback good" data-feedback-good>Right. The problem points to the activity that caused it, and the team returns there and repeats the round.</div>
+<div class="feedback bad" data-feedback-bad>Not quite. The process does not restart from the beginning each time, and evaluation is not the last step. The team returns to the activity the problem points to.</div></div>
+<div class="paper-task"><strong class="title">Produce it &bull; closed book &bull; Tutorial 2 Q1</strong><p>Close these lessons (11 to 11e). Answer Q1 on paper: What are the four main activities in the UX design process, and why is the process considered iterative? Use one example that starts from evaluation.</p></div>
+<details class="reveal"><summary>reveal model answer</summary>
+<p>The four main activities are understanding (finding out what the system must do and how it fits with other things), design (conceptual and physical design), envisionment (making ideas visible, such as prototypes) and evaluation, which is central and happens after every activity. The process is iterative, not linear: it can start at any activity, the activities can happen in any order, and any problem found sends the team back to the activity that caused it. For example, a team starts from an app with poor reviews (evaluation), finds the menu layout is the problem, returns to design, builds a prototype (envisionment) and evaluates again.</p></details>
+<p>Primary source: Benyon, chapter 3, sections 3.1 and 3.2 (PDF p77 to p78). Lecture 2, PDF p3 and p13. Lecture 6, PDF p3 for the iterative wording on requirements.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0011d-process-and-stages.html">&larr; The process and its stages</a><a href="0011f-ideation-two-meanings.html">Next: ideation, two meanings &rarr;</a></div>
+<script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 17b — Where conceptual ends</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 17b · Tutorial 2 Q8</div>
+<h1>Where conceptual ends: a test for one scenario</h1>
+<p><strong>A scenario can be checked on its own. It is concrete on each point where it fixes a device, an interface or who does which part, and conceptual everywhere else.</strong></p>
+<p>Lesson 17a said the difference is abstraction, not length. This lesson gives a test that works on one scenario, without comparing it with another.</p>
+<div class="metaphor"><p><strong>Looks like a checklist at the canteen counter: does the order name a stall, a machine or a person?</strong> If it does, that part of the order is concrete.</p></div>
+<h2>What moves a scenario across the middle</h2>
+<p>The book names what makes a scenario concrete: it begins to dictate a particular interface design and a particular allocation of functions between people and devices (Benyon ch3, 3.5, PDF p94). So the two markers are the interface or device, and the split of functions. Both can be checked by reading the scenario.</p>
+<h2>One canteen story, three versions</h2>
+<p>Here is one story written at three levels. Step through it.</p>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 340" role="img" aria-label="Three rungs: a story, a conceptual scenario, and a concrete scenario, each adding detail">
+<defs><marker id="ah17a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--ink-soft)"/></marker></defs>
+<g data-layer="l1"><rect class="box" x="60" y="10" width="600" height="84" rx="12"/><text x="84" y="36" style="font-weight:700">1  Story</text><text class="soft" x="84" y="60">Ming has ten minutes before his tutorial. The stall queue was too long last week,</text><text class="soft" x="84" y="80">so he skipped lunch and was hungry in class.</text></g>
+<g data-layer="l2"><path class="line" marker-end="url(#ah17a)" d="M360 94 L360 124"/><text class="soft" x="372" y="114">abstract away the details</text><rect class="hot" x="60" y="126" width="600" height="84" rx="12"/><text x="84" y="152">2  Conceptual scenario</text><text class="soft" x="84" y="176">Students can order a canteen meal in advance, choose a pickup time,</text><text class="soft" x="84" y="196">and get confirmation that the order is in.</text></g>
+<g data-layer="l3"><path class="line" marker-end="url(#ah17a)" d="M360 210 L360 240"/><text class="soft" x="372" y="230">add design decisions</text><rect class="box" x="60" y="242" width="600" height="84" rx="12"/><text x="84" y="268">3  Concrete scenario</text><text class="soft" x="84" y="292">Ming opens the canteen page on his phone, taps Order for the 12:40 pickup,</text><text class="soft" x="84" y="312">and the phone shows a QR code for the stall to scan.</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="l1"><strong>Rung 1, the story.</strong> A real experience with the small details kept: the queue, the time, the hunger in class. Nothing has been designed yet.</p>
+<p data-show="l1 l2"><strong>Rung 2, conceptual.</strong> The details are stripped away. The scenario names what students do and what they get back, and it names no device, screen or control. It would fit a phone app, a web page or a counter kiosk.</p>
+<p data-show="l1 l2 l3"><strong>Rung 3, concrete.</strong> Design decisions are added. The phone is the device, the Order button is the control, and the phone shows the code while the stall scans it. The split of functions between person and device is now fixed.</p>
+</div></div>
+<h2>The test, for one scenario</h2>
+<p>Read the scenario one sentence at a time, and ask two questions.</p>
+<ol>
+<li><strong>Does the sentence name a device, a screen or a control</strong>, such as a phone, a page, a button or a search bar? Then it fixes the interface or the technology.</li>
+<li><strong>Does the sentence say who does which part</strong>, such as "the phone shows" or "the counter scans"? Then it fixes how functions are split between people and devices.</li>
+</ol>
+<p>If neither question is yes, the sentence is conceptual, however long it is. If either is yes, that sentence is concrete on that point. A scenario can pass for some sentences and fail for others.</p>
+<div class="quiz" data-quiz><p class="prompt">Which sentence is concrete on the interface, not just on the device?</p>
+<button class="opt">Students are told when the order is ready, and they are pleased with the stall.</button>
+<button class="opt" data-correct>Students tap the Ready button on the menu screen to see the pickup time.</button>
+<button class="opt">Students feel uneasy when they wait at the stall for longer than ten minutes.</button>
+<button class="opt">Students want their orders to be ready as soon as they are placed by the canteen.</button>
+<div class="feedback good" data-feedback-good>Right. It names a control, a button, and a screen, so it fixes the interface. The other three describe feelings or outcomes without fixing any control.</div>
+<div class="feedback bad" data-feedback-bad>Not quite. Only the sentence that names a control and a screen fixes the interface. The others describe outcomes or feelings, which stay conceptual.</div></div>
+<p>Primary source: Benyon, chapter 3, section 3.5 (PDF p93 to p94). Lecture 8, PDF p3 for the filtering slide (see Lesson 17c).</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0017a-abstraction-not-length.html">&larr; Abstraction, not length</a><a href="0017c-borderline-sentences.html">Next: borderline sentences &rarr;</a></div>
+<script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>

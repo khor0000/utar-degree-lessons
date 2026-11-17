@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 2a — How wide, how many journeys</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 2a · Supports Tutorial 1 Q1–4</div>
+<h1>How wide a journey is, and how many you count</h1>
+<p><strong>The width of a journey comes from the goal you are designing for. You count one journey per person per goal.</strong> Lesson 2 defined a journey as one person and one goal, so this lesson shows how to draw one and how to count them.</p>
+<h2>You choose how wide a journey is</h2>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 190" role="img" aria-label="A timeline with narrow, medium and wide spans">
+<g><rect class="box" x="10" y="20" width="125" height="50"/><text x="20" y="50">Install</text><rect class="box" x="150" y="20" width="125" height="50"/><text x="160" y="50">Choose stall</text><rect class="hot" x="290" y="20" width="125" height="50"/><text x="300" y="50">Scan, pay</text><rect class="box" x="430" y="20" width="125" height="50"/><text x="440" y="50">Get food</text><rect class="box" x="570" y="20" width="140" height="50"/><text x="580" y="50">Keep app?</text></g>
+<g data-layer="n"><path class="line" d="M290 85 H415"/><text x="298" y="108">narrow: 20 seconds</text></g>
+<g data-layer="m"><path class="line" d="M150 125 H555"/><text x="255" y="148">medium: one meal</text></g>
+<g data-layer="w"><path class="line" d="M10 165 H710"/><text x="270" y="185">wide: months of use</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="n"><strong>Narrow.</strong> Designing the payment screen? Zoom in on scan and pay.</p>
+<p data-show="n m"><strong>Medium.</strong> Fixing lunch queues? Include choosing the stall and getting the food.</p>
+<p data-show="n m w"><strong>Wide.</strong> Asking why students abandon the app? Follow them for months.</p>
+</div></div>
+<p>The goal decides the zoom. "Pay with the app" is a narrow goal, so its journey starts at the scan. "Decide where to eat and pay" is a wider goal, so its journey starts earlier, when the student is choosing a stall, and includes everything up to the meal.</p>
+<h2>Two pictures, one journey</h2>
+<p>The timeline above lists what the person does. The product labels in the next diagram say which product handles each step. These are two views of the same journey, not two journeys. The book says there "is no standard" way to draw a journey (ch4, 4.3), so pick the picture that answers your question. Whichever you pick, the book's common pieces are the same: <strong>before, during and after</strong> experiences, plus the touchpoints (ch4, 4.3).</p>
+<h2>You count journeys by people and goals</h2>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 200" role="img" aria-label="One journey passing through three products, then a second person's journey">
+<g><path class="line" d="M10 60 H700 M690 53 L700 60 L690 67"/><text x="10" y="35">Student: pay for lunch</text></g>
+<g data-layer="p"><rect class="hot" x="130" y="42" width="110" height="36"/><text x="145" y="66">Phone</text><rect class="hot" x="300" y="42" width="110" height="36"/><text x="315" y="66">Wi-fi</text><rect class="hot" x="470" y="42" width="110" height="36"/><text x="485" y="66">E-wallet</text></g>
+<g data-layer="o"><path class="line" d="M10 160 H700 M690 153 L700 160 L690 167"/><text x="10" y="135">Stall owner: confirm the money arrived</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="">One person with one goal makes one line.</p>
+<p data-show="p">Three products sit on that line, but it is still <strong>one journey</strong>. Products do not add lines.</p>
+<p data-show="p o">A different person or a different goal adds a line. So the stall owner has their own journey.</p>
+</div></div>
+<p><strong>Working rule (not in the book):</strong> one goal gives one journey. Two goals give two journeys, which may share touchpoints.</p>
+<div class="sorter" data-sort data-bins="Same journey|New journey">
+<div data-card="Same journey" data-why="Same student, same goal. The wi-fi is one more product on the line.">While paying, the student switches from wi-fi to mobile data.</div>
+<div data-card="New journey" data-why="Same student, but a different goal.">The night before, the student topped up the e-wallet.</div>
+<div data-card="New journey" data-why="Different person, different goal.">The stall owner checks whether the money arrived.</div>
+<div data-card="Same journey" data-why="This is still part of paying for this lunch.">The scan fails, so the student scans a second time.</div>
+</div>
+<h2>A queue is a moment, not a touchpoint</h2>
+<p>A queue is a moment in the journey, so UX design covers it, because the queue shapes the feeling in Lesson 1. It is not a touchpoint of the designed service, though. A <dfn>touchpoint</dfn> is where the person meets the service. The queue is not an interactive system: it does not respond to the person or process content. So there is no interaction for ID to design there.</p>
+<h2>Group people by what changes their journey</h2>
+<p>Group people by what changes the journey: their goal, their situation and what they need. A student and a lecturer paying for lunch usually have different situations, so they get separate journeys. Android and iOS users paying for the same lunch share the goal, so they share one journey. Their phones differ, so the touchpoints may need separate versions, but the journey stays one. (This grouping is our working rule. The book's version of it is the persona, which comes later.)</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0002-product-and-journey.html">&larr; Product and journey</a><a href="0003-human-vs-machine.html">Human vs machine &rarr;</a></div>
+<script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>
