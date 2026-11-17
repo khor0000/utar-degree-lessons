@@ -849,3 +849,25 @@ svg .venn { fill: var(--cyan); fill-opacity: .1; stroke: var(--cyan); stroke-wid
   resize: vertical;
 }
 .drill-item textarea:focus-visible { outline: 2px solid var(--cyan); outline-offset: 1px; }
+
+/* ------------------------------------------------------------------
+   Definitions: <dfn> marks the term where it is defined;
+   <p class="def"> is a stand-alone definition block (term + meaning).
+   ------------------------------------------------------------------ */
+dfn {
+  font-style: normal;
+  font-weight: 650;
+  color: var(--cyan-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--cyan);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.def {
+  background: var(--cyan-well);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  margin: 1rem 0;
+}
+.def dfn { text-decoration: none; }
+.def .src { display: block; font-size: 0.85em; color: var(--ink-soft); margin-top: 0.25rem; }

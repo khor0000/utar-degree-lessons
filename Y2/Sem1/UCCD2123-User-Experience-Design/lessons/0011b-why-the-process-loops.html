@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 11b — Why the process loops</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 11b · Tutorial 2 Q1</div>
+<h1>Why the process loops</h1>
+<p><strong>The process is iterative because evaluation follows every activity and can send the team back to any of them, so each round refines the design. The process has no fixed start and no fixed order.</strong></p>
+<p>Lesson 11 showed the loop. This lesson explains why it has to be a loop, and what the slides mean by "process" and "stage".</p>
+<div class="note"><p><strong>Why this matters.</strong> Tutorial 2 Q1 asks what the process is and why it is iterative. Every later lesson assumes you can return to an earlier activity.</p><p><strong>Focus on.</strong> Why the process is iterative, and what "process" and "stage" mean.</p><p><strong>Skip for now.</strong> The IDEO and Double Diamond models (Benyon Figure 3.1). They draw the same process in other shapes.</p><p><strong>How you'll be tested.</strong> Tutorial 2 Q1, in writing, closed book.</p></div>
+<div class="metaphor"><p><strong>Looks like a recipe: step 1, step 2, step 3, and then it is done. It differs because the steps are not fixed.</strong> A recipe is the picture the book rejects. Here the steps are the four activities, and you may enter at any of them and return to any of them.</p></div>
+<h2>"Process" and "stage" in the slides</h2>
+<p>The slide calls the UX process a "Generic UX Process Model": "practical steps a team follows to take a product from an idea to a launched, usable experience" (Lecture 2, PDF p4). That is the whole sequence of activities across a project.</p>
+<p>A <dfn>stage</dfn> is the slide's word for one of the four activities. The same slide says "the process can start at any stage", next to the four parts it names (Lecture 2, PDF p4). The book says "point" for the same idea: "the process can start at any point" (Benyon ch3, 3.2, PDF p78). A stage is a place you can enter, not a numbered step.</p>
+<p>"Done once from top to bottom" is the linear picture. The slide sets "Linear Process" against "Iterative Process" (Lecture 2, PDF p2), and the book takes the iterative side: "It is an iterative process, not a linear one" (Benyon ch3, 3.1, PDF p77). So that phrase describes the view the book rejects, not its own view.</p>
+<table><thead><tr><th></th><th>Linear picture (rejected)</th><th>Book's view (iterative)</th></tr></thead><tbody>
+<tr><td><strong>Starting point</strong></td><td>Always the first activity</td><td>Any point: a design, a prototype or understanding</td></tr>
+<tr><td><strong>Order</strong></td><td>Fixed</td><td>Any order (PDF p78)</td></tr>
+<tr><td><strong>Evaluation</strong></td><td>At the end</td><td>After every activity (PDF p78 and p83)</td></tr>
+</tbody></table>
+<h2>Evaluation follows each activity, but no next step is fixed</h2>
+<p>The book's rule is that "any of the other design activities will be followed by an evaluation" (Benyon ch3, 3.2, PDF p83). That attaches an evaluation to each activity. It does not say what comes after it. You might reasonably read it as a fixed chain: understanding, evaluation, design, evaluation, envisionment, evaluation. The book's own example is one path among many: "understanding might be evaluated and a prototype built and evaluated and some aspect of a physical design might then be identified" (Benyon ch3, 3.2, PDF p78). The word "might" marks an example. Figure 3.2 agrees: its three double-headed arrows each join evaluation to one other activity, and none joins understanding to design, so it fixes no order.</p>
+<h2>Why any activity can send the team back</h2>
+<p>Evaluation finds problems, and each problem points to the activity that caused it. The team goes back there, repairs the design, and evaluates again. The book's reason is that "both the understanding of needs and desires and design solutions evolve during UX design" (Benyon ch3, 3.1, PDF p77). Iterative means this return is repeated. Each round refines the design; the team does not start again from scratch.</p>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 240" role="img" aria-label="Five boxes in a row: design, evaluation, design again, evaluation, then understanding. A returning arrow goes from the first evaluation back to the first design">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--ink-soft)"/></marker></defs>
+<rect class="box" x="10" y="80" width="110" height="60" rx="12"/><text x="65" y="115" text-anchor="middle">Design v1</text>
+<rect class="box" x="150" y="80" width="110" height="60" rx="12"/><text x="205" y="115" text-anchor="middle">Evaluation</text>
+<rect class="box" x="290" y="80" width="110" height="60" rx="12"/><text x="345" y="115" text-anchor="middle">Design v2</text>
+<rect class="box" x="430" y="80" width="110" height="60" rx="12"/><text x="485" y="115" text-anchor="middle">Evaluation</text>
+<rect class="box" x="570" y="80" width="110" height="60" rx="12"/><text x="625" y="115" text-anchor="middle">Understanding</text>
+<path class="line" marker-end="url(#ah)" d="M120 110 L148 110"/>
+<path class="line" marker-end="url(#ah)" d="M260 110 L288 110"/>
+<path class="line" marker-end="url(#ah)" d="M400 110 L428 110"/>
+<g data-layer="d1"><rect x="10" y="80" width="110" height="60" rx="12" style="fill:none;stroke:var(--cyan);stroke-width:3"/><text class="soft" x="65" y="170" text-anchor="middle">tracking number</text><text class="soft" x="65" y="192" text-anchor="middle">asked first</text></g>
+<g data-layer="e1"><rect x="150" y="80" width="110" height="60" rx="12" style="fill:none;stroke:var(--cyan);stroke-width:3"/><text class="soft" x="205" y="170" text-anchor="middle">3 of 4 cannot</text><text class="soft" x="205" y="192" text-anchor="middle">find the number</text></g>
+<g data-layer="b1"><path class="line" marker-end="url(#ah)" d="M200 80 Q135 20 70 80"/><text class="soft" x="135" y="38" text-anchor="middle">problem found: back to design</text></g>
+<g data-layer="d2"><rect x="290" y="80" width="110" height="60" rx="12" style="fill:none;stroke:var(--cyan);stroke-width:3"/><text class="soft" x="345" y="170" text-anchor="middle">phone number</text><text class="soft" x="345" y="192" text-anchor="middle">asked first</text></g>
+<g data-layer="e2"><rect x="430" y="80" width="110" height="60" rx="12" style="fill:none;stroke:var(--cyan);stroke-width:3"/><text class="soft" x="485" y="170" text-anchor="middle">all 4 find</text><text class="soft" x="485" y="192" text-anchor="middle">their parcel</text></g>
+<g data-layer="u"><rect x="570" y="80" width="110" height="60" rx="12" style="fill:none;stroke:var(--cyan);stroke-width:3"/><path class="line" marker-end="url(#ah)" d="M540 110 L568 110"/><text class="soft" x="625" y="170" text-anchor="middle">new need:</text><text class="soft" x="625" y="192" text-anchor="middle">a text alert</text></g>
+<text class="soft" x="360" y="230" text-anchor="middle">Each return is a round, and each round refines the design</text>
+</svg>
+<div class="stage-captions">
+<p data-show="d1"><strong>Round 1, design.</strong> The first pick-up screen asks for the tracking number before anything else.</p>
+<p data-show="d1 e1"><strong>Round 1, evaluation.</strong> Three of four students cannot find their tracking number. That is a problem with the design.</p>
+<p data-show="d1 e1 b1"><strong>Back to design.</strong> The problem sends the team back to the activity that caused it.</p>
+<p data-show="d1 e1 b1 d2"><strong>Round 2, design.</strong> The screen asks for the phone number first, then lists the parcels.</p>
+<p data-show="d1 e1 b1 d2 e2"><strong>Round 2, evaluation.</strong> All four students find their parcel in under 20 seconds. One asks whether a text can say when it is ready.</p>
+<p data-show="d1 e1 b1 d2 e2 u"><strong>Back to understanding.</strong> That new need starts the next round.</p>
+</div></div>
+<p>The lecture gives the same reason in other words: UX design is "a cyclic method for creating user-centred products by continuously learning about users and refining the design" (Lecture 2, PDF p3). It also says the requirement itself is checked through a prototype, so "the process is often iterative" (Lecture 6, PDF p3).</p>
+<h2>Starting in the middle</h2>
+<p>The lecture gives three starting points, each with a first move (Lecture 2, PDF p13):</p>
+<table><thead><tr><th>Start</th><th>Example</th><th>First move</th></tr></thead><tbody>
+<tr><td>Design</td><td>A finished visual design is handed over</td><td>Evaluate it with usability testing, to find its flaws</td></tr>
+<tr><td>Evaluation</td><td>The live app has poor user reviews</td><td>Evaluate the live app, before designing a fix</td></tr>
+<tr><td>Envisionment</td><td>A rough prototype shows a feature is possible</td><td>Test the prototype with users, then make the official design</td></tr>
+</tbody></table>
+<h2>Where ideation sits</h2>
+<p>Lesson 11 flagged a conflict over <dfn>ideation</dfn>. The book uses it for generating ideas: "design involves the creative process of idea generation, 'ideation'" (Benyon ch3, 3.2, PDF p79). It is not a fifth activity. The book also uses it for the "creative leap" that turns stories into requirements (Benyon ch7, PDF p176), and for sketching ideas during envisionment (Benyon ch8, PDF p213). So ideation sits mainly in design, and it runs into the work on either side.</p>
+<table><thead><tr><th>Word</th><th>Book (followed here)</th><th>Lecture 2 slide, PDF p5</th></tr></thead><tbody>
+<tr><td><strong>Idea generation</strong></td><td>The creative part of design</td><td>Brainstorm as many ideas as possible, without worrying about quality yet</td></tr>
+<tr><td><strong>Ideation</strong></td><td>Generating ideas</td><td>Evaluating and refining ideas for impact, practicality and originality</td></tr>
+</tbody></table>
+<p>The slide swaps the two meanings, so this lesson follows the textbook. Lecture 6 (PDF p3) uses "ideation" a third way, for evaluation, which is another reason to use the book's word.</p>
+<div class="quiz" data-quiz><p class="prompt">Which sentence describes the book's view of the process?</p>
+<button class="opt" data-correct>Activities can be entered at any point and in any order, and evaluation can send the team back.</button><button class="opt">The activities run once each, from top to bottom, and evaluation happens only at the end of design.</button><button class="opt">Understanding must finish fully before design begins, and the textbook fixes the order of all the remaining activities.</button><button class="opt">Only evaluation repeats, because the other three activities are done once and the team never returns to them.</button>
+<div class="feedback good" data-feedback-good>Right. The process has no fixed start or order, and each evaluation can send the team back.</div>
+<div class="feedback bad" data-feedback-bad>Not quite. "Top to bottom, once" is the linear picture the book rejects. The book's view allows any starting point and any order.</div></div>
+<div class="quiz" data-quiz><p class="prompt">A parcel pick-up screen fails a test: users stall at the phone-number field. Where does the process go next?</p>
+<button class="opt">Straight to launch, because evaluation is the final step and the design was already tested once by users.</button><button class="opt">Back to understanding every time, because the process must always restart in full from the very first activity.</button><button class="opt" data-correct>Back to design, the activity the problem points to, then envisionment and evaluation again to refine it further.</button><button class="opt">Nowhere, because the design is already approved, so the team can now only fix bugs in the code.</button>
+<div class="feedback good" data-feedback-good>Right. The problem points to the activity that caused it, and the team returns there and repeats the round.</div>
+<div class="feedback bad" data-feedback-bad>Not quite. The process does not restart from the beginning each time, and evaluation is not the last step. The team returns to the activity the problem points to.</div></div>
+<div class="paper-task"><strong class="title">Produce it &bull; closed book</strong><p>Close this lesson. In a few sentences, explain why the UX design process is iterative, and why "done once from top to bottom" is not the book's view. Use one example that starts from evaluation. Then answer <strong>T2 Q1</strong> in your own words.</p></div>
+<details class="reveal"><summary>reveal model answer</summary>
+<p>The process is iterative: the team goes round the four activities in repeated rounds, and each round refines the design. It can start at any activity, the activities can happen in any order, and evaluation follows each one. For example, a team starts from an app with poor reviews (evaluation). It finds that the menu layout is the problem, so it returns to design, builds a prototype (envisionment) and evaluates again. "Done once from top to bottom" describes the linear picture, which the book rejects: it has no fixed start or order, and any problem found sends the team back to the activity that caused it.</p></details>
+<p>Primary source: Benyon, chapter 3, sections 3.1 and 3.2 (PDF p77 to p79, p83), Figure 3.2 (PDF p78); chapter 7, Aims and 7.1 (PDF p175 to p176); chapter 8 (PDF p213). Lecture 2, PDF pages 2 to 5 and 13; Lecture 6, PDF p3.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0011a-what-each-activity-holds.html">&larr; What each activity holds</a><a href="0012-evaluation-at-the-centre.html">Next: evaluation at the centre &rarr;</a></div>
+<script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>

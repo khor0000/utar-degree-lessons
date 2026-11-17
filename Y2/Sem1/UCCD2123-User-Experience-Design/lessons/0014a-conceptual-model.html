@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 14a — Conceptual model</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Lesson 14a · Tutorial 2 Q4</div>
+<h1>Conceptual model: objects and relationships, no screens</h1>
+<p><strong>A conceptual model is the designer's abstract description of the main objects in a system, their attributes and how they relate. It names no screen, button or device. It is not the picture a user forms in their head, which is a mental model.</strong></p>
+<p>The mental model from <a href="0014-conceptual-vs-physical-design.html">Lesson 14</a> is the user's picture. This lesson covers the designer's side, and the next box says where the two differ.</p>
+<div class="note"><p><strong>Why this matters.</strong> Tutorial 2 Q4 asks you to separate the designer's plan from the user's understanding. Mixing these two up is the usual mistake.</p><p><strong>Focus on.</strong> The three parts of a conceptual model, and the test for whether a model is abstract.</p><p><strong>Skip for now.</strong> Object-action analysis, which is the book's method for building a conceptual model, and entity-relationship notation beyond the 1 and m labels.</p><p><strong>How you'll be tested.</strong> Tutorial 2 Q4 in writing, closed book.</p></div>
+<div class="metaphor"><p><strong>Looks like the mental model (Lesson 14), but whose picture it is differs.</strong> Both name the same things. The conceptual model is the designer's written plan; the mental model is a user's belief, built by using the app. Chapter 2 uses "conceptual 'models'" loosely for people's understanding (Benyon ch2, PDF p60). Chapters 3 and 9 mean the designer's description, which this lesson uses.</p></div>
+<h2>What it is</h2>
+<p class="def"><dfn>Conceptual model</dfn>: a description of the main objects in a system, their attributes, and the relationships between them. <span class="src">Benyon ch3, 3.6, PDF p97</span></p>
+<p>It is a diagram or list that the designer writes, not software that runs. It holds three kinds of content, each defined here:</p>
+<ul>
+<li>An <dfn>object</dfn> is a thing the system deals with, such as an order.</li>
+<li>An <dfn>attribute</dfn> is a fact that describes one object, such as the pickup time of an order.</li>
+<li>A <dfn>relationship</dfn> links two objects. The book writes it as how many of one can link to how many of the other, using "1" for one and "m" for many (Benyon ch9, 9.4, PDF p253).</li>
+</ul>
+<p>The book gives two reasons for drawing one. The model is the basis for how the content is organised, and for any metaphor the design uses. And a clear model helps people form a good, accurate mental model of the system (Benyon ch3, 3.6, PDF p97).</p>
+<h2>What one looks like</h2>
+<p>Take the canteen meal from Lesson 14, and draw only the objects and how they relate. Step through it.</p>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 360" role="img" aria-label="Five boxes of objects with their attributes, then lines between them labelled 1 and m">
+<defs><marker id="ah14a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--ink-soft)"/></marker></defs>
+<g data-layer="o"><rect class="box" x="20" y="20" width="160" height="96" rx="10"/><text x="100" y="48" text-anchor="middle">Student</text><text class="soft" x="100" y="72" text-anchor="middle">name</text><text class="soft" x="100" y="92" text-anchor="middle">student ID</text><rect class="hot" x="280" y="20" width="160" height="96" rx="10"/><text x="360" y="48" text-anchor="middle">Order</text><text class="soft" x="360" y="72" text-anchor="middle">order number</text><text class="soft" x="360" y="92" text-anchor="middle">pickup time, status</text><rect class="box" x="540" y="20" width="160" height="96" rx="10"/><text x="620" y="48" text-anchor="middle">Stall</text><text class="soft" x="620" y="72" text-anchor="middle">name</text><text class="soft" x="620" y="92" text-anchor="middle">location</text><rect class="box" x="280" y="240" width="160" height="96" rx="10"/><text x="360" y="268" text-anchor="middle">Payment</text><text class="soft" x="360" y="292" text-anchor="middle">amount</text><text class="soft" x="360" y="312" text-anchor="middle">method</text><rect class="box" x="540" y="240" width="160" height="96" rx="10"/><text x="620" y="268" text-anchor="middle">Menu item</text><text class="soft" x="620" y="292" text-anchor="middle">name</text><text class="soft" x="620" y="312" text-anchor="middle">price</text></g>
+<g data-layer="r"><path class="line" d="M180 68 L278 68"/><text class="soft" x="192" y="60">1</text><text class="soft" x="264" y="60">m</text><text class="soft" x="229" y="84" text-anchor="middle">places</text><path class="line" d="M440 68 L538 68"/><text class="soft" x="452" y="60">m</text><text class="soft" x="526" y="60">1</text><text class="soft" x="489" y="84" text-anchor="middle">is for</text><path class="line" d="M360 116 L360 238"/><text class="soft" x="372" y="150">1</text><text class="soft" x="372" y="232">1</text><text class="soft" x="420" y="180">settled by</text><path class="line" d="M620 116 L620 238"/><text class="soft" x="632" y="150">1</text><text class="soft" x="632" y="232">m</text><text class="soft" x="680" y="180" text-anchor="middle">has</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="o"><strong>Stage 1, objects and attributes.</strong> Five things the system deals with. Each attribute is a fact about one object, such as the pickup time on an order.</p>
+<p data-show="o r"><strong>Stage 2, relationships.</strong> A student places many orders, and each order has one student. Many orders are for one stall. Each order is settled by one payment. One stall has many menu items. The 1 and m say how many, not which ones.</p>
+<p data-show="o r"><strong>Stage 3, check the abstraction.</strong> Nothing here names a screen, a button, a device or a QR code. The same model would still be true if the canteen used a phone app, a web page or a counter kiosk.</p>
+</div></div>
+<h2>Abstract, not physical</h2>
+<p>The key feature of conceptual design is to "keep things abstract", focusing "on the what rather than the how" (Benyon ch3, Box 3.2, PDF p81). So the model says what the system must know and do. It is not the app. Physical design, from Lesson 14, decides which screens and devices realise it.</p>
+<p>Working rule (not stated in the book): if one screen or device could be swapped for another without making the model false, the model is still abstract.</p>
+<h2>The designer's model and the user's model</h2>
+<p>Here is how the two pictures connect. The designer has a conception of the system. The book says that conception can only be revealed through the <dfn>system image</dfn>: the interface, the behaviour of the system and any documentation (Benyon ch2, PDF p60). The user has to build their own mental model from that system image.</p>
+<div class="stages" data-stages>
+<svg viewBox="0 0 720 240" role="img" aria-label="Designer's conceptual model leads to a system image, which the user turns into a mental model">
+<defs><marker id="ah14b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--ink-soft)"/></marker></defs>
+<g data-layer="d1"><rect class="hot" x="20" y="50" width="190" height="120" rx="12"/><text x="115" y="92" text-anchor="middle">Designer's</text><text x="115" y="114" text-anchor="middle">conceptual model</text><text class="soft" x="115" y="140" text-anchor="middle">objects, attributes, relations</text></g>
+<g data-layer="d2"><path class="line" marker-end="url(#ah14b)" d="M212 110 L256 110"/><rect class="box" x="256" y="50" width="200" height="120" rx="12"/><text x="356" y="92" text-anchor="middle">System image</text><text class="soft" x="356" y="114" text-anchor="middle">screens, behaviour,</text><text class="soft" x="356" y="134" text-anchor="middle">documentation</text></g>
+<g data-layer="d3"><path class="line" marker-end="url(#ah14b)" d="M458 110 L502 110"/><rect class="box" x="502" y="50" width="198" height="120" rx="12"/><text x="601" y="92" text-anchor="middle">User's</text><text x="601" y="114" text-anchor="middle">mental model</text><text class="soft" x="601" y="140" text-anchor="middle">built from what they see</text></g>
+</svg>
+<div class="stage-captions">
+<p data-show="d1"><strong>Stage 1, the designer's plan.</strong> The conceptual model lives in the designer's hands and the team's diagrams. No user has seen it yet.</p>
+<p data-show="d1 d2"><strong>Stage 2, the system image.</strong> Users never see the plan. They see only the screens, what the system does, and any manual. The designer can steer the user's picture only through this.</p>
+<p data-show="d1 d2 d3"><strong>Stage 3, the mental model.</strong> The user builds their own picture from the system image. It can differ from the plan, because no single designer knows everything the system does (Benyon ch2, PDF p60).</p>
+</div></div>
+<p>The two pictures are compared in this table.</p>
+<table><thead><tr><th></th><th>Conceptual model</th><th>Mental model</th></tr></thead><tbody>
+<tr><td><strong>Whose picture</strong></td><td>The designer's</td><td>The user's</td></tr>
+<tr><td><strong>How it forms</strong></td><td>Written down by the designer, before the system is built</td><td>Built by the user, by using the system and reading its documentation (Benyon ch2, PDF p60)</td></tr>
+<tr><td><strong>How it behaves</strong></td><td>A stated plan, which the team can discuss and revise</td><td>Incomplete, unstable and not always scientific (Norman, in Benyon ch2, PDF p61)</td></tr>
+</tbody></table>
+<p>You might reasonably wonder whether the two should match. The book wants the designer's model communicated so clearly that people "will quickly develop a clear mental model" (Benyon ch3, 3.2, PDF p79). That is a goal, not a guarantee. The system image is the only link between the two.</p>
+<div class="quiz" data-quiz><p class="prompt">Which statement about a conceptual model is correct?</p>
+<button class="opt">It is the picture a user forms in their head after using the app for a week.</button>
+<button class="opt" data-correct>It is the designer's abstract description of the main objects, their attributes and how they relate.</button>
+<button class="opt">It is the finished app, with every screen and button in its final place.</button>
+<button class="opt">It is a list of the colours and sizes that the designer chose for the buttons.</button>
+<div class="feedback good" data-feedback-good>Right. A conceptual model is the designer's abstract description of objects, attributes and relationships. The user's picture is the mental model.</div>
+<div class="feedback bad" data-feedback-bad>Not quite. The picture a user forms is the mental model. A conceptual model is the designer's abstract description of objects, attributes and relationships, with no screens or colours.</div></div>
+<div class="quiz" data-quiz><p class="prompt">A diagram shows that a student places many orders and each order is for one stall. Why is it still conceptual?</p>
+<button class="opt">It is drawn with boxes and lines, so every diagram is a conceptual model.</button>
+<button class="opt">It describes exactly what each student will see on their phone.</button>
+<button class="opt" data-correct>It names objects and relationships, and says nothing about screens, buttons or devices.</button>
+<button class="opt">It was checked by real students, which makes it a mental model.</button>
+<div class="feedback good" data-feedback-good>Right. Abstraction is what makes it conceptual. The drawing style does not decide it, and the checking does not turn a plan into a belief.</div>
+<div class="feedback bad" data-feedback-bad>Not quite. Being drawn does not make a model conceptual, and a screen description is physical. What decides it is that the model names objects and relationships, and nothing about how they are shown.</div></div>
+<div class="paper-task"><strong class="title">Produce it &bull; closed book</strong><p>Close this lesson. For the canteen app, write a short answer to <strong>T2 Q4</strong>: define a conceptual model, name one object, one attribute and one relationship with its 1 or m labels, and say how the conceptual model differs from a mental model.</p></div>
+<details class="reveal"><summary>reveal model answer</summary>
+<p>A conceptual model is the designer's abstract description of the main objects in a system, their attributes and the relationships between them. For the canteen app: the object is Order, the attribute is pickup time, and the relationship is that a Student places many Orders (1 to m). It differs from a mental model in whose picture it is. The conceptual model is the designer's plan, and it names no screen or device. The mental model is the user's belief, built from the system image, and it can be incomplete or unstable.</p></details>
+<p>Primary source: Benyon, chapter 3, section 3.6 "Conceptual model" (PDF p97) and Box 3.2 (PDF p81); chapter 2, "Mental models" and "System image" (PDF p60 to p61); chapter 9, section 9.4 and Figure 9.7 (PDF p253 to p254). Lecture 8, PDF p4, and PDF p17 for the slide wording. The slides and the textbook agree here.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><a href="0014-conceptual-vs-physical-design.html">&larr; Conceptual vs physical design</a><a href="0015-envisionment.html">Envisionment &rarr;</a></div>
+<script src="../assets/quiz.js"></script><script src="../assets/stages.js"></script><script src="../assets/play.js"></script></body></html>
