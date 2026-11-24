@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 7 &mdash; Remote login: telnet, ssh and scp</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 7 of 7 &middot; Lab 1 prep &middot; UCCN1223</div>
+<h1>Remote login: telnet, ssh and scp</h1>
+<p><strong>telnet and ssh both give you a shell on another computer, but only ssh encrypts what crosses the network.</strong></p>
+<div class="note"><strong>Looks like</strong> your own shell from lesson 1. The commands are identical; they simply run on the other machine, so read the prompt to know which computer you are on.</div><h2>Step 1: find the address</h2>
+<p>An <strong>IP address</strong> identifies a computer on the network. On the target machine, <code>/sbin/ifconfig</code> prints it after <code>inet addr:</code>, for example <code>172.16.10.20</code>. On newer systems the label is just <code>inet</code>.</p>
+<h2>Step 2: compare the two logins</h2><div class="walk" data-walk><div class="walk-stage" data-caption="telnet sends everything as plaintext, including the password."><div class="svg-container"><svg viewBox="0 0 560 120" role="img" aria-label="data crossing the network"><rect x="10" y="30" width="110" height="50" fill="none" stroke="var(--border)" stroke-width="2"/><text x="65" y="60" text-anchor="middle" fill="var(--ink)">your PC</text><rect x="440" y="30" width="110" height="50" fill="none" stroke="var(--border)" stroke-width="2"/><text x="495" y="60" text-anchor="middle" fill="var(--ink)">remote PC</text><line x1="120" y1="55" x2="440" y2="55" stroke="var(--red)" stroke-width="3"/><text x="280" y="42" text-anchor="middle" font-family="var(--mono)" font-size="15" fill="var(--ink)">password123</text><text x="280" y="82" text-anchor="middle" font-size="13" fill="var(--ink-soft)">a listener reads this directly</text></svg></div></div><div class="walk-stage" data-caption="ssh encrypts the whole session, including the password."><div class="svg-container"><svg viewBox="0 0 560 120" role="img" aria-label="data crossing the network"><rect x="10" y="30" width="110" height="50" fill="none" stroke="var(--border)" stroke-width="2"/><text x="65" y="60" text-anchor="middle" fill="var(--ink)">your PC</text><rect x="440" y="30" width="110" height="50" fill="none" stroke="var(--border)" stroke-width="2"/><text x="495" y="60" text-anchor="middle" fill="var(--ink)">remote PC</text><line x1="120" y1="55" x2="440" y2="55" stroke="var(--cyan)" stroke-width="3"/><text x="280" y="42" text-anchor="middle" font-family="var(--mono)" font-size="15" fill="var(--ink)">&#128274; a9f3c1...</text><text x="280" y="82" text-anchor="middle" font-size="13" fill="var(--ink-soft)">a listener sees scrambled bytes</text></svg></div></div></div><table><thead><tr><th></th><th>telnet</th><th>ssh</th></tr></thead><tbody>
+<tr><td>One-second rule</td><td>Readable on the wire</td><td>Encrypted on the wire</td></tr>
+<tr><td>Why both matter</td><td>The older tool, on your sheet to show the risk</td><td>The modern standard</td></tr>
+<tr><td>When to use</td><td>Only when the lab tells you to</td><td>Every real remote login</td></tr></tbody></table>
+<pre><code>$ telnet 172.16.20.110
+$ ssh -oHostKeyAlgorithms=+ssh-dss username@172.16.20.110
+$ logout</code></pre>
+<p>In <code>username@172.16.20.110</code>, the <code>@</code> reads as "this user at this computer". The <code>-oHostKeyAlgorithms=+ssh-dss</code> part lets ssh accept an old server. Treat it as ignore-for-now: copy it exactly and try without it only if told to.</p>
+<h2>Step 3: download a file (Question 5)</h2>
+<p>The handout never names a tool for this. <code>scp</code> copies files over ssh, and takes a source, then a destination:</p>
+<pre><code>$ scp -oHostKeyAlgorithms=+ssh-dss username@172.16.20.110:/home/student/file.txt .</code></pre>
+<p>The <code>:</code> separates the computer from the path on it. The final <code>.</code> means "the folder I am in now". Your instructor gives the real address and name. Ask them if they expect a different method.</p><div class="exam-trap"><strong class="title">Critical Exam Trap &bull; The Final Dot in scp</strong><p>scp needs a destination, so the last argument cannot be left out.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td><code>scp user@ip:/path/file .</code></td><td><code>scp user@ip:/path/file</code></td></tr></tbody></table></div><div class="quiz" data-quiz><p class="prompt">Why is ssh preferred over telnet?</p><button class="opt" data-correct>It encrypts the session</button><button class="opt">It runs commands faster</button><button class="opt">It needs no password</button><div class="feedback good" data-feedback-good>Yes. Without encryption, anyone listening can read the password.</div><div class="feedback bad" data-feedback-bad>Think about what crosses the network and who could read it.</div></div><div class="paper-task"><strong class="title">Paper task</strong><p>Write the commands that log in by ssh as <code>ali</code> to <code>172.16.20.50</code> (with the handout&rsquo;s option), log out, then copy <code>/tmp/q.txt</code> from that computer to your current folder.</p><details class="reveal"><summary>Reveal the answer</summary><pre><code>ssh -oHostKeyAlgorithms=+ssh-dss ali@172.16.20.50
+logout
+scp -oHostKeyAlgorithms=+ssh-dss ali@172.16.20.50:/tmp/q.txt .</code></pre></details></div>
+<p class="source">Primary source: <a href="https://man7.org/linux/man-pages/man1/scp.1.html">scp(1) manual page</a>. Terms are in the <a href="../reference/glossary.html">glossary</a>.</p>
+<div class="ask-agent"><p>Stuck on anything here? Ask me in the chat, even if it feels small.</p></div>
+<div class="nav"><span>&larr; <a href="0006-permissions-on-directories.html">Lesson 6</a></span><span><a href="../reference/lab1-cheatsheet.html">Lab 1 cheat sheet</a> &rarr;</span></div>
+</body>
+</html>

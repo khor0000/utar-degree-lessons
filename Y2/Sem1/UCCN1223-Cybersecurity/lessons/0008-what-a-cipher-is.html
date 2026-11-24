@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 8 &mdash; The cryptosystem: five elements, and where the cipher fits</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 8 &middot; Topic 3a start &middot; UCCN1223</div>
+<h1>The cryptosystem: five elements, and where the cipher fits</h1>
+<p><strong>A cryptosystem is the whole setup for secret messages, made of five elements (slide 7). The cipher is two of them: the encryption algorithm and the decryption algorithm, a matched pair of methods. The key, the plaintext and the ciphertext are separate from it.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> every Topic 3 question scrambles or unscrambles a message, and this lesson gives you the words those questions use. <strong>Focus on:</strong> the five elements of a cryptosystem, and why the key, not the recipe, must stay secret. <strong>Skip for now:</strong> the history of ciphers, block and stream ciphers, Shannon's list of what makes a cipher secure, and the two ways to scramble and the two kinds of key (both in the next lesson, 9). <strong>How you'll be tested:</strong> this lesson is words and ideas, so the check is multiple choice. The "do" questions come in the lessons after it. Explaining these ideas on their own was not asked in either old-format paper, so that is not confirmed.</div>
+
+<p>Topic 3 is about scrambling messages with keys, so that only a holder of the right key can read them. This lesson names the elements of a cryptosystem, and the next lesson sorts ciphers into kinds. The lessons after that scramble real messages by hand, one cipher at a time.</p>
+<p>A <strong>cryptosystem</strong> is the whole setup for secret messages. <em>What it is:</em> the cipher's two algorithms (the encryption algorithm and the decryption algorithm) plus the plaintext and the ciphertext and the key. <em>What it holds:</em> the five elements on Topic 3a slide 7; slide 6 introduces the word as "a system for encryption and decryption". <em>Why it is needed:</em> the sender and the receiver must agree on all of these parts, or the message cannot be sent and read.</p>
+<div class="note"><strong>Looks like the cipher, but&hellip;</strong>
+<table>
+<thead><tr><th></th><th>Cipher</th><th>Cryptosystem</th></tr></thead>
+<tbody>
+<tr><td>Same</td><td colspan="2">Both are about scrambling and unscrambling a message</td></tr>
+<tr><td>Different</td><td>Only the two algorithms: the method for scrambling and the method for unscrambling</td><td>The algorithms plus the key, the plaintext and the ciphertext</td></tr>
+<tr><td>Why</td><td colspan="2">A cipher is the method. A cryptosystem is the method together with the secret key and the messages it works on</td></tr>
+</tbody>
+</table></div>
+
+<p>Lesson 7 showed that telnet sends <code>password123</code> where any listener on the wire can read it, while ssh sends the same data scrambled. This lesson explains what that scrambling is, and where it is used.</p>
+
+<h2>1. The problem: your message passes through other people's hands</h2>
+<p>Ali sends Siti a message over the network: <code>PAY RM50 TO SITI</code>. On the way it passes through routers and Wi-Fi that Ali does not control. An intruder there can do four things (Topic 3a slide 4):</p>
+<table>
+<thead><tr><th>The intruder&hellip;</th><th>Example</th><th>What is lost</th></tr></thead>
+<tbody>
+<tr><td><strong>Intercepts</strong>: reads it</td><td>Eve reads <code>PAY RM50 TO SITI</code></td><td><strong>Confidentiality</strong>: only the right reader can read it</td></tr>
+<tr><td><strong>Modifies</strong>: changes it</td><td>Siti receives <code>PAY RM500 TO EVE</code></td><td><strong>Integrity</strong>: the message is no longer what Ali sent</td></tr>
+<tr><td><strong>Fabricates</strong>: makes up a new one</td><td>Eve sends <code>From Ali: PAY RM900 TO EVE</code></td><td><strong>Authenticity</strong>: Ali never sent it</td></tr>
+<tr><td><strong>Blocks</strong>: stops it</td><td>Siti receives nothing</td><td><strong>Availability</strong>: it never arrives</td></tr>
+</tbody>
+</table>
+<p>Encryption fixes the first row. If Eve intercepts <code>SDB UP50 WR VLWL</code>, she has the message but cannot read it. The other three rows need tools from Topic 3b, not from this lesson.</p>
+
+<div class="note"><strong>You might reasonably wonder:</strong> is encryption just hiding the message, compressing it, or encoding it the way Base64 does? No. Hiding puts the message out of sight, but anyone who finds it can still read it. Compression makes the message shorter, and anyone with the matching tool can undo that. Base64 is a public way to write data as letters and digits, and anyone can reverse it with no secret at all. Encryption is different because only a secret key can reverse it. Slide 6 uses the word "encoding" for encryption. In this course, use "encrypt" for that job, and keep "encode" for formats like Base64.</div>
+
+<h2>2. The five elements of a cryptosystem, in one example</h2>
+<p>Before the example, two words that look like other things you know:</p>
+<div class="note"><strong>Looks like the password you type (lesson 7), but&hellip;</strong>
+<table>
+<thead><tr><th></th><th>Password</th><th>Key</th></tr></thead>
+<tbody>
+<tr><td>Same</td><td colspan="2">Both are secret, and you must not share them</td></tr>
+<tr><td>Different</td><td>The server checks it: does what you typed match the stored one?</td><td>The scrambling uses it: it changes the scrambled output itself</td></tr>
+<tr><td>Why</td><td colspan="2">A password is only compared with a stored record. A key is put into the recipe itself, so it changes every letter of the output</td></tr>
+</tbody>
+</table></div>
+<div class="note"><strong>Looks like the key in a BST or hash table (UCCD1024), but&hellip;</strong>
+<table>
+<thead><tr><th></th><th>BST or hash-table key</th><th>Cipher key</th></tr></thead>
+<tbody>
+<tr><td>Same</td><td colspan="2">Both are a value attached to data</td></tr>
+<tr><td>Different</td><td>Decides where a record sits, so you can find it again</td><td>Decides how a message is scrambled; nobody searches by it</td></tr>
+<tr><td>Why</td><td colspan="2">A search key only has to be comparable. A cipher key must stay secret, because its whole job is to be the only thing that reverses the scrambling</td></tr>
+</tbody>
+</table></div>
+<div class="note"><strong>Looks like the hash in a hash table (UCCD1024), but&hellip;</strong>
+<table>
+<thead><tr><th></th><th>Hash function</th><th>Encryption</th></tr></thead>
+<tbody>
+<tr><td>Same</td><td colspan="2">Both take a value in and produce scrambled-looking output</td></tr>
+<tr><td>Different</td><td>Picks a slot number. Nobody tries to get the original key back</td><td>Produces output that the key turns back into the original message</td></tr>
+<tr><td>Why</td><td colspan="2">A table only needs a slot number. Encryption exists so that the intended reader can get the message back</td></tr>
+</tbody>
+</table></div>
+
+<p>Here is one simple recipe, "move every letter 3 forward", applied to <code>CYBER SECURITY</code>. Press Next to see each step:</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Plaintext: the readable message. Key: 3, the secret setting. Recipe: move each letter 3 places forward."><p><code>CYBER SECURITY</code> is the plaintext. The key is 3. The recipe is "move each letter 3 places forward".</p></div>
+<div class="walk-stage" data-caption="The first word: C goes to F, Y wraps round to B, and so on."><pre><code>CYBER
+C &rarr; F    Y &rarr; B    B &rarr; E    E &rarr; H    R &rarr; U
+FBEHU</code></pre></div>
+<div class="walk-stage" data-caption="The second word, letter by letter. Each letter moves 3 places."><pre><code>SECURITY
+S &rarr; V  E &rarr; H  C &rarr; F  U &rarr; X  R &rarr; U  I &rarr; L  T &rarr; W  Y &rarr; B
+VHFXULWB</code></pre></div>
+<div class="walk-stage" data-caption="The ciphertext is sent. Eve intercepts it and sees only scrambled letters."><p>Sent: <code>FBEHU VHFXULWB</code>. Eve has the ciphertext. Without the key, she cannot turn it back.</p></div>
+<div class="walk-stage" data-caption="The receiver has key 3, so the recipe runs backwards: each letter moves 3 places back."><p>Receiver runs the Caesar recipe backwards: <code>FBEHU VHFXULWB &rarr; CYBER SECURITY</code>.</p></div>
+</div>
+
+<p>The example used one recipe and one key. Every cryptosystem in Topic 3a has the same five elements:</p>
+<table>
+<thead><tr><th>Element (slide 7)</th><th>What it is</th><th>Value in the example</th><th>Why it is needed</th></tr></thead>
+<tbody>
+<tr><td><strong>Plaintext</strong></td><td>The readable message</td><td><code>CYBER SECURITY</code></td><td>It is what the sender wants to protect</td></tr>
+<tr><td><strong>Ciphertext</strong></td><td>The scrambled message that is sent</td><td><code>FBEHU VHFXULWB</code></td><td>It is what an interceptor sees</td></tr>
+<tr><td><strong>Key</strong></td><td>A secret value that the scrambling uses</td><td>the number <code>3</code></td><td>The same recipe with a different key gives a different ciphertext, and only key holders can reverse it</td></tr>
+<tr><td><strong>Encryption algorithm</strong></td><td>The scrambling steps (the recipe)</td><td>move each letter 3 forward</td><td>It turns plaintext into ciphertext</td></tr>
+<tr><td><strong>Decryption algorithm</strong></td><td>The reverse procedure. For Caesar it is the same steps run backwards; some later ciphers in Topic 3 decrypt with a different procedure and a different key, so slide 7 lists it separately</td><td>move each letter 3 back</td><td>It turns ciphertext back into plaintext</td></tr>
+</tbody>
+</table>
+<p>Slide 6 also calls these <strong>encipher</strong> and <strong>decipher</strong>. A question that says "encipher" means encrypt.</p>
+
+<div class="note">Change the key to 5: <code>PAY</code> becomes <code>SDB</code> with key 3 and <code>UFD</code> with key 5.</div>
+
+<h2>Check yourself</h2>
+<div class="quiz" data-quiz>
+<p class="prompt">Eve knows the recipe. Which element must stay secret?</p>
+<button class="opt" data-correct>Key</button>
+<button class="opt">Recipe</button>
+<button class="opt">Ciphertext</button>
+<button class="opt">Routers</button>
+<div class="feedback good" data-feedback-good>Yes. The recipe can be public and tested by experts. Only the key must stay secret.</div>
+<div class="feedback bad" data-feedback-bad>Eve already sees the ciphertext and can learn the recipe. The key is the secret that reverses the scrambling.</div>
+</div>
+
+<p class="source">Source: Topic 3a slides 4, 6, 7 and 17, read 9 Nov 2026. The Base64 and compression lines are general knowledge, not from the slides.</p>
+<div class="nav"><span></span><span><a href="0009-kinds-of-cipher.html">Lesson 9</a> &rarr;</span></div>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+</body>
+</html>

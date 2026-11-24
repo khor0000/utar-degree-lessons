@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 15b &mdash; Modular arithmetic part 2</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 15b &middot; Topic 3a &middot; UCCN1223</div>
+<h1>Modular arithmetic part 2: negative numbers</h1>
+<p><strong>A negative number still gets a remainder from 0 to n&minus;1: keep adding n until the answer lands in that range.</strong></p>
+
+<div class="note"><strong>Bridge:</strong> <a href="0015a-modular-arithmetic.html">lesson 15a</a> counted how many 26s fit in a positive number and kept the leftover. For a negative number there is no leftover to keep, so this lesson adds 26 instead until the answer is in range.</div>
+
+<div class="note"><strong>Looks like</strong> <code>%</code> in C++ (UCCD1024), but it differs for negative numbers. For positive numbers both give the same answer: <code>29 % 26 = 3</code>. For a negative number C++ keeps the sign, so <code>-7 % 26 = -7</code>, while <code>mod</code> in cryptography gives 19. <strong>Why it differs:</strong> a cipher needs every answer to be a letter position from 0 to 25.</div>
+
+<h2>1. Add n until a negative number is in range</h2>
+<p>Here is <code>-7 mod 26</code> as steps. Press Next, or the arrow keys:</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Start with -7. It is below 0, so it is not a position yet.">
+<table><tbody>
+<tr><th>start</th><td>-7</td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Add the modulus 26: -7 + 26 = 19. Now the answer is between 0 and 25, so stop.">
+<table><tbody>
+<tr><th>step</th><th>working</th><th>result</th></tr>
+<tr><td>1</td><td>-7 + 26</td><td>19</td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="19 is in range, so -7 mod 26 = 19. Position 19 is T.">
+<table><tbody>
+<tr><th>step</th><th>working</th><th>result</th></tr>
+<tr><td>1</td><td>-7 + 26</td><td>19</td></tr>
+<tr><td>2</td><td>19 is between 0 and 25, so stop</td><td><code>19</code>, which is T</td></tr>
+</tbody></table>
+</div>
+</div>
+<p>So <code>-7 mod 26 = 19</code>.</p>
+
+<div class="note"><strong>The rule, in one box.</strong> Negative x: keep adding n until it lands in 0 to n&minus;1.</div>
+
+<h2>Check yourself</h2>
+<div class="paper-task"><strong class="title">Check 2: fresh input, decrypt D with Caesar key 9</strong>
+<p>Decrypting shifts the letter back by the key. Decrypt the letter <code>D</code> with key 9. Work out the position of D, subtract 9, and wrap with mod 26. Try it on paper before you open the reveal.</p>
+<details class="reveal"><summary>Reveal, step by step</summary>
+<ol>
+<li>A is 0, so D is position 3.</li>
+<li>Subtract the key: 3 &minus; 9 = &minus;6. This is negative, so it is not a position yet.</li>
+<li>Add the modulus 26: &minus;6 + 26 = 20. 20 is between 0 and 25, so stop.</li>
+<li>Position 20 is U. So <code>D &rarr; U</code>.</li>
+</ol></details></div>
+
+<p>Next: <a href="0016-matrix-shape.html">lesson 16</a>, the matrix shape the Hill cipher needs. Then lesson 17 uses this wrap on a pair of letters at once.</p>
+<p class="source">Source: no Topic 3a slide teaches negative numbers. The worked values follow the Lab 2 preparation in the course notes (Lab 2 only). Every value checked in Python.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0015a-modular-arithmetic.html">Lesson 15a</a></span><span><a href="0016-matrix-shape.html">Lesson 16</a> &rarr;</span></div>
+</body>
+</html>

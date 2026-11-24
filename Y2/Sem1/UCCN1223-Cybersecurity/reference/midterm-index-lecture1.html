@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Midterm index: Lecture 1 &mdash; UCCN1223</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* Index page: wider than a lesson, tighter type so it prints on A4. */
+  body { max-width: 52rem; font-size: 0.95rem; padding: 2rem 1.2rem 3rem; }
+  h1 { font-size: 1.55rem; margin: 0.3rem 0 0.5rem; }
+  h2 { font-size: 1.1rem; margin: 1.6rem 0 0.5rem; }
+  table { font-size: 0.86rem; margin: 0.6rem 0 0.4rem; }
+  th, td { padding: 0.35rem 0.55rem; vertical-align: top; }
+  td:nth-child(3), th:nth-child(3) { white-space: nowrap; }
+  .ask-agent { margin-top: 1rem; }
+  @page { size: A4; margin: 12mm; }
+  @media print {
+    body { padding: 0; max-width: none; font-size: 9.5pt; line-height: 1.35; }
+    h1 { font-size: 14pt; }
+    h2 { font-size: 11pt; margin: 0.8rem 0 0.3rem; break-after: avoid; }
+    table { font-size: 8.8pt; page-break-inside: auto; }
+    tr { break-inside: avoid; }
+    thead { display: table-header-group; }
+    .eyebrow { font-size: 7.5pt; }
+    p { margin: 0.4rem 0; }
+    a { color: inherit; }
+  }
+</style></head><body>
+
+<div class="eyebrow">Index &middot; UCCN1223 &middot; Midterm 25 Nov 2026 &middot; Open book</div>
+<h1>Midterm index: Lecture 1, Introduction to Cybersecurity</h1>
+<p><strong>Open-book index for Lecture 1: find it, don't memorise it.</strong></p>
+<p class="note">Read the concepts in this order. Later rows lean on the earlier ones. Slide numbers are the page numbers of Lecture_1.pdf.</p>
+
+<h2>1. Concepts, in dependency order</h2>
+<table>
+<thead><tr><th scope="col">Concept</th><th scope="col">One-line plain meaning</th><th scope="col">Slide no(s)</th></tr></thead>
+<tbody>
+<tr><td><strong>Cyberspace</strong></td><td>The online environment where people communicate, use services and do business. The deck lists its uses but gives no one-line definition.</td><td>8, 10</td></tr>
+<tr><td>Importance of cyberspace</td><td>It enables global communication, supports online services (banking, education, e-commerce), and is critical for business, government and daily life.</td><td>10</td></tr>
+<tr><td>Security concerns in cyberspace</td><td>Five named risks: network attacks, data breaches, malware, identity theft, phishing attacks.</td><td>10</td></tr>
+<tr><td><strong>Cybersecurity</strong></td><td>Protecting computer systems, networks and data from cyber attacks, unauthorised access and damage. Slide 5 also covers servers, cloud and websites.</td><td>5, 18</td></tr>
+<tr><td>Why cybersecurity matters</td><td>Six reasons: stops data theft and misuse; protects against viruses; protects personal info; defends against hacking, malware, phishing, ransomware; builds trust; allows safe tech use. See the list in section 3.</td><td>6</td></tr>
+<tr><td>Three levels of protection</td><td>Personal (your identity, data, devices), Organisational (reputation, data, customers), Government (national security, economy, citizens).</td><td>7</td></tr>
+<tr><td>Named attack types (not defined in deck)</td><td>Hacking, malware, phishing, ransomware, online fraud, identity theft. The deck names them but gives no definition for each.</td><td>5, 6, 10</td></tr>
+<tr><td><strong>Vulnerability</strong></td><td>A weakness in a system, software or network that a threat can exploit.</td><td>18</td></tr>
+<tr><td><strong>Threat</strong></td><td>Any potential danger that can exploit a vulnerability and cause harm. Examples: hackers, malware, natural disasters.</td><td>18</td></tr>
+<tr><td><strong>Risk</strong></td><td>The likelihood that a threat exploits a vulnerability, plus the impact it could cause.</td><td>19</td></tr>
+<tr><td><strong>Attack</strong></td><td>An intentional attempt to gain unauthorised access to a system or disrupt its normal operation.</td><td>19</td></tr>
+<tr><td><strong>Firewall</strong></td><td>A security device or software that monitors and controls incoming and outgoing traffic based on security rules.</td><td>19</td></tr>
+<tr><td><strong>Authentication</strong></td><td>Checking who a user or system is. Examples: passwords, biometrics, multi-factor authentication.</td><td>20</td></tr>
+<tr><td><strong>Authorisation</strong></td><td>Granting or denying access rights to users who are already authenticated.</td><td>20</td></tr>
+<tr><td><strong>IDS</strong> (intrusion detection system)</td><td>Detects network or system activity that is malicious or breaks policy. It detects; it does not block.</td><td>20</td></tr>
+<tr><td><strong>IPS</strong> (intrusion prevention system)</td><td>Prevents and actively blocks malicious traffic.</td><td>20</td></tr>
+<tr><td>Financial loss prevention</td><td>Lower financial losses, fewer security incidents, lower recovery and repair costs, better protection of critical systems.</td><td>14</td></tr>
+<tr><td>Compliance with laws and standards</td><td>Meeting data protection laws and industry standards (the deck names ISO/IEC 27001 and NIST).</td><td>14</td></tr>
+<tr><td>Industrial growth</td><td>Security lets industries grow quickly.</td><td>14</td></tr>
+<tr><td>Support for digital transformation</td><td>Safe adoption of cloud computing, automation and AI.</td><td>15</td></tr>
+<tr><td>Protection of industrial systems</td><td>Industrial Control Systems (ICS), SCADA and IoT could be attacked and disrupt manufacturing, energy or transport.</td><td>15</td></tr>
+<tr><td>Trust and reputation</td><td>Customers and partners trust organisations that protect their data; good security keeps brand and confidence.</td><td>15</td></tr>
+<tr><td>History facts</td><td>First recorded cybercrime 1820. First spam email 1976 (over ARPANET). First virus 1982 on an Apple computer: EIK Cloner, a boot sector virus.</td><td>3</td></tr>
+</tbody></table>
+
+<h2>2. Pre-empted misconceptions</h2>
+<table>
+<thead><tr><th scope="col">Looks-like pair or wrong belief</th><th scope="col">The difference / correction</th><th scope="col">Slide no</th></tr></thead>
+<tbody>
+<tr><td>Vulnerability vs threat vs attack vs risk</td><td>Vulnerability is the weak spot. Threat is the danger. Attack is the intentional act. Risk is the chance of harm plus its impact. Four different words, four different jobs.</td><td>18, 19</td></tr>
+<tr><td>Threat vs attack</td><td>A threat can be a natural disaster, which is not intentional. An attack is always intentional.</td><td>18, 19</td></tr>
+<tr><td>Authentication vs authorisation</td><td>Authentication = who are you (identity check). Authorisation = what you may do, decided after authentication.</td><td>20</td></tr>
+<tr><td>IDS vs IPS</td><td>IDS detects and reports. IPS prevents and blocks. Same family, different job.</td><td>20</td></tr>
+<tr><td>Firewall vs IDS / IPS</td><td>Firewall controls traffic by its rules. IDS only detects. IPS actively blocks. Do not swap the job words.</td><td>19, 20</td></tr>
+<tr><td>Cybersecurity vs cyberspace</td><td>Cyberspace is the online environment. Cybersecurity is the protection of systems, networks and data in it.</td><td>5, 8, 10, 18</td></tr>
+<tr><td>Compliance means only laws</td><td>The heading covers two things: data protection laws, and industry standards (ISO/IEC 27001, NIST). Name both.</td><td>14</td></tr>
+<tr><td>Industrial growth vs protection of industrial systems</td><td>Two separate headings. Growth = security enables it. Protection = ICS, SCADA and IoT must be defended from attack.</td><td>14, 15</td></tr>
+<tr><td>History years mixed up</td><td>1820 = first recorded cybercrime. 1976 = first spam email. 1982 = first virus (EIK Cloner). Each year is a different event.</td><td>3</td></tr>
+</tbody></table>
+
+<h2>3. Lists to copy straight from slides</h2>
+<p>If a question says &ldquo;list N&hellip;&rdquo;, the count below tells you how many items to write.</p>
+<table>
+<thead><tr><th scope="col">List</th><th scope="col">Count</th><th scope="col">Items</th><th scope="col">Slide no</th></tr></thead>
+<tbody>
+<tr><td>Outline of the lecture</td><td>5</td><td>Introduction; why cybersecurity; cyberspace; importance in industry; basic terminologies</td><td>2</td></tr>
+<tr><td>Why cybersecurity is important</td><td>6</td><td>Data theft/misuse; viruses; personal info; hacking, malware, phishing, ransomware; privacy and trust; safe tech use</td><td>6</td></tr>
+<tr><td>Three levels of protection</td><td>3</td><td>Personal; organisational; government</td><td>7</td></tr>
+<tr><td>Importance of cyberspace</td><td>3</td><td>Enables global communication; supports online services; critical for business, government and daily life</td><td>10</td></tr>
+<tr><td>Security concerns in cyberspace</td><td>5</td><td>Network attacks; data breaches; malware; identity theft; phishing attacks</td><td>10</td></tr>
+<tr><td>Attacks named in the introduction</td><td>4</td><td>Hacking; phishing; ransomware; online fraud</td><td>5</td></tr>
+<tr><td>Importance of cybersecurity in industry</td><td>6</td><td>Financial loss prevention; compliance with laws and standards; industrial growth; support digital transformation; protection of industrial systems; trust and reputation</td><td>14, 15</td></tr>
+<tr><td>Basic terminology (defined)</td><td>10</td><td>Cybersecurity; vulnerability; threat; risk; attack; firewall; authorisation; authentication; IPS; IDS</td><td>18, 19, 20</td></tr>
+<tr><td>Authentication examples</td><td>3</td><td>Passwords; biometrics; multi-factor authentication</td><td>20</td></tr>
+<tr><td>Summary slide</td><td>4 boxes</td><td>Cybersecurity and its purpose; concept of cyberspace; importance to industries; key terminologies (in two columns)</td><td>21</td></tr>
+</tbody></table>
+
+<p class="note">Source: Lecture_1.pdf</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+
+</body></html>

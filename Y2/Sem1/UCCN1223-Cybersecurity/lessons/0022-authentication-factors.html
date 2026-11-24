@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 22 &mdash; Authentication factors</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 22 &middot; Topic 3b &middot; UCCN1223</div>
+<h1>Authentication factors: three kinds of proof</h1>
+<p><strong>Authentication is proving who you are. A factor is one kind of proof, and there are three kinds: something you have, something you know, and something you are.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> every login, to a student portal or an e-wallet, asks you to prove you are you. The three kinds tell you what a login is made of. <strong>Focus on:</strong> the three categories, and counting categories rather than answers. <strong>Skip for now:</strong> how the system stores your password safely (hashing, <a href="0021-hash-functions.html">lesson 21</a>), and the protocols that use these checks (deck slides 72&ndash;77). <strong>How you'll be tested:</strong> explain in words, no calculator. The old-format October 2025 paper asked "Briefly explain TWO (2) types of authentication factors" for 5 marks. The June 2026 format is not confirmed.</div>
+
+<p>Lesson 8 asked whether a message really came from Ali. This lesson asks whether the person at the keyboard really is Ali.</p>
+
+<div class="note"><strong>Looks like</strong> authenticity from <a href="0008-what-a-cipher-is.html">lesson 8</a>, but&hellip;
+<table>
+<thead><tr><th></th><th>Authenticity (lesson 8)</th><th>Authentication (this lesson)</th></tr></thead>
+<tbody>
+<tr><td>Same</td><td colspan="2">Both ask whether something really comes from who it claims to</td></tr>
+<tr><td>Different</td><td>A property of a message: did Ali really send this?</td><td>A check on a person at login: are you really Ali?</td></tr>
+<tr><td>Why</td><td colspan="2">A message is judged by its sender and content. A person can only be judged by what they can show you.</td></tr>
+</tbody>
+</table></div>
+
+<div class="note"><strong>You might reasonably wonder:</strong> does passing this check decide what I may open? No. Authentication only proves who you are. The Unix permissions you met in <a href="0004-reading-permissions.html">lesson 4</a> decide what you may do after you log in.</div>
+
+<h2>1. The three factors</h2>
+<p>The deck says identity is "usually based on the combination of 3 factors" (slide 61). An <strong>authentication factor</strong> is one of those kinds of proof. It has three parts. <strong>What it is:</strong> one kind of proof of identity. <strong>What value it holds:</strong> a thing you carry, a secret you type, or a feature of your body. <strong>Why it is needed:</strong> the system cannot see who is typing. It can only check what the person presents.</p>
+
+<table>
+<thead><tr><th>Factor (deck name)</th><th>What the deck says</th><th>Example from your life</th></tr></thead>
+<tbody>
+<tr><td><strong>Ownership</strong> (something you have)</td><td>You present an object or code only you hold. Slide 62 lists smart cards, hardware tokens, OTP generators, USB keys and RFID cards.</td><td>Your student ID card, tapped on a reader at a gate. If the card carries an RFID tag (slide 62), the reader checks that you hold it.</td></tr>
+<tr><td><strong>Knowledge</strong> (something you know)</td><td>You type a secret only you should know. Slide 64 lists passwords, PINs, passphrases and secret questions.</td><td>The PIN you type to open your Touch 'n Go eWallet.</td></tr>
+<tr><td><strong>Inherence</strong> (something you are)</td><td>A measured body trait, compared with a stored copy. Slide 66 lists fingerprints, face, iris, voice and DNA.</td><td>Your fingerprint on a door reader.</td></tr>
+</tbody>
+</table>
+
+<div class="note"><strong>Slide error.</strong> Slide 66's title reads "Inheritance Factors", but its body says "Inherent". The correct term is inherence (something you are).</div>
+
+<h2>2. Multi-factor means different categories</h2>
+<p><strong>Multi-factor authentication (MFA)</strong> means two or more factors from <em>different</em> categories. An <strong>OTP</strong> (one-time password) is a code that works once and then expires.</p>
+
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Stage 1: you log in to your e-wallet with a password only. The category used is knowledge. Categories: 1. This is one factor, not multi-factor.">
+<table><tbody>
+<tr><th>Factor used</th><td>Password</td></tr>
+<tr><th>Category</th><td>Knowledge</td></tr>
+<tr><th>Categories</th><td><strong>1</strong></td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Stage 2: the app also sends an OTP to your phone. The phone is what you have, so that is ownership. Knowledge plus ownership is 2 categories. This is multi-factor.">
+<table><tbody>
+<tr><th>Factor used</th><td>Password, then OTP sent to your phone</td></tr>
+<tr><th>Category</th><td>Knowledge, then ownership</td></tr>
+<tr><th>Categories</th><td><strong>2</strong></td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Stage 3: you also answer your secret question. It is something you know, so it joins the knowledge category. The count stays at 2, because a second knowledge item adds no new category.">
+<table><tbody>
+<tr><th>Factor used</th><td>Password, OTP, secret question</td></tr>
+<tr><th>Category</th><td>Knowledge (2 items), ownership</td></tr>
+<tr><th>Categories</th><td><strong>2</strong></td></tr>
+</tbody></table>
+</div>
+</div>
+
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Count categories, not answers</strong><p>Two answers from the same category are still one factor. Old-format questions ask for "two types", so two items from one category do not earn the second type.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td>Password + secret question: one factor (knowledge)</td><td>Password + secret question: two factors</td></tr></tbody></table></div>
+
+<h2>3. Biometrics: what the deck requires</h2>
+<p><strong>Biometric</strong> means a measure of a body or behaviour trait used to identify a person (slide 67). A sensor reads the trait and compares it with stored <strong>templates</strong>, the saved copies of accepted users' traits. The deck says a good trait is <strong>universal</strong> (almost everyone has it), <strong>distinctive</strong> (each person differs noticeably), <strong>permanent</strong> (it does not change much over time) and <strong>collectable</strong> (it can be measured effectively) (slide 68).</p>
+<div class="note"><strong>Not in the deck:</strong> slides 63 and 65 give advantages and limitations for ownership and knowledge. For biometrics, slide 70 asks you to score the traits against the four requirements but prints no scores. So this lesson gives no biometric pros or cons.</div>
+
+<h2>4. Check yourself</h2>
+<div class="paper-task"><strong class="title">Check 1: sort six items into factors</strong>
+<p>Put each item under ownership, knowledge or inherence. Try it before you open the reveal.</p>
+<ol>
+<li>The PIN you type for your Touch 'n Go eWallet.</li>
+<li>A six-digit code texted to your phone for login.</li>
+<li>Your student ID card, tapped on a gate reader.</li>
+<li>Your fingerprint on a hostel door reader.</li>
+<li>The answer to "what was your first pet's name?"</li>
+<li>An iris scan at a lab door.</li>
+</ol>
+<details class="reveal"><summary>Reveal, step by step</summary>
+<ol>
+<li>PIN: <strong>knowledge</strong>. It is typed, and only you should know it.</li>
+<li>Texted code: <strong>ownership</strong>. Your phone is what you have, and the code is an OTP.</li>
+<li>Student ID card: <strong>ownership</strong>. It is a card you hold and present (slide 62 lists RFID cards).</li>
+<li>Fingerprint: <strong>inherence</strong>. It is part of your body (slide 66).</li>
+<li>Secret question: <strong>knowledge</strong>. Slide 64 lists it.</li>
+<li>Iris scan: <strong>inherence</strong>. Slide 66 lists iris scanning.</li>
+</ol></details></div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">A Touch 'n Go card with its PIN is multi-factor. Which two categories are these?</p>
+<button class="opt" data-correct>Ownership and knowledge</button>
+<button class="opt">Ownership and inherence</button>
+<button class="opt">Two knowledge factors</button>
+<button class="opt">Knowledge and inherence</button>
+<div class="feedback good" data-feedback-good>Yes. The card is something you have, and the PIN is something you know.</div>
+<div class="feedback bad" data-feedback-bad>The card is ownership and the PIN is knowledge. Both are different categories, so this is multi-factor.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">You log in with a password, then answer your secret question. How many factors is that?</p>
+<button class="opt" data-correct>One factor, both are knowledge</button>
+<button class="opt">Two factors, one per answer</button>
+<button class="opt">Three factors, counting the login</button>
+<button class="opt">Two factors, one per step</button>
+<div class="feedback good" data-feedback-good>Yes. Both are things you know, so they make one knowledge factor.</div>
+<div class="feedback bad" data-feedback-bad>Both items are knowledge. Two answers from one category are still one factor.</div>
+</div>
+
+<div class="paper-task"><strong class="title">Paper practice: styled after Oct 2025 Q1(f), 5 marks</strong>
+<p>Briefly explain <strong>TWO</strong> types of authentication factors used to verify identity. Give an example of each.</p>
+<details class="reveal"><summary>Reveal a model answer</summary>
+<p>Two different categories, one example each:</p>
+<ul>
+<li><strong>Ownership (something you have):</strong> the system checks that you hold an item or code, such as an OTP sent to your phone or an RFID card.</li>
+<li><strong>Knowledge (something you know):</strong> the system checks a secret you type, such as a password or PIN.</li>
+</ul>
+<p>This is a model answer, not the official mark scheme. Two examples from one category would not count as two types.</p>
+</details></div>
+
+<p class="source">Source: Topic 3b slides 61&ndash;64, 66&ndash;68, 70 (text layer, and rendered slides 61, 66, 69, 70). Old-format paper Oct 2025 Q1(f), 5 marks.</p>
+<p>Next: lesson 23, a quiz on the Lecture 1 material. It checks the factors you have just sorted, along with the rest of the first lecture.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0021-hash-functions.html">Lesson 21</a></span><span><a href="0023-lecture-1-quiz-mcq.html">Lesson 23</a> &rarr;</span></div>
+</body>
+</html>

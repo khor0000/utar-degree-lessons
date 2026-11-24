@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 3 &mdash; Making and listing: ls, mkdir, rmdir, touch</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 3 of 7 &middot; Lab 1 prep &middot; UCCN1223</div>
+<h1>Making and listing: ls, mkdir, rmdir, touch</h1>
+<p><strong>These four commands list, create and remove the things in a folder, and they cover Lab 1 Questions 1 and 2.</strong></p>
+<p>Lesson 2 made folders with <code>mkdir</code>. <code>touch</code> does the same job for an empty file.</p><h2>The four commands</h2>
+<table><thead><tr><th>Type</th><th>Result</th></tr></thead><tbody>
+<tr><td><code>ls</code></td><td>Names in this folder</td></tr>
+<tr><td><code>ls -l</code></td><td>One line of details per item (lesson 4 reads it)</td></tr>
+<tr><td><code>ls *.txt</code></td><td>Only names ending in <code>.txt</code></td></tr>
+<tr><td><code>mkdir test</code></td><td>Creates the folder <code>test</code></td></tr>
+<tr><td><code>rmdir test</code></td><td>Removes it, only if it is empty</td></tr>
+<tr><td><code>touch a.txt b.txt</code></td><td>Creates empty files, one per argument</td></tr></tbody></table>
+<p>The <code>*</code> is a <strong>wildcard</strong>: the shell treats it as "any characters" and swaps <code>*.txt</code> for the matching names before <code>ls</code> runs. The <code>.</code> in <code>*.txt</code> is just the dot in the filename. It has nothing to do with the <code>..</code> in lesson 2, which is a folder name of its own.</p>
+<h2>Becoming root</h2>
+<p>Lab 1 says to run <code>sudo su</code> before the questions. <strong>Root</strong> is the administrator account, which can read and change anything. <code>sudo su</code> switches your shell to root, and the prompt usually changes from <code>$</code> to <code>#</code>. Type <code>exit</code> to go back. Do not confuse this with the root directory <code>/</code>: same word, different thing.</p>
+<h2>The lab questions, run in order</h2><div class="walk" data-walk><div class="walk-stage" data-caption="Become root, as the handout says."><pre><code>$ sudo su
+#</code></pre></div><div class="walk-stage" data-caption="Go to the required path and create your folder. Use your own name."><pre><code># cd /home/student
+# mkdir ahhock</code></pre></div><div class="walk-stage" data-caption="Q1 asks for the full path, so move in and print it."><pre><code># cd ahhock
+# pwd
+/home/student/ahhock</code></pre></div><div class="walk-stage" data-caption="Q2: create some files, then list them."><pre><code># touch a.txt b.txt
+# ls
+a.txt  b.txt</code></pre></div></div><div class="exam-trap"><strong class="title">Critical Exam Trap &bull; rmdir Needs an Empty Folder</strong><p>The handout shows the error <code>Directory not empty</code>. Empty the folder first, because <code>rmdir</code> never deletes contents.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td><code>rm test/a.txt then rmdir test</code></td><td><code>rmdir test (with files inside)</code></td></tr></tbody></table></div><div class="quiz" data-quiz><p class="prompt">Which command lists only files ending in <code>.pdf</code>?</p><button class="opt" data-correct><code>ls *.pdf</code></button><button class="opt"><code>ls .pdf</code></button><button class="opt"><code>ls -pdf</code></button><div class="feedback good" data-feedback-good>Yes. <code>*</code> stands for the rest of the name.</div><div class="feedback bad" data-feedback-bad>Without <code>*</code>, the shell looks for a file literally named <code>.pdf</code>, and a leading <code>-</code> would be read as options.</div></div><div class="paper-task"><strong class="title">Paper task</strong><p>From a blank page, write the commands that go to <code>/home/student</code>, create a folder <code>ali</code>, enter it, create <code>x.txt</code>, and list only <code>.txt</code> files.</p><details class="reveal"><summary>Reveal the answer</summary><pre><code>cd /home/student
+mkdir ali
+cd ali
+touch x.txt
+ls *.txt</code></pre></details></div>
+<p class="source">Primary source: <a href="https://man7.org/linux/man-pages/man1/ls.1.html">ls(1) manual page</a>. Terms are in the <a href="../reference/glossary.html">glossary</a>.</p>
+<div class="ask-agent"><p>Stuck on anything here? Ask me in the chat, even if it feels small.</p></div>
+<div class="nav"><span>&larr; <a href="0002-paths-pwd-cd.html">Lesson 2</a></span><span><a href="0004-reading-permissions.html">Lesson 4</a> &rarr;</span></div>
+</body>
+</html>

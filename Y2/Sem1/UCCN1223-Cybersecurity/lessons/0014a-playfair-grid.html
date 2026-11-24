@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 14a &mdash; Playfair: the key square</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 14a &middot; Topic 3a &middot; UCCN1223</div>
+<h1>Playfair: the 5 &times; 5 key square</h1>
+<p><strong>Yes: Playfair's key is a 5 &times; 5 grid. Write the keyword into it, fill the other cells with the unused letters, and I and J share one cell.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> the grid is the key. Where two letters sit in it decides what they turn into. Lesson 11 changed one letter at a time, so this grid is the first thing in Playfair that is new. <strong>Focus on:</strong> building the grid from a keyword. <strong>Skip for now:</strong> cutting the message into pairs (lesson 14b), and the encryption rules (lesson 14c). The deck does not teach decryption. <strong>How you'll be tested:</strong> by hand, no calculator. Old-format papers gave Playfair 7 marks (May 2026 Q2) and 4 marks (Oct 2025 Q1). Whether the new format keeps it: not confirmed.</div>
+
+<div class="note"><strong>Bridge:</strong> the two-row strip in lesson 11 used one line of letters and one shift. Playfair uses a grid of rows and columns instead of a line.</div>
+
+<div class="note"><strong>Looks like the keyword strip (lesson 12a), but...</strong> both start from a keyword and put its letters first. The keyword strip still changes one letter at a time, along one line. Playfair fills a 5 &times; 5 grid and works on two letters together. <strong>Why it differs:</strong> the grid lets the two letters of a pair affect each other's output, which one line of letters cannot do.</div>
+
+<div class="note"><strong>Looks like columnar transposition (<a href="0013a-columnar-encrypt.html">lesson 13a</a>), but...</strong> both use a keyword and a grid. Columnar fills its grid with the message and reads the columns in keyword order, so no letter changes. Playfair fills its grid from the keyword first, and every message letter is replaced, not moved.</div>
+
+<div class="note"><strong>New term: key square.</strong> (1) What it is: a 5 &times; 5 grid of letters. (2) What it holds: 25 letters, one per cell, with I and J sharing one cell. (3) Why it is needed: it is the key. Where two letters sit in the grid decides their output.</div>
+
+<h2>1. Build the grid: keyword MONARCHY</h2>
+<p>J shares the I cell (see the check below).</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Step 1: write the keyword, left to right. Each letter takes the next free cell."><pre><code>M O N A R C H Y</code></pre></div>
+<div class="walk-stage" data-caption="Step 2: check for repeats. MONARCHY has none, so nothing is dropped."><pre><code>M O N A R C H Y    repeats: none    kept: 8 letters</code></pre></div>
+<div class="walk-stage" data-caption="Step 3: fill the rest with the unused letters in alphabetical order, skipping J. That is 17 letters."><pre><code>B D E F G I K L P Q S T U V W X Z</code></pre></div>
+<div class="walk-stage" data-caption="Step 4: the 8 keyword letters and the 17 others fill 25 cells, row by row."><table><tbody>
+<tr><td>M</td><td>O</td><td>N</td><td>A</td><td>R</td></tr>
+<tr><td>C</td><td>H</td><td>Y</td><td>B</td><td>D</td></tr>
+<tr><td>E</td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr>
+<tr><td>L</td><td>P</td><td>Q</td><td>S</td><td>T</td></tr>
+<tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr>
+</tbody></table></div>
+</div>
+
+<div class="note"><strong>General rule (grid):</strong> (1) write the keyword, skipping any letter already written; (2) add the unused letters from A to Z in order, leaving out J; (3) the 25 cells hold 25 letters, and the I cell also stands for J.</div>
+
+<h2>2. A keyword with repeats: ENVIRONMENT</h2>
+<p>ENVIRONMENT repeats the letters N and E. Keep only the first copy of each, then fill the grid the same way. This is the keyword in slide 46.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Step 1: the keyword as written. N and E each appear twice."><pre><code>E N V I R O N M E N T</code></pre></div>
+<div class="walk-stage" data-caption="Step 2: drop the second N and the second E, and the later N. Keep the first copy of each."><pre><code>E N V I R O M T      (8 letters kept)</code></pre></div>
+<div class="walk-stage" data-caption="Step 3: fill the rest in alphabetical order, skipping J and the letters already used. That is 17 letters."><pre><code>A B C D F G H K L P Q S U W X Y Z</code></pre></div>
+<div class="walk-stage" data-caption="Step 4: the finished grid. Row 2 is O M T, then A and B from the alphabet."><table><tbody>
+<tr><td>E</td><td>N</td><td>V</td><td>I/J</td><td>R</td></tr>
+<tr><td>O</td><td>M</td><td>T</td><td>A</td><td>B</td></tr>
+<tr><td>C</td><td>D</td><td>F</td><td>G</td><td>H</td></tr>
+<tr><td>K</td><td>L</td><td>P</td><td>Q</td><td>S</td></tr>
+<tr><td>U</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
+</tbody></table></div>
+</div>
+
+<h2>Check yourself</h2>
+<div class="quiz" data-quiz>
+<p class="prompt">Where does the letter J go in the MONARCHY grid?</p>
+<button class="opt">Off the grid, just after Z</button>
+<button class="opt">In the cell right after H</button>
+<button class="opt" data-correct>In the same cell as I</button>
+<button class="opt">Beside Y, on the second row</button>
+<div class="feedback good" data-feedback-good>Yes. I and J share one cell, so the letter J is changed to I before the grid is used.</div>
+<div class="feedback bad" data-feedback-bad>J has no cell of its own. The I cell stands for both I and J, so a J in the message becomes I.</div>
+</div>
+
+<div class="quiz short" data-quiz-short data-answer="R">
+<p class="prompt">Build the grid for keyword <code>NETWORK</code>. Which letter is in row 2, column 1?</p>
+<input type="text" placeholder="one letter">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. Row 2 is R K A B C, so column 1 is R.</div>
+<div class="feedback bad" data-feedback-bad>Write the keyword first: N E T W O R K, with no repeats. Then fill the unused letters in alphabetical order, skipping J. Row 2 starts with the keyword letters after O, which are R and K.</div>
+</div>
+<details class="reveal"><summary>Show the steps</summary>
+<ol>
+<li>Keyword NETWORK: N E T W O R K. No repeats, so 7 letters are kept.</li>
+<li>Unused letters, in order, skipping J: A B C D F G H I L M P Q S U V X Y Z (18 letters).</li>
+<li>Fill the grid row by row: row 1 is N E T W O, row 2 is R K A B C, row 3 is D F G H I.</li>
+</ol>
+<table><tbody>
+<tr><td>N</td><td>E</td><td>T</td><td>W</td><td>O</td></tr>
+<tr><td>R</td><td>K</td><td>A</td><td>B</td><td>C</td></tr>
+<tr><td>D</td><td>F</td><td>G</td><td>H</td><td>I/J</td></tr>
+<tr><td>L</td><td>M</td><td>P</td><td>Q</td><td>S</td></tr>
+<tr><td>U</td><td>V</td><td>X</td><td>Y</td><td>Z</td></tr>
+</tbody></table>
+</details>
+
+<p>Next: lesson 14b, cutting the message into pairs. That is where fillers and pads come in.</p>
+
+<p class="source">Source: Topic 3a slides 38, 39 and 46 (grid and keyword examples). Every grid in this lesson was checked by a Python implementation of Playfair.</p>
+<div class="nav"><span>&larr; <a href="0013b-columnar-decrypt.html">Lesson 13b</a></span><span><a href="0014b-playfair-pairs.html">Lesson 14b</a> &rarr;</span></div>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+</body>
+</html>

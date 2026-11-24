@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 17 &mdash; The Hill cipher, mod 26</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 17 &middot; Topic 3a &middot; UCCN1223</div>
+<h1>The Hill cipher, mod 26</h1>
+<p><strong>A Hill block is encrypted by multiplying its column of letter-numbers by a 2&times;2 key matrix, then taking each result mod 26.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> Hill mixes letters with arithmetic on their numbers, not with a table lookup. Each output letter depends on both letters of its block, which is why it is stronger than swapping one letter for one letter. The wrap is the <code>mod 26</code> from <a href="0015a-modular-arithmetic.html">lesson 15a</a>, and the size rule for the multiply is in <a href="0016-matrix-shape.html">lesson 16</a>. <strong>Focus on:</strong> one encryption with every multiply and every <code>mod 26</code> written down. <strong>Skip for now:</strong> keys bigger than 2&times;2, and the general method for them. <strong>How you'll be tested:</strong> <strong>by hand</strong>, every step shown (old-format paper Oct 25 Q1, Hill encrypt, 4 marks; the format changed from June 2026). The Casio fx-570EX matrix mode can do the multiply, but no source here gives its key presses, so they are <strong>not confirmed</strong>.</div>
+
+<p>Bridge: Caesar in <a href="0011-caesar-with-a-strip.html">lesson 11</a> wrapped one letter past Z. Hill wraps a whole block the same way, at once. The size rule that lets the key multiply a block is in <a href="0016-matrix-shape.html">lesson 16</a>.</p>
+
+<h2>1. Padding and the letter numbers</h2>
+<p>Letters become numbers with A = 0, B = 1, up to Z = 25. HELLO gives H = 7, E = 4, L = 11, L = 11, O = 14. A <strong>block</strong> (lesson 16) needs two letters, and HELLO has five. So the message gets a <strong>padding letter</strong>, a filler, and it is split into blocks: HE, LL, OX.</p>
+<div class="note"><strong>Looks like</strong> Playfair (lesson 14b), which pads an odd length with Z, and columnar (lesson 13a), which fills empty cells with X. <strong>Why it differs:</strong> Hill only needs a complete block. The slide's own example uses X, written &ldquo;e.g., X&rdquo;, so the letter is a choice here, not a fixed rule.</div>
+
+<h2>2. Encrypt HE, one step at a time</h2>
+<p>The slide's key is <math><mi>K</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>3</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>2</mn></mtd><mtd><mn>5</mn></mtd></mtr></mtable><mo>]</mo></mrow></math>, a 2&times;2 grid: 3 and 3 in the top row, 2 and 5 in the bottom row. Press Next to step through the block <strong>HE</strong>. The key stays on screen, and the highlighted row is the one in use.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="The key K (2×2) and the block P (2×1): the block is the column 7 over 4. H is 7 and E is 4.">
+<math display="block"><mi>K</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>3</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>2</mn></mtd><mtd><mn>5</mn></mtd></mtr></mtable><mo>]</mo></mrow><mo>,</mo><mspace width="1.5em"/><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>7</mn></mtd></mtr><mtr><mtd><mn>4</mn></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="Top entry: the top row of K times the block. 3 &times; 7 + 3 &times; 4 = 21 + 12 = 33.">
+<math display="block"><mi>K</mi><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mstyle mathbackground="#cfeef4"><mn>33</mn></mstyle></mtd></mtr><mtr><mtd><mtext>?</mtext></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="Bottom entry: the bottom row of K times the block. 2 &times; 7 + 5 &times; 4 = 14 + 20 = 34.">
+<math display="block"><mi>K</mi><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>33</mn></mtd></mtr><mtr><mtd><mstyle mathbackground="#cfeef4"><mn>34</mn></mstyle></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="Mod 26 on each entry. 33 &minus; 26 = 7, and 34 &minus; 26 = 8.">
+<math display="block"><mi>K</mi><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>7</mn></mtd></mtr><mtr><mtd><mn>8</mn></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="Numbers back to letters. 7 is H and 8 is I, so HE becomes HI.">
+<math display="block"><mrow><mo>[</mo><mtable><mtr><mtd><mn>7</mn></mtd></mtr><mtr><mtd><mn>8</mn></mtd></mtr></mtable><mo>]</mo></mrow><mo>&#x2192;</mo><mrow><mo>[</mo><mtable><mtr><mtd><mtext>H</mtext></mtd></mtr><mtr><mtd><mtext>I</mtext></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+</div>
+
+<div class="note"><strong>The Hill rule:</strong> <math><mi>C</mi><mo>=</mo><mi>K</mi><mi>P</mi><mtext> mod 26</mtext></math>. P is the block as a column (lesson 16), K is the key. Multiply each row of K by the block, add the two products, then take each sum mod 26 and read the letter.</div>
+
+<div class="note"><strong>Keep the numbers small:</strong> reducing early gives the same answer: 16 + 17 = 33, which is 7 mod 26.</div>
+
+<h2>3. The other two blocks, LL and OX</h2>
+<p>Same method, same key. The blocks are LL and OX, where O = 14 and X = 23.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="The block LL is the column 11 over 11. L is 11.">
+<math display="block"><mi>K</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>3</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>2</mn></mtd><mtd><mn>5</mn></mtd></mtr></mtable><mo>]</mo></mrow><mo>,</mo><mspace width="1.5em"/><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>11</mn></mtd></mtr><mtr><mtd><mn>11</mn></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="Top entry: 3 &times; 11 + 3 &times; 11 = 33 + 33 = 66.">
+<math display="block"><mi>K</mi><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mstyle mathbackground="#cfeef4"><mn>66</mn></mstyle></mtd></mtr><mtr><mtd><mtext>?</mtext></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="Bottom entry: 2 &times; 11 + 5 &times; 11 = 22 + 55 = 77.">
+<math display="block"><mi>K</mi><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>66</mn></mtd></mtr><mtr><mtd><mstyle mathbackground="#cfeef4"><mn>77</mn></mstyle></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="Mod 26. 26 &times; 2 = 52. So 66 &minus; 52 = 14, and 77 &minus; 52 = 25.">
+<math display="block"><mi>K</mi><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>14</mn></mtd></mtr><mtr><mtd><mn>25</mn></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="14 is O and 25 is Z, so LL becomes OZ.">
+<math display="block"><mrow><mo>[</mo><mtable><mtr><mtd><mn>14</mn></mtd></mtr><mtr><mtd><mn>25</mn></mtd></mtr></mtable><mo>]</mo></mrow><mo>&#x2192;</mo><mrow><mo>[</mo><mtable><mtr><mtd><mtext>O</mtext></mtd></mtr><mtr><mtd><mtext>Z</mtext></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+</div>
+
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="The block OX is the column 14 over 23. O is 14 and X is 23.">
+<math display="block"><mi>K</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>3</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>2</mn></mtd><mtd><mn>5</mn></mtd></mtr></mtable><mo>]</mo></mrow><mo>,</mo><mspace width="1.5em"/><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>14</mn></mtd></mtr><mtr><mtd><mn>23</mn></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="Top entry: 3 &times; 14 + 3 &times; 23 = 42 + 69 = 111.">
+<math display="block"><mi>K</mi><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mstyle mathbackground="#cfeef4"><mn>111</mn></mstyle></mtd></mtr><mtr><mtd><mtext>?</mtext></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="Bottom entry: 2 &times; 14 + 5 &times; 23 = 28 + 115 = 143.">
+<math display="block"><mi>K</mi><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>111</mn></mtd></mtr><mtr><mtd><mstyle mathbackground="#cfeef4"><mn>143</mn></mstyle></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="Mod 26. 26 &times; 4 = 104, so 111 &minus; 104 = 7. 26 &times; 5 = 130, so 143 &minus; 130 = 13.">
+<math display="block"><mi>K</mi><mi>P</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>7</mn></mtd></mtr><mtr><mtd><mn>13</mn></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+<div class="walk-stage" data-caption="7 is H and 13 is N, so OX becomes HN. Join the blocks: HI, OZ, HN gives HIOZHN.">
+<math display="block"><mrow><mo>[</mo><mtable><mtr><mtd><mn>7</mn></mtd></mtr><mtr><mtd><mn>13</mn></mtd></mtr></mtable><mo>]</mo></mrow><mo>&#x2192;</mo><mrow><mo>[</mo><mtable><mtr><mtd><mtext>H</mtext></mtd></mtr><mtr><mtd><mtext>N</mtext></mtd></mtr></mtable><mo>]</mo></mrow></math>
+</div>
+</div>
+
+<div class="exam-trap">
+<strong class="title">Critical Exam Trap &bull; Column, Not Row</strong>
+<p>Put the block in the column form, on the right of <math><mi>K</mi></math>. A row block on the left gives a different answer, so the mark is lost even if the arithmetic is right.</p>
+<table>
+<thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead>
+<tbody><tr><td>Column <math><mrow><mo>[</mo><mtable><mtr><mtd><mn>7</mn></mtd></mtr><mtr><mtd><mn>4</mn></mtd></mtr></mtable><mo>]</mo></mrow></math> on the right: <code>HE &rarr; HI</code></td><td>Row <math><mrow><mo>[</mo><mtable><mtr><mtd><mn>7</mn></mtd><mtd><mn>4</mn></mtd></mtr></mtable><mo>]</mo></mrow></math> on the left: <code>HE &rarr; DP</code></td></tr></tbody>
+</table>
+</div>
+
+<div class="exam-trap">
+<strong class="title">Critical Exam Trap &bull; A Is Zero</strong>
+<p>Letters start at 0, not 1. A shift in every number changes every answer.</p>
+<table>
+<thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead>
+<tbody><tr><td>A = 0, so H = 7 and E = 4</td><td>A = 1, so H = 8 and E = 5</td></tr></tbody>
+</table>
+</div>
+
+<h2>4. The key must be invertible mod 26</h2>
+<p>A key is <strong>invertible mod 26</strong> when it has an undo mod 26. Test it with the <strong>determinant</strong>, one number from the key, <code>ad &minus; bc</code>.</p>
+<p>For any 2&times;2 key, name the four entries a, b, c and d, with a and b in the top row:</p>
+<math display="block"><mi>A</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mi>a</mi></mtd><mtd><mi>b</mi></mtd></mtr><mtr><mtd><mi>c</mi></mtd><mtd><mi>d</mi></mtd></mtr></mtable><mo>]</mo></mrow></math>
+<div class="note"><strong>Determinant.</strong> <em>What it is:</em> one number worked out from the four entries of a 2&times;2 key. <em>What it holds:</em> <code>ad &minus; bc</code>. For K, a = 3, b = 3, c = 2, d = 5, so <code>3 &times; 5 &minus; 3 &times; 2 = 9</code>. <em>Why needed:</em> it tells you whether the key can be undone mod 26.</div>
+<p>The key is valid when <code>gcd(9, 26) = 1</code>. The <strong>gcd</strong> is the greatest common divisor, the largest number that divides both. Here it is 1, so 9 and 26 are <strong>coprime</strong>: they share no factor except 1.</p>
+<div class="note"><strong>Why:</strong> if the determinant shares a factor with 26, two different blocks can encrypt to the same pair, so the message cannot be read back.</div>
+
+<h2>Check yourself</h2>
+<div class="quiz" data-quiz>
+<p class="prompt">The row <math><mrow><mo>[</mo><mtable><mtr><mtd><mn>7</mn></mtd><mtd><mn>4</mn></mtd></mtr></mtable><mo>]</mo></mrow></math> is multiplied on the left of K. Which block comes out?</p>
+<button class="opt">HI</button>
+<button class="opt" data-correct>DP</button>
+<button class="opt">HE</button>
+<button class="opt">IH</button>
+<div class="feedback good" data-feedback-good>Yes. The row gives 29 and 41, which mod 26 is 3 and 15: D and P. The column on the right gives HI.</div>
+<div class="feedback bad" data-feedback-bad>Work it out with the row on the left: 7 &times; 3 + 4 &times; 2 = 29 and 7 &times; 3 + 4 &times; 5 = 41. Mod 26 gives 3 and 15, which is DP.</div>
+</div>
+
+<div class="paper-task"><strong class="title">Fresh check: block SY (not shown above)</strong>
+<p>Encrypt <code>SY</code> with the same key <math><mi>K</mi><mo>=</mo><mrow><mo>[</mo><mtable><mtr><mtd><mn>3</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>2</mn></mtd><mtd><mn>5</mn></mtd></mtr></mtable><mo>]</mo></mrow></math>. S = 18 and Y = 24. Work it on paper before you open the reveal.</p>
+<details class="reveal"><summary>Reveal, step by step</summary>
+<ol>
+<li>Top entry: 3 &times; 18 + 3 &times; 24 = 54 + 72 = 126.</li>
+<li>Bottom entry: 2 &times; 18 + 5 &times; 24 = 36 + 120 = 156.</li>
+<li>Mod 26: 126 &minus; 104 = 22, since 26 &times; 4 = 104. And 156 &minus; 156 = 0, since 26 &times; 6 = 156.</li>
+<li>22 is W, and 0 is A. So <code>SY &rarr; WA</code>.</li>
+</ol></details></div>
+
+<p>Source: Topic 3a slides 47&ndash;49. Slide 48 gives the key, determinant 9, and the split HE, LL, OX. Slide 49 gives the three block encryptions and HIOZHN. Every value checked by Python: HI, OZ, HN, and the fresh block WA.</p>
+<p>Next: lesson 21, hash functions.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0016-matrix-shape.html">Lesson 16</a></span><span><a href="0021-hash-functions.html">Lesson 21</a> &rarr;</span></div>
+</body>
+</html>

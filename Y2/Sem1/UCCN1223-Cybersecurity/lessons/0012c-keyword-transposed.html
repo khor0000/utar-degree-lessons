@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 12c &mdash; Keyword transposed cipher</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/walk.js" defer></script>
+<script src="../assets/quiz.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 12c &middot; Topic 3a &middot; UCCN1223</div>
+<h1>The keyword transposed cipher</h1>
+<p><strong>Keyword transposed builds a 26-letter strip by filling a grid under the keyword and reading its columns in alphabetical order of the keyword letters. Each message letter is then replaced by the strip letter in the same position.</strong></p>
+
+<p><strong>Bridge:</strong> this is the plain keyword cipher (lesson 12a) with one extra step, the grid.</p>
+
+<div class="note"><strong>Looks like</strong> keyword mixed (lesson 12b), which also builds the same grid from the keyword. <strong>Why it differs:</strong> the only change is the reading order. Mixed reads the columns in keyword order, left to right (W, I, R, E, L, S). Transposed reads them in alphabetical order (E, I, L, R, S, W). A different reading order gives a different strip, so the same plain letter maps to a different cipher letter.</div>
+
+<div class="note"><strong>Looks like</strong> real transposition (named in lesson 9), where letters are moved into new positions. The columnar cipher (lesson 13a) is the first one in this topic that does this. <strong>Why it differs:</strong> transposition keeps every message letter and only moves it. Here every message letter is <em>replaced</em>. The grid only shuffles the alphabet, so this is still a substitution cipher.</div>
+
+<h2>1. Keyword transposed: the walk</h2>
+<p>Keyword transposed takes WIRELESS as the keyword. Watch how the strip is built, then the encryption of <code>NETWORK</code>.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Write the keyword across. The repeated E and S are dropped, so there are 6 columns: W I R E L S.">
+<table><thead><tr><th>W</th><th>I</th><th>R</th><th>E</th><th>L</th><th>S</th></tr></thead></table>
+</div>
+<div class="walk-stage" data-caption="Fill the other 20 letters under it, row by row, left to right. Each row has 6 cells.">
+<table><thead><tr><th>W</th><th>I</th><th>R</th><th>E</th><th>L</th><th>S</th></tr></thead>
+<tbody>
+<tr><td>A</td><td>B</td><td>C</td><td>D</td><td>F</td><td>G</td></tr>
+<tr><td>H</td><td>J</td><td>K</td><td>M</td><td>N</td><td>O</td></tr>
+<tr><td>P</td><td>Q</td><td>T</td><td>U</td><td>V</td><td>X</td></tr>
+<tr><td>Y</td><td>Z</td><td></td><td></td><td></td><td></td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Read the columns in alphabetical order of their header letter: E first, then I, L, R, S, and W last.">
+<table><thead><tr><th>Read order</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th></tr></thead>
+<tbody><tr><td>Column</td><td>E</td><td>I</td><td>L</td><td>R</td><td>S</td><td>W</td></tr>
+<tr><td>Letters</td><td>E D M U</td><td>I B J Q Z</td><td>L F N V</td><td>R C K T</td><td>S G O X</td><td>W A H P Y</td></tr></tbody></table>
+</div>
+<div class="walk-stage" data-caption="The 26 letters in that order form the strip. Plain A is replaced by E, plain B by D, and so on.">
+<pre><code>plain : A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+cipher: E D M U I B J Q Z L F N V R C K T S G O X W A H P Y</code></pre>
+</div>
+<div class="walk-stage" data-caption="Encrypt NETWORK: find each letter on top and read the one below. N&rarr;R, E&rarr;I, T&rarr;O, W&rarr;A, O&rarr;C, R&rarr;S, K&rarr;F.">
+<table><thead><tr><th>Plain</th><th>N</th><th>E</th><th>T</th><th>W</th><th>O</th><th>R</th><th>K</th></tr></thead>
+<tbody><tr><td>Cipher</td><td>R</td><td>I</td><td>O</td><td>A</td><td>C</td><td>S</td><td>F</td></tr></tbody></table>
+<p>So <code>NETWORK &rarr; RIOACSF</code>, the slide's answer.</p>
+</div>
+</div>
+
+
+<h2>2. Checks</h2>
+<p>The deck leaves the exercise answers blank, so these are fresh inputs. The slide does not say which word to encipher and which to decipher. This lesson follows the slide 33 pattern: the first word is enciphered and the second deciphered. Check the strip, not the meaning.</p>
+<div class="note"><strong>Slide error.</strong> Slide 34 labels its key ASSETS, but the cipher row it prints is the WIRELESS strip (EDMUIBJQZLFNVRCKTSGOXWAHPY). Decrypting IEGP with the printed row gives EASY, so the slide most likely reused the WIRELESS strip by mistake. In the exam, build the strip from the key you are given. With the true ASSETS strip, IEGP &rarr; JHCR and CISCO &rarr; GDVGC.</div>
+
+<div class="paper-task"><strong class="title">Check 1 &bull; Keyword transposed, ASSETS</strong>
+<p>Encipher <code>CISCO</code>, then decipher <code>IEGP</code>, with the keyword ASSETS.</p>
+<details class="reveal"><summary>Reveal step 1: the header</summary>
+<p>Keyword ASSETS: the two repeated S letters after the first one are dropped, leaving A S E T, 4 columns. Alphabetical order: A, E, S, T.</p></details>
+<details class="reveal"><summary>Reveal step 2: the grid</summary>
+<p>The other 22 letters, row by row, under A S E T: <code>B C D F</code> / <code>G H I J</code> / <code>K L M N</code> / <code>O P Q R</code> / <code>U V W X</code> / <code>Y Z</code>.</p></details>
+<details class="reveal"><summary>Reveal step 3: the columns and strip</summary>
+<p>Read in order A, E, S, T: <code>A B G K O U Y</code>, <code>E D I M Q W</code>, <code>S C H L P V Z</code>, <code>T F J N R X</code>. The strip is <code>A B G K O U Y E D I M Q W S C H L P V Z T F J N R X</code>.</p></details>
+<details class="reveal"><summary>Reveal step 4: CISCO enciphered</summary>
+<p>C&rarr;G, I&rarr;D, S&rarr;V, C&rarr;G, O&rarr;C. So <code>CISCO &rarr; GDVGC</code>.</p></details>
+<details class="reveal"><summary>Reveal step 5: IEGP deciphered</summary>
+<p>Find each letter on the strip, then read the plain letter at the same position: I is at position 10, so J; E at 8, so H; G at 3, so C; P at 18, so R. So <code>IEGP &rarr; JHCR</code>.</p></details>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">In keyword transposed, what happens to each message letter?</p>
+<button class="opt" data-correct>It is swapped for another letter taken from the strip.</button>
+<button class="opt">It keeps its letter and moves to a different place.</button>
+<button class="opt">It stays put, while the keyword letters move around it.</button>
+<div class="feedback good" data-feedback-good>Yes. The strip is a shuffled alphabet, so each message letter is replaced, not moved.</div>
+<div class="feedback bad" data-feedback-bad>Moving letters is real transposition (lesson 9). Here the grid only reorders the strip, and each message letter is replaced.</div>
+</div>
+
+<p>Next, lesson 12d keeps the keyword grid but changes what a repeated keyword letter does. Lesson 13a then moves the message letters themselves, which is the first cipher in this topic to do that.</p>
+
+<p class="source">Source: Topic 3a slides 28 and 33&ndash;34. Worked answers copied from slide 33 (NETWORK, GIMXSZOP). Exercise (slide 34) labels the key ASSETS but prints the WIRELESS strip; the ASSETS strip was rebuilt and solved in Python, following the slide 33 example.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0012b-keyword-mixed.html">Lesson 12b</a></span><span><a href="0012d-interrupted-keyword.html">Lesson 12d</a> &rarr;</span></div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 1 cheat sheet &mdash; UCCN1223</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="eyebrow">Reference &middot; UCCN1223</div><h1>Lab 1 cheat sheet</h1>
+<table><thead><tr><th>Goal</th><th>Command</th></tr></thead><tbody>
+<tr><td>Where am I?</td><td><code>pwd</code></td></tr>
+<tr><td>Move / up one</td><td><code>cd name</code> &middot; <code>cd ..</code></td></tr>
+<tr><td>List / details / only .txt</td><td><code>ls</code> &middot; <code>ls -l</code> &middot; <code>ls *.txt</code></td></tr>
+<tr><td>Folder: make / remove empty</td><td><code>mkdir x</code> &middot; <code>rmdir x</code></td></tr>
+<tr><td>Empty file</td><td><code>touch a.txt</code></td></tr>
+<tr><td>Become root / leave</td><td><code>sudo su</code> &middot; <code>exit</code></td></tr>
+<tr><td>Set permissions</td><td><code>chmod 640 file</code></td></tr>
+<tr><td>Find IP address</td><td><code>/sbin/ifconfig</code></td></tr>
+<tr><td>Remote login</td><td><code>ssh -oHostKeyAlgorithms=+ssh-dss user@ip</code></td></tr>
+<tr><td>Download</td><td><code>scp -oHostKeyAlgorithms=+ssh-dss user@ip:/path/file .</code></td></tr>
+<tr><td>Leave remote</td><td><code>logout</code></td></tr></tbody></table>
+<h2>Permissions</h2>
+<p><code>d rwx r-x --x</code> = type, owner, group, others. r=4, w=2, x=1.</p>
+<table><thead><tr><th>Bit</th><th>File</th><th>Directory</th></tr></thead><tbody>
+<tr><td>r</td><td>read contents</td><td>list names</td></tr>
+<tr><td>w</td><td>change contents</td><td>create and delete inside</td></tr>
+<tr><td>x</td><td>run</td><td>enter</td></tr></tbody></table>
+</body></html>

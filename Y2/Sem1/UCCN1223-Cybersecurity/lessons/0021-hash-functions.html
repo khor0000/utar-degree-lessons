@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 21 &mdash; Hash functions</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 21 &middot; Topic 3b &middot; UCCN1223</div>
+<h1>Hash functions: a fixed-length fingerprint of any data</h1>
+<p><strong>A cryptographic hash function turns data of any size into a fixed-length value, called the hash value or digest, and the same data always gives the same digest.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> a hash lets a system check data without keeping a copy of it. Signatures sign a digest, and a login compares digests. <strong>Focus on:</strong> the three properties on slides 50 and 51, and what a digest looks like. <strong>Skip for now:</strong> the history of the SHA family and MD4/MD5, HMAC, and the random generator for salt. <strong>How you'll be tested:</strong> the multiple-choice checks here. Not confirmed for the exam; Lab 2 Section 3 uses hashing.</div>
+
+<p>Lessons 8 and 9 showed a cipher as a recipe you can run backwards. A hash is a recipe you cannot run backwards, and that one difference drives everything below.</p>
+
+<div class="note"><strong>Looks like encryption (lessons 8 and 9), but it is not.</strong> <strong>Same:</strong> data goes in, a mathematical recipe scrambles it, and the output looks random. <strong>Different:</strong> encryption has a key and a decryption step, so the owner can get the data back. A hash has no key and no reverse step, so nobody can get the data back from the digest, not even the sender. <strong>Why:</strong> a hash is meant to be a fingerprint, not a locked box.</div>
+
+<div class="note"><strong>Looks like a hash table (UCCD1024), but it is not.</strong> <strong>Same:</strong> the input becomes a number. <strong>Different:</strong> a hash table uses the number as an array index, and two inputs landing in the same slot (a collision) is normal and gets handled. A cryptographic hash gives a 256-bit value that is not a slot, and finding two inputs with the same value must be infeasible (slide 51). <strong>Why:</strong> a table only needs quick lookup. A fingerprint must be trusted when an attacker is trying to forge a match.</div>
+
+<div class="note"><strong>Looks like the salt in lesson 24, but it is not the same step.</strong> <strong>Same:</strong> a password and a stored value. <strong>Different:</strong> lesson 24 adds a random salt per user, and the stored value is the hash of password plus salt. A hash alone lets an attacker hash a list of common passwords once and match it against every stolen entry. Slide 58 says salt is "random data added before hashing", which is what breaks that list.</div>
+
+<h2>1. Worked example: one program, three inputs</h2>
+<p>The program here is SHA-256, a member of the SHA-2 family (slide 56). Every input, short or long, gives a digest of 64 hexadecimal characters, which is 256 bits. Walk through it:</p>
+
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Input 1: the word hello, 5 characters. SHA-256 gives a digest of 64 characters. Hexadecimal characters are the digits 0 to 9 and the letters a to f.">
+<table><tbody>
+<tr><th>input</th><td>hello</td></tr>
+<tr><th>digest</th><td><code style="word-break:break-all">2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</code></td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Input 2: change the last letter, so hello becomes hella. The digest is now completely different. Only 5 of the 64 characters are in the same position, and 133 of the 256 bits differ. The deck does not list this as a property; it is what this run shows.">
+<table><tbody>
+<tr><th>input</th><td>hella</td></tr>
+<tr><th>digest</th><td><code style="word-break:break-all">70de66401b1399d79b843521ee726dcec1e9a8cb5708ec1520f1f3bb4b1dd984</code></td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Input 3: a long file, here a stand-in of one million letters a. The digest is still 64 characters, the same length as input 1.">
+<table><tbody>
+<tr><th>input</th><td>a &times; 1,000,000</td></tr>
+<tr><th>digest</th><td><code style="word-break:break-all">cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0</code></td></tr>
+</tbody></table>
+</div>
+</div>
+
+<h2>2. The general rule</h2>
+<p>Slide 46 defines it: a hash function is a mathematical program that takes variable-length data and produces a fixed-length value. Two terms, each with the three parts:</p>
+<ul>
+<li><strong>Hash function</strong>: what it is, a fixed mathematical program. What value it holds, none; it only takes the input and returns the output. Why needed: one short value can stand in for data of any size.</li>
+<li><strong>Hash value (digest)</strong>: what it is, the output of the program. What value it holds, a fixed-length string of bits, shown here as 64 hex characters. Why needed: two short values can be compared instead of two large files.</li>
+</ul>
+
+<h2>3. The three properties</h2>
+<p>The deck lists three properties (slides 50 and 51). Each one has a reason:</p>
+<ul>
+<li><strong>Fixed length</strong> (property 1): input of any size gives the same digest length.</li>
+<li><strong>One-way</strong> (property 2): the digest is easy to compute, but very hard to turn back into the data.</li>
+<li><strong>Collision-free</strong> (property 3): a <strong>collision</strong> is two different inputs with the same digest. It must be very hard to find one.</li>
+</ul>
+<p>The deck uses the hash for three things: file integrity (slide 47, compare a digest before and after a download), digital signatures (slide 44, sign the digest of a long message, not the whole message), and password storage (slide 49, the login hashes the typed password and compares it with the stored hash). Database indexing is also named on slide 47; that is the hash-table use from the look-alike box above.</p>
+
+<details>
+<summary>Why one-way and collision-free are two separate properties</summary>
+<p>One-way asks whether the data can be recovered from the digest. Collision-free asks whether two different inputs can share a digest. A hash can be one-way and still have collisions that are easy to find. Then an attacker can forge a matching input without ever recovering the original.</p>
+</details>
+
+<h2>Check yourself</h2>
+<div class="quiz" data-quiz>
+<p class="prompt">Which property means you cannot get a file back from its hash value?</p>
+<button class="opt" data-correct>The one-way property</button>
+<button class="opt">The fixed-length property</button>
+<button class="opt">The collision-free property</button>
+<button class="opt">The decryption step</button>
+<div class="feedback good" data-feedback-good>Yes. One-way means the data cannot be recovered from the digest.</div>
+<div class="feedback bad" data-feedback-bad>One-way is the property that blocks recovery. Fixed length and collision-free are the other two, and there is no decryption step in a hash.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">What is the output of a hash function called?</p>
+<button class="opt" data-correct>A hash value, or digest</button>
+<button class="opt">A secret key for encryption</button>
+<button class="opt">A ciphertext of the file</button>
+<button class="opt">A public and private pair</button>
+<div class="feedback good" data-feedback-good>Yes. The output is the hash value, also called the digest.</div>
+<div class="feedback bad" data-feedback-bad>A hash has no key and no ciphertext. Its output is the hash value, also called the digest.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">A website stores each user's password as a hash. An attacker takes the stored list and recovers an original password from one hash, without guessing. Which property failed?</p>
+<button class="opt" data-correct>The one-way property</button>
+<button class="opt">The fixed-length property</button>
+<button class="opt">The collision-free property</button>
+<button class="opt">The encryption key</button>
+<div class="feedback good" data-feedback-good>Yes. Recovering the data from the hash means the one-way property failed.</div>
+<div class="feedback bad" data-feedback-bad>Recovering the password from its hash is a failure of the one-way property. The other properties are not about recovery.</div>
+</div>
+
+<p>Source: Topic 3b slides 44, 46 to 51, 56 and 58. The worked digests were computed in Python (SHA-256), not taken from the deck. The next lesson, 22, asks how a system checks who you are, with three kinds of factor.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<p>Previous: <a href="0017-hill-cipher-mod26.html">Lesson 17, The Hill cipher, mod 26</a>. Next: <a href="0022-authentication-factors.html">Lesson 22, Authentication factors</a>.</p>
+</body>
+</html>

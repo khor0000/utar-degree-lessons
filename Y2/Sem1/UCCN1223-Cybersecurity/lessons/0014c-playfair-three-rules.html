@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 14c &mdash; Playfair: the three rules</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 14c &middot; Topic 3a &middot; UCCN1223</div>
+<h1>Playfair: the three encryption rules</h1>
+<p><strong>Yes: each pair is encrypted by one of three rules, chosen by where its two letters sit in the grid. Same row: each letter takes the letter to its right. Same column: each letter takes the letter below it. Neither: each letter takes the corner in its own row, which lies in the other letter's column.</strong></p>
+
+<div class="note"><strong>Bridge:</strong> lesson 11 moved each letter a fixed number of places, with wrap. The first two rules do the same, one place along a row or a column, with wrap. The grid is what changes the answer for each pair.</div>
+
+<div class="note"><strong>Looks like the Caesar shift (lesson 11), but...</strong> both move a letter a fixed step and wrap at the end. Caesar always moves by the key. Playfair moves one cell, and only if the pair shares a row or a column. <strong>Why it differs:</strong> the step is a position in the grid, not a number in the key, so wrap happens after 5 cells, not 26.</div>
+
+
+<h2>1. Same row: ST gives TL (slide 41)</h2>
+<p>Both letters are in one row, so each takes its right-hand neighbour.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="S and T are both in row 4, in columns 4 and 5. Same row, so the same-row rule applies."><table><tbody><tr><td>M</td><td>O</td><td>N</td><td>A</td><td>R</td></tr><tr><td>C</td><td>H</td><td>Y</td><td>B</td><td>D</td></tr><tr><td>E</td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr><tr><td>L</td><td>P</td><td>Q</td><td><strong>S</strong></td><td><strong>T</strong></td></tr><tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="S takes the letter to its right, which is T. So S gives T."><table><tbody><tr><td>M</td><td>O</td><td>N</td><td>A</td><td>R</td></tr><tr><td>C</td><td>H</td><td>Y</td><td>B</td><td>D</td></tr><tr><td>E</td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr><tr><td>L</td><td>P</td><td>Q</td><td><strong>S</strong></td><td><em>T</em></td></tr><tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="T is in the last column, so its right-hand neighbour wraps to column 1 of the same row: L. So T gives L."><table><tbody><tr><td>M</td><td>O</td><td>N</td><td>A</td><td>R</td></tr><tr><td>C</td><td>H</td><td>Y</td><td>B</td><td>D</td></tr><tr><td>E</td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr><tr><td><em>L</em></td><td>P</td><td>Q</td><td>S</td><td><strong>T</strong></td></tr><tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Output: the first letter's result comes first, so ST becomes TL."><pre><code>S T  &rarr;  T L  =  TL</code></pre></div>
+</div>
+<div class="note"><strong>General rule (same row):</strong> each letter takes the letter to its right in the same row. In the last column, it wraps to column 1 of that row.</div>
+
+<h2>2. Same column: ME gives CL (slide 40)</h2>
+<p>Both letters are in one column, so each takes the letter below it.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="M is in row 1 and E is in row 3, both in column 1. Same column, so the same-column rule applies."><table><tbody><tr><td><strong>M</strong></td><td>O</td><td>N</td><td>A</td><td>R</td></tr><tr><td>C</td><td>H</td><td>Y</td><td>B</td><td>D</td></tr><tr><td><strong>E</strong></td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr><tr><td>L</td><td>P</td><td>Q</td><td>S</td><td>T</td></tr><tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="M takes the letter below it, which is C. So M gives C."><table><tbody><tr><td><strong>M</strong></td><td>O</td><td>N</td><td>A</td><td>R</td></tr><tr><td><em>C</em></td><td>H</td><td>Y</td><td>B</td><td>D</td></tr><tr><td><strong>E</strong></td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr><tr><td>L</td><td>P</td><td>Q</td><td>S</td><td>T</td></tr><tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="E takes the letter below it, which is L. So E gives L."><table><tbody><tr><td>M</td><td>O</td><td>N</td><td>A</td><td>R</td></tr><tr><td>C</td><td>H</td><td>Y</td><td>B</td><td>D</td></tr><tr><td><strong>E</strong></td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr><tr><td><em>L</em></td><td>P</td><td>Q</td><td>S</td><td>T</td></tr><tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Output: C then L, so ME becomes CL."><pre><code>M E  &rarr;  C L  =  CL</code></pre></div>
+</div>
+<div class="note"><strong>General rule (same column):</strong> each letter takes the letter below it in the same column. In the bottom row, it wraps to the top of that column.</div>
+
+<h2>3. Neither: NT gives RQ (slide 42)</h2>
+<p>If the letters share neither a row nor a column, they are two opposite corners of a rectangle. Each letter is replaced by the corner in its own row.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="N is in row 1, column 3. T is in row 4, column 5. Different rows and columns, so the rectangle rule applies."><table><tbody><tr><td>M</td><td>O</td><td><strong>N</strong></td><td>A</td><td>R</td></tr><tr><td>C</td><td>H</td><td>Y</td><td>B</td><td>D</td></tr><tr><td>E</td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr><tr><td>L</td><td>P</td><td>Q</td><td>S</td><td><strong>T</strong></td></tr><tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="N takes the cell in its own row (row 1) at T's column (column 5): R. So N gives R."><table><tbody><tr><td>M</td><td>O</td><td><strong>N</strong></td><td>A</td><td><em>R</em></td></tr><tr><td>C</td><td>H</td><td>Y</td><td>B</td><td>D</td></tr><tr><td>E</td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr><tr><td>L</td><td>P</td><td>Q</td><td>S</td><td><strong>T</strong></td></tr><tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="T takes the cell in its own row (row 4) at N's column (column 3): Q. So T gives Q."><table><tbody><tr><td>M</td><td>O</td><td><strong>N</strong></td><td>A</td><td><em>R</em></td></tr><tr><td>C</td><td>H</td><td>Y</td><td>B</td><td>D</td></tr><tr><td>E</td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr><tr><td>L</td><td>P</td><td><em>Q</em></td><td>S</td><td><strong>T</strong></td></tr><tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Output: R then Q, so NT becomes RQ. The first output letter comes from the first letter's row."><pre><code>N T  &rarr;  R Q  =  RQ</code></pre></div>
+</div>
+<div class="note"><strong>General rule (rectangle):</strong> take the two corners of the rectangle that the letters form. Each letter is replaced by the corner in its own row, which lies in the other letter's column. Keep the input order.</div>
+
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Rectangle Output Order</strong>
+<p>The output keeps the input order, and each letter's output comes from its own row. For NT the first output is R, from N's row, not from T's.</p>
+<table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead>
+<tbody><tr><td><code>NT &rarr; RQ</code></td><td><code>NT &rarr; QR</code></td></tr></tbody></table>
+</div>
+
+<h2>4. Fresh checks</h2>
+<p>These inputs are not on the slides. Each one uses a rule the walks above showed. Work from the MONARCHY grid in lesson 14a.</p>
+
+<div class="quiz short" data-quiz-short data-answer="RM">
+<p class="prompt">Encrypt <code>AR</code> with MONARCHY.</p>
+<input type="text" placeholder="two letters">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. A takes R, and R wraps to M.</div>
+<div class="feedback bad" data-feedback-bad>A and R are in row 1, so this is the same-row rule. Each takes the letter to its right. R is in the last column, so it wraps to column 1: M.</div>
+</div>
+<details class="reveal"><summary>Show the steps</summary>
+<ol>
+<li>A is at row 1, column 4. R is at row 1, column 5. Same row.</li>
+<li>A takes the letter to its right: R.</li>
+<li>R is in the last column, so it wraps to column 1 of row 1: M.</li>
+<li>Answer RM.</li>
+</ol>
+</details>
+
+<div class="quiz short" data-quiz-short data-answer="EM">
+<p class="prompt">Encrypt <code>CU</code> with MONARCHY.</p>
+<input type="text" placeholder="two letters">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. C takes E, and U wraps to M.</div>
+<div class="feedback bad" data-feedback-bad>C and U are in column 1, so this is the same-column rule. Each takes the letter below. U is in the bottom row, so it wraps to the top of column 1: M.</div>
+</div>
+<details class="reveal"><summary>Show the steps</summary>
+<ol>
+<li>C is at row 2, column 1. U is at row 5, column 1. Same column.</li>
+<li>C takes the letter below it: E (row 3).</li>
+<li>U is in the bottom row, so it wraps to the top of column 1: M (row 1).</li>
+<li>Answer EM.</li>
+</ol>
+</details>
+
+<div class="quiz short" data-quiz-short data-answer="CI">
+<p class="prompt">Encrypt <code>BE</code> with MONARCHY.</p>
+<input type="text" placeholder="two letters">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. B takes C, and E takes I.</div>
+<div class="feedback bad" data-feedback-bad>B is in row 2 and E in row 3, in different columns. So it is a rectangle. B takes the letter in row 2 at E's column: C.</div>
+</div>
+<details class="reveal"><summary>Show the steps</summary>
+<ol>
+<li>B is at row 2, column 4. E is at row 3, column 1. Rectangle.</li>
+<li>B takes row 2, column 1: C.</li>
+<li>E takes row 3, column 4: I.</li>
+<li>Answer CI.</li>
+</ol>
+</details>
+
+<h2>5. Pick the rule</h2>
+<div class="quiz" data-quiz>
+<p class="prompt">E and L sit in the same column. Which rule applies to the pair E L?</p>
+<button class="opt">Same row: take the letter to the right</button>
+<button class="opt" data-correct>Same column: take the letter below each one</button>
+<button class="opt">Rectangle: take the letter in the opposite corner</button>
+<button class="opt">Same letter: put a filler between them now</button>
+<div class="feedback good" data-feedback-good>Yes. Both letters share column 1, so each takes the letter below it.</div>
+<div class="feedback bad" data-feedback-bad>E and L share a column, not a row, and they are different letters. Each takes the letter below it.</div>
+</div>
+
+<p>Next: lesson 14d, where these three rules run on whole messages, one pair after another.</p>
+
+<p class="source">Source: Topic 3a slides 40 to 42 give the three rules (ME to CL, ST to TL, NT to RQ). The checks in section 4 are not on the slides; they apply the same rules. No slide teaches Playfair decryption, so it is not covered here. Every value was checked by a Python implementation of Playfair.</p>
+<div class="nav"><span>&larr; <a href="0014b-playfair-pairs.html">Lesson 14b</a></span><span><a href="0014d-playfair-full-runs.html">Lesson 14d</a> &rarr;</span></div>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+</body>
+</html>

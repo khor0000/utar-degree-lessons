@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 18a &mdash; The modular inverse part 1: find it and use it</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 18a &middot; Topic 3a/3b &middot; UCCN1223</div>
+<h1>The modular inverse part 1: find it and use it</h1>
+<p><strong>To undo Hill (and later RSA) you need to undo a multiplication mod n. The tool for that is the modular inverse: the whole number x that makes a &times; x leave remainder 1 mod n. For 3 mod 26, that number is 9.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> Hill (lesson 17) scrambles letter numbers by multiplying them by a key. Decryption has to multiply back, and ordinary division does not work on whole-number letter positions. <strong>Focus on:</strong> finding an inverse with a table, and using it to undo a multiply. <strong>Skip for now:</strong> the shortcut for large numbers, the formula for a 2&times;2 matrix inverse, and which numbers have no inverse (lesson 18b). <strong>How you'll be tested:</strong> <strong>by hand</strong>, with the table, in <strong>Lab 2</strong> (Q3 Hill decrypt, Q4 RSA <code>d</code>). Neither old-format paper asks it. Casio: not confirmed for this method.</div>
+
+<div class="note"><strong>Looks like</strong> <code>&divide;</code>, dividing by 3, since both undo a multiply by 3. It differs because 1/3 is not a whole number, and the cipher needs whole-number letter positions from 0 to 25. So we look for a whole number x with <code>3 &times; x &equiv; 1 (mod 26)</code>.</div>
+
+<div class="note"><strong>Looks like</strong> the Caesar decryption from lesson 11, which undoes a shift by shifting back. It differs because Hill multiplies. Undoing a multiply is a multiply by a <em>different</em> number, not a shift in the other direction.</div>
+
+<h2>1. The paradox: there is no division mod 26</h2>
+<p>Normally you undo &times;3 by &divide;3. But mod 26 the only numbers are 0 to 25, and 1/3 is not one of them. We multiply by a whole number that does the job 1/3 would do. That number is the inverse.</p>
+<p>The inverse is not 1/3, and it is not a fraction. It is the whole number x for which <code>3 &times; x</code> leaves remainder 1 mod 26.</p>
+
+<h2>2. Find the inverse with a table</h2>
+<p>Try x = 1, 2, 3, and so on. Multiply by 3, take the remainder mod 26, and stop when the remainder is 1. Press Next, or the arrow keys:</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="x = 1: 3 &times; 1 = 3. The remainder mod 26 is 3, not 1. Keep going."><table><tbody>
+<tr><th>x</th><td style="background:var(--cyan-well);font-weight:bold">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+<tr><th>3 &times; x</th><td style="background:var(--cyan-well);font-weight:bold">3</td><td>6</td><td>9</td><td>12</td><td>15</td><td>18</td><td>21</td><td>24</td><td>27</td></tr>
+<tr><th>mod 26</th><td style="background:var(--cyan-well);font-weight:bold">3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="x = 2: 3 &times; 2 = 6. The remainder is 6, not 1. Keep going."><table><tbody>
+<tr><th>x</th><td>1</td><td style="background:var(--cyan-well);font-weight:bold">2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+<tr><th>3 &times; x</th><td>3</td><td style="background:var(--cyan-well);font-weight:bold">6</td><td>9</td><td>12</td><td>15</td><td>18</td><td>21</td><td>24</td><td>27</td></tr>
+<tr><th>mod 26</th><td>3</td><td style="background:var(--cyan-well);font-weight:bold">6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="x = 3: 3 &times; 3 = 9. The remainder is 9, not 1. Keep going."><table><tbody>
+<tr><th>x</th><td>1</td><td>2</td><td style="background:var(--cyan-well);font-weight:bold">3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+<tr><th>3 &times; x</th><td>3</td><td>6</td><td style="background:var(--cyan-well);font-weight:bold">9</td><td>12</td><td>15</td><td>18</td><td>21</td><td>24</td><td>27</td></tr>
+<tr><th>mod 26</th><td>3</td><td>6</td><td style="background:var(--cyan-well);font-weight:bold">9</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="x = 4: 3 &times; 4 = 12. The remainder is 12, not 1. Keep going."><table><tbody>
+<tr><th>x</th><td>1</td><td>2</td><td>3</td><td style="background:var(--cyan-well);font-weight:bold">4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+<tr><th>3 &times; x</th><td>3</td><td>6</td><td>9</td><td style="background:var(--cyan-well);font-weight:bold">12</td><td>15</td><td>18</td><td>21</td><td>24</td><td>27</td></tr>
+<tr><th>mod 26</th><td>3</td><td>6</td><td>9</td><td style="background:var(--cyan-well);font-weight:bold">12</td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="x = 5: 3 &times; 5 = 15. The remainder is 15, not 1. Keep going."><table><tbody>
+<tr><th>x</th><td>1</td><td>2</td><td>3</td><td>4</td><td style="background:var(--cyan-well);font-weight:bold">5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+<tr><th>3 &times; x</th><td>3</td><td>6</td><td>9</td><td>12</td><td style="background:var(--cyan-well);font-weight:bold">15</td><td>18</td><td>21</td><td>24</td><td>27</td></tr>
+<tr><th>mod 26</th><td>3</td><td>6</td><td>9</td><td>12</td><td style="background:var(--cyan-well);font-weight:bold">15</td><td></td><td></td><td></td><td></td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="x = 6: 3 &times; 6 = 18. The remainder is 18, not 1. Keep going."><table><tbody>
+<tr><th>x</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td style="background:var(--cyan-well);font-weight:bold">6</td><td>7</td><td>8</td><td>9</td></tr>
+<tr><th>3 &times; x</th><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td><td style="background:var(--cyan-well);font-weight:bold">18</td><td>21</td><td>24</td><td>27</td></tr>
+<tr><th>mod 26</th><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td><td style="background:var(--cyan-well);font-weight:bold">18</td><td></td><td></td><td></td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="x = 7: 3 &times; 7 = 21. The remainder is 21, not 1. Keep going."><table><tbody>
+<tr><th>x</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td style="background:var(--cyan-well);font-weight:bold">7</td><td>8</td><td>9</td></tr>
+<tr><th>3 &times; x</th><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td><td>18</td><td style="background:var(--cyan-well);font-weight:bold">21</td><td>24</td><td>27</td></tr>
+<tr><th>mod 26</th><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td><td>18</td><td style="background:var(--cyan-well);font-weight:bold">21</td><td></td><td></td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="x = 8: 3 &times; 8 = 24. The remainder is 24, not 1. Keep going."><table><tbody>
+<tr><th>x</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td style="background:var(--cyan-well);font-weight:bold">8</td><td>9</td></tr>
+<tr><th>3 &times; x</th><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td><td>18</td><td>21</td><td style="background:var(--cyan-well);font-weight:bold">24</td><td>27</td></tr>
+<tr><th>mod 26</th><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td><td>18</td><td>21</td><td style="background:var(--cyan-well);font-weight:bold">24</td><td></td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="x = 9: 3 &times; 9 = 27, and 27 mod 26 = 1. Stop. The inverse is 9."><table><tbody>
+<tr><th>x</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td style="background:var(--cyan-well);font-weight:bold">9</td></tr>
+<tr><th>3 &times; x</th><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td><td>18</td><td>21</td><td>24</td><td style="background:var(--cyan-well);font-weight:bold">27</td></tr>
+<tr><th>mod 26</th><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td><td>18</td><td>21</td><td>24</td><td style="background:var(--cyan-well);font-weight:bold">1</td></tr>
+</tbody></table></div>
+</div>
+
+<div class="note"><strong>Modular inverse</strong> (new term). <em>What it is:</em> a whole number x that undoes multiplying by a, mod n. <em>What value it holds:</em> one number from 0 to n&minus;1, written a<sup>&minus;1</sup>. <em>Why needed:</em> decryption multiplies back, and there is no division mod n. So the inverse of 3 mod 26 is <strong>9</strong>, written <code>3<sup>&minus;1</sup> = 9 (mod 26)</code>.</div>
+
+<h2>3. Undo the multiply</h2>
+<p>Now use the 9. The plain letter U is 20 (A=0). Encrypt it with &times;3, then decrypt with &times;9. Each stage adds one step:</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Start with plain U, which is 20."><table><tbody>
+<tr><th>plain</th><td>20 = U</td></tr>
+<tr><th>&nbsp;</th><td>&nbsp;</td></tr>
+<tr><th>&nbsp;</th><td>&nbsp;</td></tr>
+<tr><th>&nbsp;</th><td>&nbsp;</td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="Encrypt: multiply by 3. 3 &times; 20 = 60, and 60 mod 26 = 8, which is I."><table><tbody>
+<tr><th>plain</th><td>20 = U</td></tr>
+<tr><th>encrypt &times;3</th><td>60 mod 26 = 8 = I</td></tr>
+<tr><th>&nbsp;</th><td>&nbsp;</td></tr>
+<tr><th>&nbsp;</th><td>&nbsp;</td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="Decrypt: multiply the cipher number by the inverse, 9. 8 &times; 9 = 72."><table><tbody>
+<tr><th>plain</th><td>20 = U</td></tr>
+<tr><th>encrypt &times;3</th><td>60 mod 26 = 8 = I</td></tr>
+<tr><th>decrypt &times;9</th><td>8 &times; 9 = 72</td></tr>
+<tr><th>&nbsp;</th><td>&nbsp;</td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="Take 72 mod 26 = 20, which is U. We are back where we started."><table><tbody>
+<tr><th>plain</th><td>20 = U</td></tr>
+<tr><th>encrypt &times;3</th><td>60 mod 26 = 8 = I</td></tr>
+<tr><th>decrypt &times;9</th><td>8 &times; 9 = 72</td></tr>
+<tr><th>mod 26</th><td>72 mod 26 = 20 = U</td></tr>
+</tbody></table></div>
+</div>
+
+<h2>Check yourself</h2>
+<div class="paper-task"><strong class="title">Check 1: fresh input, find x in 7x &equiv; 1 (mod 26)</strong>
+<p>Use the table method. Try before you open the reveal.</p>
+<details class="reveal"><summary>Reveal, step by step</summary>
+<ol>
+<li>Remainders of 7 &times; x mod 26, for x = 1 to 15: 7, 14, 21, 2, 9, 16, 23, 4, 11, 18, 25, 6, 13, 20, 1.</li>
+<li>The first remainder of 1 is at x = 15: <code>7 &times; 15 = 105</code>, and <code>105 &minus; 104 = 1</code>.</li>
+<li>Answer: <strong>x = 15</strong>. So 7 has inverse 15 mod 26.</li>
+</ol></details></div>
+
+<p class="source">Source: Lab 2 handout Q3 (Hill key inverse) and Q4 (RSA <code>d</code>); Topic 3b slide 22 &ldquo;Compute d&rdquo;. Every value checked by Python.</p>
+<p>Next: lesson 18b, when there is no inverse, and why we write only one answer.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0017-hill-cipher-mod26.html">Lesson 17</a></span><span><a href="0018b-when-there-is-no-inverse.html">Lesson 18b</a> &rarr;</span></div>
+</body>
+</html>

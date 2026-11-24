@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 18b &mdash; The modular inverse part 2: when it exists, and why only one</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 18b &middot; Topic 3a/3b &middot; UCCN1223</div>
+<h1>The modular inverse part 2: when it exists, and why only one</h1>
+<p><strong>A number has an inverse mod 26 only if it shares no factor with 26 except 1, and then exactly one answer from 0 to 25 works, which is the one we write.</strong></p>
+
+<p>Lesson 18a found an inverse with a table, and for 3 mod 26 it was 9. This lesson takes up two questions the table leaves open: what if no remainder is ever 1, and why do we write only one answer?</p>
+
+<h2>4. Not every number has one</h2>
+<p>Try 13. <code>13 &times; 1 = 13</code>, <code>13 &times; 2 = 26</code>, which leaves 0, <code>13 &times; 3 = 39</code>, which leaves 13, and <code>13 &times; 4 = 52</code>, which leaves 0. The remainders only ever alternate between 13 and 0. None is 1, so <strong>13 has no inverse mod 26</strong>.</p>
+<div class="note"><strong>The rule:</strong> a has an inverse mod n only if a and n share no factor except 1. Their <strong>gcd</strong> (greatest common divisor, the largest number dividing both) must be 1. 13 and 26 share 13, so the gcd is 13. Of the numbers 1 to 25, exactly 12 have an inverse mod 26: 1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25.</div>
+
+<h2>5. One answer, written one way</h2>
+<div class="note"><strong>Looks like</strong> the congruence in lesson 15a, since 35 and 9 are both written mod 26. It is the same fact: <code>35 &equiv; 9 (mod 26)</code>. It differs in the choice. Congruence says two numbers match. Here we must report one number, so we pick the one from 0 to 25.</div>
+
+
+<div class="note"><strong>Where this is used (Lab 2 Q3).</strong> The lab key <code>K = [[17,3],[2,19]]</code> has inverse <code>[[9,15],[10,19]]</code> mod 26. This is the matrix version of the same idea: multiplying K by it gives <code>[[1,0],[0,1]]</code> mod 26, the matrix that changes nothing when multiplied. Check: <code>9 &times; 16 + 15 &times; 8 = 264</code>, which leaves 4 (E), and <code>10 &times; 16 + 19 &times; 8 = 312</code>, which leaves 0 (A). So the cipher pair QI decrypts to EA, as in Lab 2 Q3.</div>
+
+<h2>Check yourself</h2>
+<div class="paper-task"><strong class="title">Check 1: fresh input, find the one x in 5x &equiv; 1 (mod 26)</strong>
+<p>Use the table method, and write your answer from 0 to 25. Try before you open the reveal.</p>
+<details class="reveal"><summary>Reveal, step by step</summary>
+<ol>
+<li>Remainders of 5 &times; x mod 26, for x = 1 to 21: 5, 10, 15, 20, 25, 4, 9, 14, 19, 24, 3, 8, 13, 18, 23, 2, 7, 12, 17, 22, 1.</li>
+<li>The first remainder of 1 is at x = 21: <code>5 &times; 21 = 105</code>, and <code>105 &minus; 104 = 1</code>.</li>
+<li>Answer: <strong>x = 21</strong>. Also 47 and &minus;5 solve it, since <code>47 mod 26 = 21</code> and <code>&minus;5 + 26 = 21</code>. We write 21.</li>
+</ol></details></div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">Which value of a has <strong>no</strong> inverse mod 26?</p>
+<button class="opt">a = 9</button>
+<button class="opt">a = 15</button>
+<button class="opt" data-correct>a = 13</button>
+<button class="opt">a = 21</button>
+<div class="feedback good" data-feedback-good>Yes. 13 and 26 share the factor 13, so no x gives remainder 1. The other three share no factor with 26.</div>
+<div class="feedback bad" data-feedback-bad>Check the factors. 9, 15 and 21 share no factor with 26, so each has an inverse. 13 shares 13 with 26.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">How many x from 0 to 25 solve <code>3x &equiv; 1 (mod 26)</code>?</p>
+<button class="opt">None</button>
+<button class="opt" data-correct>One</button>
+<button class="opt">Two</button>
+<button class="opt">Thirteen</button>
+<div class="feedback good" data-feedback-good>Yes. Only 9 works in that range. 35 and &minus;17 are 9 written another way.</div>
+<div class="feedback bad" data-feedback-bad>Recheck the table. Within 0 to 25, only 3 &times; 9 leaves remainder 1.</div>
+</div>
+
+<p class="source">Source: Lab 2 handout Q3 (Hill key inverse); Topic 3a slides 47&ndash;49 for the column-block convention. Every value checked by Python.</p>
+<p>Next: lesson 19, RSA. It uses this inverse for its private number <code>d</code>.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0018a-the-modular-inverse.html">Lesson 18a</a></span><span><a href="0019-rsa-public-key.html">Lesson 19</a> &rarr;</span></div>
+</body>
+</html>

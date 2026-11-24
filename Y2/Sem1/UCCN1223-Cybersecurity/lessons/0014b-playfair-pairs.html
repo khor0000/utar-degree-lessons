@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 14b &mdash; Playfair: cutting into pairs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 14b &middot; Topic 3a &middot; UCCN1223</div>
+<h1>Playfair: cutting the message into pairs</h1>
+<p><strong>Yes: before Playfair looks at the grid, the message is cut into pairs of two letters, from the left. A pair with two equal letters gets a filler X between them, and an odd length gets a pad Z after the last letter.</strong></p>
+
+<div class="note"><strong>Bridge:</strong> lesson 14a built the key square, the grid that does the encrypting. This lesson is the step before it: the message is cut into chunks of two, and only then is each chunk looked up in the grid.</div>
+
+<h2>Recap: the MONARCHY square (lesson 14a)</h2>
+<table><tbody>
+<tr><td>M</td><td>O</td><td>N</td><td>A</td><td>R</td></tr>
+<tr><td>C</td><td>H</td><td>Y</td><td>B</td><td>D</td></tr>
+<tr><td>E</td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr>
+<tr><td>L</td><td>P</td><td>Q</td><td>S</td><td>T</td></tr>
+<tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr>
+</tbody></table>
+<p>You will not use the grid in this lesson. Keep it in mind only as the thing the pairs are later looked up in.</p>
+
+<div class="note"><strong>Looks like columnar's padding X (<a href="0013a-columnar-encrypt.html">lesson 13a</a>), but...</strong> both add an X to fill a gap, so the idea of filling looks the same. The reason differs. Columnar's X fills the empty cells at the end of the last row, so every column is the same length. Playfair's filler X is added only when a pair has two equal letters, so that pair has two different letters to work from. Playfair's pad Z has a third job, for an odd length.</div>
+
+<div class="note"><strong>New term: digraph.</strong> (1) What it is: a pair of two plaintext letters, cut from the message. (2) What it holds: two letters, such as <code>IN</code>. (3) Why it is needed: Playfair encrypts one digraph at a time, so the cut decides every output pair.</div>
+
+<div class="note"><strong>New term: filler.</strong> (1) What it is: an extra letter X, put into the message between two equal letters. (2) What it holds: the letter X. (3) Why it is needed: a pair with two equal letters has no two different cells to work from.</div>
+
+<div class="note"><strong>New term: pad.</strong> (1) What it is: an extra letter Z, put after the last letter of an odd-length message. (2) What it holds: the letter Z. (3) Why it is needed: a pair needs a partner, and one letter left over cannot form a pair.</div>
+
+<h2>1. Cut the message into pairs</h2>
+<p>The message has its spaces removed, then it is cut from left to right into pairs. Three cases change the cut. Each has its own walk.</p>
+
+<h3>1a. A repeated letter in one pair: TREE (slide 46)</h3>
+<p>If the two letters of a pair are the same, the pair has no two different cells to work from. So a filler goes between them, and the pair becomes two different letters.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="The message is TREE IS GREEN, with spaces removed. Cut from the left: the first pair is T R."><pre><code>T R E E I S G R E E N
+[T R]</code></pre></div>
+<div class="walk-stage" data-caption="The next pair would be E E: the same letter twice. Put the filler X between them: E X."><pre><code>[T R] [E X]     E E becomes E X</code></pre></div>
+<div class="walk-stage" data-caption="The second E was not used up. It starts the next pair, with I."><pre><code>[T R] [E X] [E I] ...   the second E starts pair 3</code></pre></div>
+<div class="walk-stage" data-caption="Result: the message is cut into six pairs. No letter is lost, and one X was added."><pre><code>TR EX EI SG RE EN</code></pre></div>
+</div>
+<div class="note"><strong>General rule (repeat):</strong> if both letters of a pair are the same, write the <strong>filler</strong> X between them, make that pair, and start the next pair with the second letter. The filler is a letter added only to make the pair legal.</div>
+
+<h3>1b. An odd length: INSTRUMENTS (slide 44)</h3>
+<p>Eleven letters cannot all be paired. The last letter needs a partner, so a <strong>pad</strong> is added after it.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="INSTRUMENTS has 11 letters. 11 is odd, so one letter will be left over."><pre><code>I N S T R U M E N T S    (11 letters)</code></pre></div>
+<div class="walk-stage" data-caption="Cut from the left: IN ST RU ME NT. The last S has no partner."><pre><code>IN ST RU ME NT  S</code></pre></div>
+<div class="walk-stage" data-caption="No pair in IN ST RU ME NT has two equal letters, so no filler is needed."><pre><code>IN: I N   ST: S T   RU: R U   ME: M E   NT: N T   (no equal pairs)</code></pre></div>
+<div class="walk-stage" data-caption="The lone S gets the pad Z: SZ. Result: six pairs, 12 letters."><pre><code>IN ST RU ME NT SZ</code></pre></div>
+</div>
+<div class="note"><strong>General rule (odd length):</strong> add the <strong>pad</strong> Z after the last letter, so every pair is complete. Slides 39, 44 and 45 all use Z for this.</div>
+
+<h3>1c. Two equal letters in different pairs: ATTACK (slide 45)</h3>
+<p>ATTACK has two Ts, so its letters look like a repeat. They are not, because each T is in a different pair.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="ATTACK has 6 letters, which is even, so no pad is needed."><pre><code>A T T A C K    (6 letters)</code></pre></div>
+<div class="walk-stage" data-caption="Cut into pairs from the left: AT, TA, CK. The two Ts are in different pairs."><pre><code>AT   TA   CK</code></pre></div>
+<div class="walk-stage" data-caption="Check each pair for two equal letters: AT no, TA no, CK no. So no filler."><pre><code>AT: no    TA: no    CK: no    (no filler)</code></pre></div>
+<div class="walk-stage" data-caption="Result: AT TA CK, three pairs, unchanged."><pre><code>AT TA CK</code></pre></div>
+</div>
+
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Name Your Filler</strong>
+<p>The deck is inconsistent about the repeat filler. Slide 39 says X, slides 44 and 45 say Z in their bullets, and slide 46 uses X. The pad Z is the same on every slide. This lesson uses the slide's own letter in each example: X for TREE (slide 46). In your answer, say which filler you use, then use it everywhere.</p>
+<table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead>
+<tbody><tr><td>&ldquo;Filler X, as slide 46&rdquo;, then <code>EE &rarr; EX</code> every time</td><td>Mixing X and Z without a reason, or adding a filler to ATTACK where no pair repeats</td></tr></tbody></table>
+</div>
+
+<h2>Check yourself</h2>
+<div class="quiz short" data-quiz-short data-answer="BA LX LO ON|BALXLOON">
+<p class="prompt">Split <code>BALLOON</code> into pairs. Use the filler X for the repeat. Type the pairs.</p>
+<input type="text" placeholder="pairs, separated by spaces">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. BA, then LL is a repeat, so LX, and the second L starts LO. The last ON needs no pad.</div>
+<div class="feedback bad" data-feedback-bad>Work from the left. Pair 1 is BA. Pair 2 is LL, a repeat, so put X between: LX. The second L starts the next pair.</div>
+</div>
+<details class="reveal"><summary>Show the steps</summary>
+<ol>
+<li>BALLOON has 7 letters: B A L L O O N.</li>
+<li>Pair 1: B A. No repeat, so BA.</li>
+<li>Pair 2: L L. A repeat, so the filler X goes between: LX. The second L is not used up.</li>
+<li>Pair 3: the second L and the first O: L O. No repeat, so LO.</li>
+<li>Pair 4: the second O and N: O N. No repeat, so ON.</li>
+<li>Result: BA LX LO ON. Eight letters, which is even, so no pad.</li>
+</ol>
+</details>
+
+<div class="quiz" data-quiz>
+<p class="prompt">The message is <code>SEE</code>. Which pairs are correct, with spaces removed and the cut made from the left?</p>
+<button class="opt">SE ZE</button>
+<button class="opt">SE EE</button>
+<button class="opt" data-correct>SE EZ</button>
+<button class="opt">SE EX</button>
+<div class="feedback good" data-feedback-good>Yes. SE is the first pair. The lone E is the odd letter, so it gets the pad Z after it: EZ.</div>
+<div class="feedback bad" data-feedback-bad>Not this one. The pad Z goes after the lone last letter, and the filler X is only for a pair with two equal letters. SEE has no repeated pair, so there is no X.</div>
+</div>
+
+<p>Next: lesson 14c, the three rules that turn each pair into two letters of ciphertext.</p>
+
+<p class="source">Source: Topic 3a slides 39, 44, 45 and 46. Slide 39 says the repeat filler is X, slides 44 and 45 say Z in their bullets; see the exam trap. Every pair in this lesson was checked by a Python implementation of Playfair.</p>
+<div class="nav"><span>&larr; <a href="0014a-playfair-grid.html">Lesson 14a</a></span><span><a href="0014c-playfair-three-rules.html">Lesson 14c</a> &rarr;</span></div>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+</body>
+</html>

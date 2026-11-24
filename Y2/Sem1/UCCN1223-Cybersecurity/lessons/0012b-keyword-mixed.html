@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 12b &mdash; The keyword mixed cipher</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 12b &middot; Topic 3a &middot; UCCN1223</div>
+<h1>The keyword mixed cipher: the same keyword, read down a grid</h1>
+<p><strong>A keyword mixed cipher starts from the same keyword as lesson 12a, but it puts the unused letters into a grid, and the cipher row is read down the columns of that grid.</strong></p>
+
+<p><strong>Bridge:</strong> this lesson uses the same keyword, but the unused letters are not read in one line. They go into a grid first.</p>
+
+<div class="note"><strong>Anatomy of a keyword mixed cipher.</strong> (1) What it is: a substitution cipher whose cipher row is read from a grid built from a keyword. (2) What value it holds: one 26-letter cipher row, fixed for the whole message. (3) Why it is needed: the grid, not the keyword alone, decides which letter each plain letter becomes.</div>
+
+<div class="note"><strong>Looks like 12a, but&hellip;</strong> both start from a keyword and both are monoalphabetic (lesson 12a): one fixed cipher row for each message. The difference is how that row is made. The table shows the difference.
+<table>
+<thead><tr><th></th><th>Keyword cipher (lesson 12a)</th><th>Keyword mixed cipher</th></tr></thead>
+<tbody>
+<tr><td><strong>1. The difference, in one second</strong></td><td>The unused letters run on in one line from A</td><td>The unused letters sit in rows, and the cipher row is read down the columns</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Keyword WIRELESS, repeats removed: W I R E L S. Six unique letters, so the grid is six columns wide."><p>Keyword, unique letters: <code>W I R E L S</code>. Six columns.</p></div>
+<div class="walk-stage" data-caption="Under the keyword, write the unused letters in rows six wide, starting at A. The last row is short. Leave its empty cells empty."><table>
+<thead><tr><th>W</th><th>I</th><th>R</th><th>E</th><th>L</th><th>S</th></tr></thead>
+<tbody><tr><td>A</td><td>B</td><td>C</td><td>D</td><td>F</td><td>G</td></tr><tr><td>H</td><td>J</td><td>K</td><td>M</td><td>N</td><td>O</td></tr><tr><td>P</td><td>Q</td><td>T</td><td>U</td><td>V</td><td>X</td></tr><tr><td>Y</td><td>Z</td><td></td><td></td><td></td><td></td></tr></tbody>
+</table></div>
+<div class="walk-stage" data-caption="Read the grid down each column, left to right. The keyword letter heads its column, so column W gives W A H P Y. Column I gives I B J Q Z, and so on. That is the cipher row."><pre><code>column W: W A H P Y
+column I: I B J Q Z
+column R: R C K T
+column E: E D M U
+column L: L F N V
+column S: S G O X
+cipher  : W A H P Y I B J Q Z R C K T E D M U L F N V S G O X</code></pre></div>
+<div class="walk-stage" data-caption="Encrypt TEAM: find each letter on top and read below. T gives F, E gives Y, A gives W, M gives K."><table>
+<thead><tr><th>Find on top</th><th>T</th><th>E</th><th>A</th><th>M</th></tr></thead>
+<tbody><tr><td>Read below</td><td>F</td><td>Y</td><td>W</td><td>K</td></tr></tbody>
+</table></div>
+<div class="walk-stage" data-caption="The result: TEAM &rarr; FYWK, which matches the slide."><p><code>TEAM &rarr; FYWK</code>. The slide's answer for <code>SEUR</code> is <code>WORK</code>. Decrypt it by finding each letter on the bottom row and reading above: S gives W, E gives O, U gives R, R gives K.</p></div>
+</div>
+
+<div class="note"><strong>You might reasonably wonder:</strong> why not read the grid across? Reading across gives <code>A B C D F G</code>, which is not a cipher row.</div>
+
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Grid Width Is the Unique Letters</strong><p>The grid is as wide as the keyword's unique letters, not its length. Keyword ASSESS has three unique letters, so the grid is three wide.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td><code>A S E</code>, a 3-column grid</td><td><code>A S S E S S</code>, a 6-column grid</td></tr></tbody></table></div>
+
+<h2>Check yourself</h2>
+
+<div class="quiz" data-quiz>
+<p class="prompt">In the keyword mixed cipher, which statement is true?</p>
+<button class="opt" data-correct>Each letter is replaced, using the grid's column order</button>
+<button class="opt">Each letter is moved, using the grid's row order</button>
+<button class="opt">Each letter is shifted forward by a fixed number</button>
+<button class="opt">Each letter is replaced, but the grid reads across</button>
+<div class="feedback good" data-feedback-good>Yes. Each plain letter is replaced by the cipher-row letter, and that row is read down the columns of the grid.</div>
+<div class="feedback bad" data-feedback-bad>Mixed is still substitution: letters are replaced, not moved. The grid is read down its columns, and a fixed shift is the Caesar idea.</div>
+</div>
+
+<div class="quiz short" data-quiz-short data-answer="FZUTDPRZATVU">
+<p class="prompt">Fresh check, keyword mixed cipher, keyword ASSESS: encrypt <code>CRYPTOGRAPHY</code>. Build the grid first, then the cipher row. Type the ciphertext in capitals.</p>
+<input type="text" placeholder="ciphertext">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. Three columns, read down, then one letter at a time.</div>
+<div class="feedback bad" data-feedback-bad>The grid is three wide, because ASSESS has three unique letters. Read the columns down. The working is below.</div>
+</div>
+
+<details class="reveal">
+<summary>Working for the ASSESS check (open after you try it)</summary>
+<table>
+<thead><tr><th>A</th><th>S</th><th>E</th></tr></thead>
+<tbody><tr><td>B</td><td>C</td><td>D</td></tr><tr><td>F</td><td>G</td><td>H</td></tr><tr><td>I</td><td>J</td><td>K</td></tr><tr><td>L</td><td>M</td><td>N</td></tr><tr><td>O</td><td>P</td><td>Q</td></tr><tr><td>R</td><td>T</td><td>U</td></tr><tr><td>V</td><td>W</td><td>X</td></tr><tr><td>Y</td><td>Z</td><td></td></tr></tbody>
+</table>
+<pre><code>cipher: A B F I L O R V Y S C G J M P T W Z E D H K N Q U X</code></pre>
+<table>
+<thead><tr><th>Find on top</th><th>C</th><th>R</th><th>Y</th><th>P</th><th>T</th><th>O</th><th>G</th><th>R</th><th>A</th><th>P</th><th>H</th><th>Y</th></tr></thead>
+<tbody><tr><td>Read below</td><td>F</td><td>Z</td><td>U</td><td>T</td><td>D</td><td>P</td><td>R</td><td>Z</td><td>A</td><td>T</td><td>V</td><td>U</td></tr></tbody>
+</table>
+<p><code>CRYPTOGRAPHY &rarr; FZUTDPRZATVU</code>.</p>
+<p>The slide also asks you to decipher <code>LKJU</code> with the same grid. The method gives <code>EVMY</code>, which is not a word. Do the method the same way; the letters do not spell anything, so do not treat this as a check of your reading.</p>
+</details>
+
+<p class="source">Source: Topic 3a slides 31&ndash;32 (keyword mixed on slide 31, exercise on slide 32) and slide 28 (the list of variants). Every answer here was checked in a short program. Slide 32's <code>LKJU</code> result is not a word; it is flagged above.</p>
+<p>Next comes lesson 12c, the keyword transposed cipher, which the deck groups with the interrupted keyword.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0012a-keyword-cipher.html">Lesson 12a</a></span><span><a href="0012c-keyword-transposed.html">Lesson 12c</a> &rarr;</span></div>
+</body>
+</html>

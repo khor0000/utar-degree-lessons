@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 12d &mdash; Interrupted keyword cipher</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/walk.js" defer></script>
+<script src="../assets/quiz.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 12d &middot; Topic 3a &middot; UCCN1223</div>
+<h1>The interrupted keyword cipher</h1>
+<p><strong>The last keyword variant: a repeated keyword letter becomes a <code>*</code> instead of being dropped, and the columns are read left to right.</strong></p>
+
+<p>You built the 6-column WIRELESS grid in lesson 12c. Here is the only change, seen side by side:</p>
+
+<div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start">
+<div><p><strong>12c transposed</strong>: repeats dropped, 6 columns<br>read <strong>A&rarr;Z</strong>: E I L R S W</p>
+<table><thead><tr><th>W</th><th>I</th><th>R</th><th>E</th><th>L</th><th>S</th></tr></thead>
+<tbody><tr><td>A</td><td>B</td><td>C</td><td>D</td><td>F</td><td>G</td></tr><tr><td colspan="6" style="text-align:center">&hellip;</td></tr></tbody></table></div>
+<div><p><strong>12d interrupted</strong>: repeats kept as <code>*</code>, 8 columns<br>read <strong>left &rarr; right</strong></p>
+<table><thead><tr><th>W</th><th>I</th><th>R</th><th>E</th><th>L</th><th style="background:#fde68a;color:#1c1917">*</th><th>S</th><th style="background:#fde68a;color:#1c1917">*</th></tr></thead>
+<tbody><tr><td>A</td><td>B</td><td>C</td><td>D</td><td>F</td><td style="background:#fef3c7;color:#1c1917">G</td><td>H</td><td style="background:#fef3c7;color:#1c1917">J</td></tr><tr><td colspan="8" style="text-align:center">&hellip;</td></tr></tbody></table></div>
+</div>
+
+<h2>1. Interrupted keyword: the walk</h2>
+<p>Step through the build, then decrypt <code>DRKI</code>.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Write the keyword. A repeated letter is not dropped. It becomes a * in the same place, so the grid keeps 8 columns, the keyword's length: W I R E L * S *.">
+<table><thead><tr><th>W</th><th>I</th><th>R</th><th>E</th><th>L</th><th>*</th><th>S</th><th>*</th></tr></thead></table>
+</div>
+<div class="walk-stage" data-caption="Fill the other 20 letters row by row, left to right. The * columns get letters too.">
+<table><thead><tr><th>W</th><th>I</th><th>R</th><th>E</th><th>L</th><th>*</th><th>S</th><th>*</th></tr></thead>
+<tbody>
+<tr><td>A</td><td>B</td><td>C</td><td>D</td><td>F</td><td>G</td><td>H</td><td>J</td></tr>
+<tr><td>K</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>T</td><td>U</td></tr>
+<tr><td>V</td><td>X</td><td>Y</td><td>Z</td><td></td><td></td><td></td><td></td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Read the columns left to right, in keyword order. A * column has no keyword letter, so it gives only its letters: G Q and J U.">
+<table><thead><tr><th>Column</th><th>W</th><th>I</th><th>R</th><th>E</th><th>L</th><th>*</th><th>S</th><th>*</th></tr></thead>
+<tbody><tr><td>Letters</td><td>W A K V</td><td>I B M X</td><td>R C N Y</td><td>E D O Z</td><td>L F P</td><td>G Q</td><td>S H T</td><td>J U</td></tr></tbody></table>
+</div>
+<div class="walk-stage" data-caption="The 26 letters in that order form the strip. Plain A is replaced by W, plain B by A, and so on.">
+<pre><code>plain : A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+cipher: W A K V I B M X R C N Y E D O Z L F P G Q S H T J U</code></pre>
+</div>
+<div class="walk-stage" data-caption="Decrypt DRKI: find each letter on the cipher row and read the plain letter above it. D&rarr;N, R&rarr;I, K&rarr;C, I&rarr;E.">
+<table><thead><tr><th>Cipher</th><th>D</th><th>R</th><th>K</th><th>I</th></tr></thead>
+<tbody><tr><td>Plain</td><td>N</td><td>I</td><td>C</td><td>E</td></tr></tbody></table>
+<p>So <code>DRKI &rarr; NICE</code>, the slide's answer.</p>
+</div>
+</div>
+
+<p><strong>Rule:</strong> <code>*</code> for each repeat &rarr; fill row by row &rarr; read columns left to right &rarr; that's the strip.</p>
+
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Two Reading Orders</strong><p>Transposed reads its columns in alphabetical order of the keyword letters. Interrupted reads them left to right, in keyword order. Using the wrong order gives a strip that looks right but decrypts to nonsense.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td>Transposed: E, I, L, R, S, W</td><td>Transposed read in keyword order: W, I, R, E, L, S</td></tr><tr><td>Interrupted: left to right, in keyword order</td><td>Interrupted read in alphabetical order, which is the transposed rule</td></tr></tbody></table></div>
+
+<h2>2. Checks</h2>
+<p>Same pattern as lesson 12c: encipher the first word, decipher the second. The answers aren't real words, so check your strip, not the meaning.</p>
+
+<div class="paper-task"><strong class="title">Check 1 &bull; Interrupted keyword, RESEARCH</strong>
+<p>Encipher <code>UTAR</code>, then decipher <code>RUAT</code>, with the keyword RESEARCH.</p>
+<details class="reveal"><summary>Reveal step 1: the header</summary>
+<p>RESEARCH with repeats as <code>*</code>: <code>R E S * A * C H</code>, 8 columns.</p></details>
+<details class="reveal"><summary>Reveal step 2: the grid</summary>
+<p>The other 20 letters, row by row: <code>B D F G I J K L</code> / <code>M N O P Q T U V</code> / <code>W X Y Z</code>.</p></details>
+<details class="reveal"><summary>Reveal step 3: the columns and strip</summary>
+<p>Read left to right: <code>R B M W</code>, <code>E D N X</code>, <code>S F O Y</code>, <code>G P Z</code>, <code>A I Q</code>, <code>J T</code>, <code>C K U</code>, <code>H L V</code>. The two <code>*</code> columns give only their letters, <code>G P Z</code> and <code>J T</code>. The strip is <code>R B M W E D N X S F O Y G P Z A I Q J T C K U H L V</code>.</p></details>
+<details class="reveal"><summary>Reveal step 4: UTAR enciphered</summary>
+<p>U&rarr;C, T&rarr;T, A&rarr;R, R&rarr;Q. So <code>UTAR &rarr; CTRQ</code>.</p></details>
+<details class="reveal"><summary>Reveal step 5: RUAT deciphered</summary>
+<p>R is at position 0, so A; U at 22, so W; A at 15, so P; T at 19, so T. So <code>RUAT &rarr; AWPT</code>.</p></details>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">In interrupted keyword, what happens to a keyword letter that repeats?</p>
+<button class="opt" data-correct>It becomes a * in the same place, so the column stays.</button>
+<button class="opt">It is dropped, so the whole grid now becomes one column narrower.</button>
+<button class="opt">It moves to the end of the keyword, and is then lost.</button>
+<div class="feedback good" data-feedback-good>Yes. The * keeps the column count at the keyword length, and the * column still gets letters.</div>
+<div class="feedback bad" data-feedback-bad>Dropping is the transposed rule. Interrupted keeps the position with a *, so the grid is 8 columns wide for WIRELESS.</div>
+</div>
+
+<h2>3. The four keyword variants side by side</h2>
+<p>All four variants use the keyword WIRELESS, and each example comes from the deck. The first three rows are the earlier lessons; the last row is this one.</p>
+<table>
+<thead><tr><th>Variant</th><th>Build rule for the strip</th><th>Example (WIRELESS)</th></tr></thead>
+<tbody>
+<tr><td>Plain keyword (lesson 12a)</td><td>Keyword with repeats dropped, then the rest of the alphabet, in one row.</td><td><code>VKOF &rarr; WORK</code> (slide 29)</td></tr>
+<tr><td>Keyword mixed (lesson 12b)</td><td>Same grid as transposed, read columns in keyword order (W, I, R, E, L, S).</td><td><code>SEUR &rarr; WORK</code> (slide 31)</td></tr>
+<tr><td>Keyword transposed (lesson 12c)</td><td>Same grid, read columns in alphabetical order (E, I, L, R, S, W).</td><td><code>GIMXSZOP &rarr; SECURITY</code> (slide 33)</td></tr>
+<tr><td>Interrupted keyword (lesson 12d)</td><td>Repeats become <code>*</code> in place, 8 columns, read left to right.</td><td><code>DRKI &rarr; NICE</code> (slide 35)</td></tr>
+</tbody>
+</table>
+
+<p>Next, lesson 13a starts columnar transposition, the first cipher in this topic that moves the message letters themselves.</p>
+
+<p class="source">Source: Topic 3a slides 28, 29, 31, 33, 35 and 36. Worked answers copied from slide 35 (ORANGE, DRKI). Exercise answer (slide 36) is blank in the deck and was solved by a Python program that rebuilt the slide 35 example first.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0012c-keyword-transposed.html">Lesson 12c</a></span><span><a href="0013a-columnar-encrypt.html">Lesson 13a</a> &rarr;</span></div>
+</body>
+</html>

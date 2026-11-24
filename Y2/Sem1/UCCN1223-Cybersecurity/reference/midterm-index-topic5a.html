@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find-it index: Topic 5a &mdash; UCCN1223</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* Printable index: A4, compact, tables only. Light colours print best. */
+  body { max-width: 52rem; font-size: 0.95rem; line-height: 1.4; padding: 1.6rem 1.2rem 2rem; }
+  h1 { font-size: 1.5rem; margin: 0.3rem 0 0.3rem; }
+  h2 { font-size: 1.1rem; margin: 1.4rem 0 0.5rem; }
+  p { margin: 0.4rem 0; }
+  table { font-size: 0.85rem; margin: 0.5rem 0 0.8rem; }
+  th, td { padding: 0.3rem 0.5rem; vertical-align: top; }
+  td.slide, th.slide { white-space: nowrap; font-family: var(--mono); font-size: 0.8rem; }
+  .group th { background: var(--bg-well); font-weight: 700; font-family: var(--mono); font-size: 0.75rem; text-align: left; }
+  .ask-agent { margin-top: 0.8rem; }
+  tr { break-inside: avoid; }
+  thead { display: table-header-group; }
+  @page { size: A4; margin: 12mm; }
+  @media print {
+    body { max-width: none; padding: 0; font-size: 9.5pt; }
+    h1 { font-size: 14pt; }
+    h2 { font-size: 11pt; margin-top: 8pt; }
+    table { font-size: 8.5pt; margin: 3pt 0 6pt; }
+    th, td { padding: 2pt 4pt; }
+    td.slide, th.slide { font-size: 7.5pt; }
+    .group th { font-size: 7pt; }
+    a { color: inherit; }
+    .no-print { display: none; }
+  }
+</style></head><body>
+<div class="eyebrow">Open-book index &middot; UCCN1223 &middot; Midterm 25 Nov 2026</div>
+<h1>Topic 5a: find it, don&rsquo;t memorise it</h1>
+<p>Slide numbers are PDF page numbers in <em>Topic 5a.pdf</em>. Concepts run in dependency order: the core ideas come first, then the services and attacks that use them. For the cipher basics behind the CIA goals, see <a href="../lessons/0008-what-a-cipher-is.html">lesson 8</a>.</p>
+
+<h2>1. Concepts, definitions and lists</h2>
+<table>
+<thead><tr><th scope="col">Concept</th><th scope="col">One-line plain meaning</th><th class="slide" scope="col">Slide</th></tr></thead>
+<tbody>
+<tr class="group"><th colspan="3" scope="colgroup">Core goals</th></tr>
+<tr><td>Network and Internet security (the field)</td><td>Measures to prevent, detect and correct security violations in information transmission</td><td class="slide">4</td></tr>
+<tr><td>CIA triad</td><td>The three objectives for data and computing services: Confidentiality, Integrity, Availability</td><td class="slide">5</td></tr>
+<tr><td>Confidentiality (data)</td><td>Private information is not made available or disclosed to unauthorised people</td><td class="slide">5</td></tr>
+<tr><td>Privacy</td><td>Individuals control what information about them is collected, stored, and to whom it is disclosed</td><td class="slide">5</td></tr>
+<tr><td>Integrity (data)</td><td>Information and programs change only in a specified, authorised way</td><td class="slide">5</td></tr>
+<tr><td>Integrity (system)</td><td>The system does its intended job, free from deliberate or accidental manipulation</td><td class="slide">5</td></tr>
+<tr><td>Availability</td><td>Systems work promptly; authorised users are not denied service</td><td class="slide">5</td></tr>
+<tr><td>Loss of C / I / A</td><td>Loss of C = unauthorised disclosure; loss of I = unauthorised modification or destruction; loss of A = disrupted access</td><td class="slide">5</td></tr>
+<tr><td>Accountability</td><td>Actions are traced uniquely to an entity, so a breach can be pinned on someone (forensics)</td><td class="slide">6</td></tr>
+<tr><td>Authenticity</td><td>Being genuine and verifiable: confidence that a message or originator is valid</td><td class="slide">6</td></tr>
+<tr><td>Levels of impact</td><td>Low = limited adverse effect; Moderate = serious; High = severe or catastrophic</td><td class="slide">7</td></tr>
+<tr class="group"><th colspan="3" scope="colgroup">Architecture (the three X.800 aspects)</th></tr>
+<tr><td>Security architecture</td><td>A framework (ITU-T) that defines attacks, mechanisms and services, and how they relate</td><td class="slide">9, 10</td></tr>
+<tr><td>Security attack</td><td>Any action that compromises the security of information an organisation owns</td><td class="slide">10</td></tr>
+<tr><td>Security mechanism</td><td>A process (or device) that detects, prevents or recovers from an attack</td><td class="slide">10</td></tr>
+<tr><td>Security service</td><td>A protection given by a system to its resources (X.800 and RFC 4949 wording)</td><td class="slide">10, 29</td></tr>
+<tr class="group"><th colspan="3" scope="colgroup">Attacks</th></tr>
+<tr><td>Passive attack</td><td>Learns or uses information but does not change system resources; eavesdropping or monitoring</td><td class="slide">12, 13</td></tr>
+<tr><td>Release of message contents</td><td>Passive attack: reading what the messages say</td><td class="slide">14</td></tr>
+<tr><td>Traffic analysis</td><td>Passive attack: watching who talks to whom, how often, and how long, without reading content</td><td class="slide">14, 33</td></tr>
+<tr><td>Active attack</td><td>Alters system resources or affects their operation; changes the data stream or makes a false one</td><td class="slide">12, 15</td></tr>
+<tr><td>Masquerade</td><td>One entity pretends to be a different entity</td><td class="slide">15, 16</td></tr>
+<tr><td>Replay</td><td>Captured data is sent again later (listed as a category; slide 16 gives the example)</td><td class="slide">15, 16</td></tr>
+<tr><td>Modification of messages</td><td>Part of a real message is changed, or messages are delayed or reordered</td><td class="slide">15, 17</td></tr>
+<tr><td>Denial of service</td><td>Disrupts or delays use of a service so authorised users cannot use it</td><td class="slide">15, 19</td></tr>
+<tr><td>Insider attack</td><td>Started by someone inside the perimeter who has access but uses it in an unapproved way</td><td class="slide">18</td></tr>
+<tr><td>Outsider attack</td><td>Started from outside by an unauthorised user (from pranksters to hostile governments)</td><td class="slide">18</td></tr>
+<tr><td>Software attacks (viruses, worms)</td><td>Unwanted logic hidden in useful software, or inserted over a network</td><td class="slide">44</td></tr>
+<tr><td>Threat matrix (assets x CIA)</td><td>Grid of hardware, software, data, communication vs availability, confidentiality, integrity</td><td class="slide">19</td></tr>
+<tr class="group"><th colspan="3" scope="colgroup">Mechanisms (X.800)</th></tr>
+<tr><td>Specific security mechanisms</td><td>Tied to one protocol layer (8 listed)</td><td class="slide">21</td></tr>
+<tr><td>Pervasive security mechanisms</td><td>Not tied to any protocol layer (5 listed)</td><td class="slide">21, 26, 27</td></tr>
+<tr><td>Encipherment</td><td>Maths algorithm plus keys that makes data not readily intelligible</td><td class="slide">22</td></tr>
+<tr><td>Digital signature</td><td>Data added to a data unit so the recipient can prove authentication, integrity and non-repudiation</td><td class="slide">22</td></tr>
+<tr><td>Access control (mechanism)</td><td>Enforces access rights to resources</td><td class="slide">23</td></tr>
+<tr><td>Data integrity (mechanism)</td><td>Checks that data has not been altered, modified or tampered with</td><td class="slide">23</td></tr>
+<tr><td>Authentication exchange</td><td>Verifies identities of the communicating parties before access or data exchange</td><td class="slide">24</td></tr>
+<tr><td>Traffic padding</td><td>Inserts bits into gaps in a data stream to frustrate traffic analysis</td><td class="slide">24</td></tr>
+<tr><td>Routing control</td><td>Selects secure routes; changes routes if a breach is suspected</td><td class="slide">25</td></tr>
+<tr><td>Notarisation</td><td>A trusted third party vouches for certain properties of a data exchange</td><td class="slide">25</td></tr>
+<tr><td>Trusted functionality</td><td>Functions perceived to be correct against some criteria (the security policy)</td><td class="slide">26</td></tr>
+<tr><td>Security label</td><td>Marks the security attributes of a resource</td><td class="slide">26</td></tr>
+<tr><td>Event detection</td><td>Detects security-relevant events and apparent violations</td><td class="slide">26</td></tr>
+<tr><td>Security audit trail</td><td>Data collected and independently reviewed to support a security audit</td><td class="slide">27</td></tr>
+<tr><td>Security recovery</td><td>Handles events and takes recovery actions</td><td class="slide">27</td></tr>
+<tr class="group"><th colspan="3" scope="colgroup">Services (X.800)</th></tr>
+<tr><td>Authentication (service)</td><td>Assures communication is authentic: peer-entity and data-origin authentication</td><td class="slide">31</td></tr>
+<tr><td>Access control (service)</td><td>Limits and controls access to hosts and apps; users are identified first so rights can be tailored</td><td class="slide">32</td></tr>
+<tr><td>Data confidentiality (service)</td><td>Protects transmitted data from passive attacks, including traffic-flow protection</td><td class="slide">33</td></tr>
+<tr><td>Data integrity (service)</td><td>Connection-oriented: stream arrives as sent (no duplication, insertion, reordering, replay). Connectionless: single message not modified</td><td class="slide">34</td></tr>
+<tr><td>Non-repudiation</td><td>Stops sender or receiver denying a message; proof can be shown to a third party</td><td class="slide">35</td></tr>
+<tr class="group"><th colspan="3" scope="colgroup">Models and strategy</th></tr>
+<tr><td>Model for network security</td><td>Message sent across a network; defend against an opponent using a secret-based transform plus secret information</td><td class="slide">37&ndash;41</td></tr>
+<tr><td>Trusted third party (model)</td><td>Distributes secret information and arbitrates disputes about authenticity</td><td class="slide">40</td></tr>
+<tr><td>Network access security model</td><td>Protects an information system from unwanted access (intruders, malware)</td><td class="slide">42&ndash;45</td></tr>
+<tr><td>Information access threat vs service threat</td><td>Info: read or change data you should not. Service: exploit flaws to stop legitimate use</td><td class="slide">43</td></tr>
+<tr><td>Security policy</td><td>Formal rules that say how a system is protected; set by asset value, vulnerabilities, and threats</td><td class="slide">48</td></tr>
+<tr><td>Prevention / Detection / Response / Recovery</td><td>Stop the attack / spot it / halt it / restore a correct copy of the data</td><td class="slide">49</td></tr>
+<tr><td>Assurance</td><td>Confidence that security measures work as intended (design meets requirements; implementation meets specs)</td><td class="slide">50</td></tr>
+<tr><td>Evaluation</td><td>Examining a product or system against criteria, by testing and sometimes formal maths</td><td class="slide">51</td></tr>
+</tbody></table>
+
+<h2>2. Pre-empted misconceptions</h2>
+<table>
+<thead><tr><th scope="col">Looks-like pair, or wrong belief</th><th scope="col">The difference / correction</th><th class="slide" scope="col">Slide</th></tr></thead>
+<tbody>
+<tr><td>Passive vs active attack</td><td>Passive: only learns or uses information, nothing is changed, and it is hard to detect. Active: alters resources or their operation. Eavesdropping is passive; a false stream is active.</td><td class="slide">12&ndash;15</td></tr>
+<tr><td>Attack vs mechanism vs service</td><td>Attack = the threat action. Mechanism = the tool that counters it (for example encipherment). Service = the protection the system gives (for example confidentiality). Do not swap them.</td><td class="slide">10, 29</td></tr>
+<tr><td>Confidentiality vs integrity</td><td>Confidentiality stops unauthorised reading (disclosure). Integrity stops unauthorised changing or destroying. A stolen unencrypted disk is a confidentiality loss.</td><td class="slide">5, 19</td></tr>
+<tr><td>Confidentiality vs privacy</td><td>Privacy is individual control over what is collected and who sees information about them. The deck files it under confidentiality, but it is about people&rsquo;s control.</td><td class="slide">5</td></tr>
+<tr><td>Authentication vs access control</td><td>Authentication proves who you are. Access control decides what you may use. Access control needs authentication first.</td><td class="slide">31, 32</td></tr>
+<tr><td>Authentication vs non-repudiation</td><td>Authentication convinces the receiver. Non-repudiation gives proof the receiver can show to a third party who does not trust them.</td><td class="slide">31, 35</td></tr>
+<tr><td>Non-repudiation (service) vs digital signature (mechanism)</td><td>Non-repudiation is the goal. The digital signature is one of the mechanisms used to achieve it.</td><td class="slide">22, 35</td></tr>
+<tr><td>Masquerade vs modification of messages</td><td>Masquerade: pretending to be someone else. Modification: the real sender&rsquo;s message is altered, delayed or reordered. Example: John changed to Fred on a file permission.</td><td class="slide">16, 17</td></tr>
+<tr><td>Insider vs outsider attack</td><td>Insider has legitimate access but uses it in a way not approved. Outsider is unauthorised and comes from outside the perimeter.</td><td class="slide">18</td></tr>
+<tr><td>Traffic analysis vs traffic padding</td><td>Traffic analysis is the passive attack (reading patterns: source, destination, length, frequency). Traffic padding is the defence that adds bits to hide those patterns.</td><td class="slide">14, 24, 33</td></tr>
+<tr><td>Assurance vs evaluation</td><td>Assurance = confidence that measures work, built into design and implementation. Evaluation = checking a finished product against criteria, often by testing.</td><td class="slide">50, 51</td></tr>
+<tr><td>Security policy vs security mechanism</td><td>Policy is the set of rules (what must be protected and how). Mechanisms are the technical or procedural controls that enforce it.</td><td class="slide">26, 48</td></tr>
+</tbody></table>
+
+<h2>3. Lists to copy straight from the slides</h2>
+<table>
+<thead><tr><th scope="col">List</th><th scope="col">Items (in slide order)</th><th scope="col">Count</th><th class="slide" scope="col">Slide</th></tr></thead>
+<tbody>
+<tr><td>CIA triad</td><td>Confidentiality, Integrity, Availability</td><td>3</td><td class="slide">5</td></tr>
+<tr><td>Levels of impact</td><td>Low, Moderate, High</td><td>3</td><td class="slide">7</td></tr>
+<tr><td>Accountability and authenticity (extra concepts)</td><td>Accountability, Authenticity</td><td>2</td><td class="slide">6</td></tr>
+<tr><td>Three aspects of OSI security architecture</td><td>Security service, security attack, security mechanism</td><td>3</td><td class="slide">10</td></tr>
+<tr><td>Two categories of attacks</td><td>Passive attack, active attack</td><td>2</td><td class="slide">12</td></tr>
+<tr><td>Two types of passive attack</td><td>Release of message contents, traffic analysis</td><td>2</td><td class="slide">14</td></tr>
+<tr><td>Four categories of active attack</td><td>Masquerade, replay, modification of messages, denial of service</td><td>4</td><td class="slide">15</td></tr>
+<tr><td>Origin of attacks</td><td>Insider attack, outsider attack</td><td>2</td><td class="slide">18</td></tr>
+<tr><td>Specific security mechanisms (X.800)</td><td>Encipherment, digital signatures, access controls, data integrity, authentication exchange, traffic padding, routing control, notarisation</td><td>8</td><td class="slide">21</td></tr>
+<tr><td>Pervasive security mechanisms (X.800)</td><td>Trusted functionality, security labels, event detection, security audit trails, security recovery</td><td>5</td><td class="slide">21</td></tr>
+<tr><td>Five security services (X.800)</td><td>Authentication, access control, data confidentiality, data integrity, non-repudiation</td><td>5</td><td class="slide">30</td></tr>
+<tr><td>Authentication sub-types</td><td>Peer-entity authentication, data-origin authentication</td><td>2</td><td class="slide">31</td></tr>
+<tr><td>Data integrity service types</td><td>Connection-oriented, connectionless</td><td>2</td><td class="slide">34</td></tr>
+<tr><td>Components of the network security model</td><td>(1) security-related transformation; (2) secret information shared by two principals</td><td>2</td><td class="slide">38</td></tr>
+<tr><td>Tasks to design a security service</td><td>Design the algorithm; generate secret information; distribute and share it; specify the protocol</td><td>4</td><td class="slide">41</td></tr>
+<tr><td>Network access threats</td><td>Information access threats, service threats</td><td>2</td><td class="slide">43</td></tr>
+<tr><td>Network access security controls</td><td>(1) gatekeeper functions (identify users, screen for worms and viruses); (2) internal security controls (IDS, firewall, IPS)</td><td>2</td><td class="slide">45</td></tr>
+<tr><td>Security strategy</td><td>Security policy, security implementation, assurance, evaluation</td><td>4</td><td class="slide">47</td></tr>
+<tr><td>Security implementation</td><td>Prevention, detection, response, recovery</td><td>4</td><td class="slide">49</td></tr>
+<tr><td>Factors in a security policy</td><td>Value of assets, vulnerabilities, potential threats and likelihood of attacks</td><td>3</td><td class="slide">48</td></tr>
+<tr><td>Assurance questions</td><td>Does the design meet its requirements? Does the implementation meet its specifications?</td><td>2</td><td class="slide">50</td></tr>
+</tbody></table>
+
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<p class="eyebrow">Source: Topic 5a.pdf</p>
+</body></html>

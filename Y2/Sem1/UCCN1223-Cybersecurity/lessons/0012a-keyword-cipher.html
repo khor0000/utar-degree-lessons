@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 12a &mdash; The plain keyword cipher</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 12a &middot; Topic 3a &middot; UCCN1223</div>
+<h1>The plain keyword cipher: a two-row strip built from a word</h1>
+<p><strong>A keyword cipher builds its cipher row from a keyword: write the keyword first, then the unused letters, and encrypt and decrypt with that strip exactly as in lesson 11.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> the keyword ciphers are the next group of substitution ciphers on slide 28, and the Oct 2025 paper asked a keyword cipher by hand. <strong>Focus on:</strong> building the strip from a keyword, and writing a repeated keyword letter once. <strong>Skip for now:</strong> the keyword mixed cipher (lesson 12b) and the transposed and interrupted variants (slides 33 and 35, lessons 12c and 12d). <strong>How you'll be tested:</strong> encrypt and decrypt <strong>by hand</strong>, with no calculator. Oct 2025 Q1(d) asked a plain keyword cipher with keyword SECURITY, 2 marks for each word (old format, a hint only).</div>
+
+<p><strong>Bridge:</strong> lesson 11's strip was the alphabet shifted by one number. Here the bottom row starts with a word, so you write it out rather than count to it.</p>
+<h2>1. The plain keyword cipher, keyword WIRELESS</h2>
+<p>A <strong>keyword cipher</strong> is a substitution cipher whose cipher row starts with a keyword.</p>
+<div class="note"><strong>Anatomy of a keyword cipher.</strong> (1) What it is: a substitution cipher whose strip is built from a word. (2) What value it holds: one 26-letter cipher row, fixed for the whole message. (3) Why it is needed: it gives a strip without a shift number, so a word can be the key.</div>
+
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="The keyword is WIRELESS. A letter that repeats is written once: E and S each appear twice."><p>Keyword <code>W I R E L E S S</code>. Written once: <code>W I R E L S</code> (6 letters).</p></div>
+<div class="walk-stage" data-caption="After the keyword, the unused letters follow in alphabetical order. They start again at A, and skip any letter already used."><p>Unused letters, in order: <code>A B C D F G H J K M N O P Q T U V X Y Z</code>. That is 20 letters. 6 + 20 = 26.</p></div>
+<div class="walk-stage" data-caption="The two-row strip. Top row: the plain alphabet. Bottom row: the cipher alphabet, the keyword first and then the unused letters."><pre><code>plain : A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+cipher: W I R E L S A B C D F G H J K M N O P Q T U V X Y Z</code></pre></div>
+<div class="walk-stage" data-caption="Encrypt STUDENTS: find each letter on top and read the letter below. Both S's give P, both T's give Q."><table>
+<thead><tr><th>Find on top</th><th>S</th><th>T</th><th>U</th><th>D</th><th>E</th><th>N</th><th>T</th><th>S</th></tr></thead>
+<tbody><tr><td>Read below</td><td>P</td><td>Q</td><td>T</td><td>E</td><td>L</td><td>J</td><td>Q</td><td>P</td></tr></tbody>
+</table></div>
+<div class="walk-stage" data-caption="The result is PQTELJQP. The slide's printed answer, PQTEJQP, drops the L."><p><code>STUDENTS &rarr; PQTELJQP</code>. Eight letters in, eight out. The slide prints <code>PQTEJQP</code>, which has seven. E becomes L, so the L must be there. <strong>The slide has a typo.</strong></p></div>
+</div>
+
+<p>Decrypt the slide's second word, <code>VKOF</code>, the same way: find each letter on the bottom row and read the letter above it.</p>
+<table>
+<thead><tr><th>Find on bottom</th><th>V</th><th>K</th><th>O</th><th>F</th></tr></thead>
+<tbody><tr><td>Read above</td><td>W</td><td>O</td><td>R</td><td>K</td></tr></tbody>
+</table>
+<p>So <code>VKOF &rarr; WORK</code>, which matches the slide.</p>
+
+<div class="note"><strong>You might reasonably wonder:</strong> is this transposition? No. Substitution: each plain letter is replaced.</div>
+
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Write Each Keyword Letter Once</strong><p>A repeated keyword letter is written once in the cipher row. Writing it twice puts a duplicate in the strip.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td><code>W I R E L S</code> (6 letters)</td><td><code>W I R E L E S S</code> (8 letters)</td></tr></tbody></table></div>
+
+<div class="note"><strong>Monoalphabetic cipher</strong> is the slide 27 section name for these ciphers: <strong>(1) what it is:</strong> a cipher that uses one fixed cipher row for the whole message. <strong>(2) what value it holds:</strong> one plain-to-cipher letter pair per letter. <strong>(3) why needed:</strong> it names the family, so you know one strip is enough to encrypt and decrypt.</div>
+
+<h2>2. Check yourself</h2>
+
+<div class="quiz" data-quiz>
+<p class="prompt">In the plain keyword cipher with keyword WIRELESS, where does the unused-letter run start?</p>
+<button class="opt">It starts at T, the letter after the keyword.</button>
+<button class="opt" data-correct>It starts at A and skips the used letters.</button>
+<button class="opt">It starts at Z and runs backwards to A.</button>
+<button class="opt">It starts at A and includes the used letters.</button>
+<div class="feedback good" data-feedback-good>Yes. The unused letters restart at A and skip the used letters.</div>
+<div class="feedback bad" data-feedback-bad>Not this one. Build the strip: the letter after the keyword is A.</div>
+</div>
+
+<div class="quiz short" data-quiz-short data-answer="IS GOOD|ISGOOD">
+<p class="prompt">Fresh check, keyword cipher, keyword PROGRESS: decrypt <code>CQ AKKG</code>. Build the strip first. Type the plaintext in capitals, keeping the space.</p>
+<input type="text" placeholder="plaintext">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. Read the working below if you want to see each letter.</div>
+<div class="feedback bad" data-feedback-bad>Build PROGRESS with repeats removed: P R O G E S, then the unused letters from A. Find each letter on the bottom row and read the letter above it. The working is below.</div>
+</div>
+
+<details class="reveal">
+<summary>Working for the PROGRESS check (open after you try it)</summary>
+<pre><code>plain : A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+cipher: P R O G E S A B C D F H I J K L M N Q T U V W X Y Z</code></pre>
+<table>
+<thead><tr><th>Find on bottom</th><th>C</th><th>Q</th><th>A</th><th>K</th><th>K</th><th>G</th></tr></thead>
+<tbody><tr><td>Read above</td><td>I</td><td>S</td><td>G</td><td>O</td><td>O</td><td>D</td></tr></tbody>
+</table>
+<p><code>CQ AKKG &rarr; IS GOOD</code>. Slide 30 leaves this answer blank; this is the working.</p>
+</details>
+
+<p class="source">Source: Topic 3a slides 27&ndash;30 (keyword cipher on slide 29, exercise on slide 30) and the UCCN1223 Oct 2025 paper, Q1(d) (old format, hint only). Slide 29's printed answer <code>PQTEJQP</code> was checked against the printed strip in code: the strip gives <code>PQTELJQP</code>. Every answer here was checked in a short program.</p>
+<p>Next comes the keyword mixed cipher (lesson 12b): the same keyword, but the unused letters go into a grid before they become a cipher row.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0011-caesar-with-a-strip.html">Lesson 11</a></span><span><a href="0012b-keyword-mixed.html">Lesson 12b</a> &rarr;</span></div>
+</body>
+</html>

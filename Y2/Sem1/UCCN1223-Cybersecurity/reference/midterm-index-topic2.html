@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topic 2 index &mdash; UCCN1223</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* Printable A4: the open-book sheet is printed, so keep it tight and readable. */
+  body { max-width: 52rem; font-size: 0.95rem; }
+  table { font-size: 0.86rem; margin: 0.8rem 0 1rem; }
+  th, td { padding: 0.32rem 0.55rem; }
+  td:first-child { font-weight: 600; }
+  .slide { font-family: var(--mono); font-size: 0.84em; white-space: nowrap; }
+  h2 { margin: 1.6rem 0 0.5rem; }
+  .part th { background: var(--bg-well); font-family: var(--mono); font-size: 0.74rem;
+             font-weight: 600; text-align: left; color: var(--ink-soft); }
+  @media print {
+    @page { size: A4; margin: 13mm 13mm 14mm; }
+    body { max-width: none; padding: 0; font-size: 9.5pt; line-height: 1.35;
+           background: #fff; color: #000; }
+    :root { --ink: #000; --ink-soft: #444; --border: #999; --bg: #fff; --bg-well: #f2f2f2;
+            --red-ink: #000; }
+    h1 { font-size: 15pt; margin: 0.2rem 0 0.3rem; }
+    h2 { font-size: 11.5pt; margin: 0.9rem 0 0.3rem; break-after: avoid; }
+    table { font-size: 8.4pt; margin: 0.4rem 0 0.5rem; }
+    th, td { padding: 0.18rem 0.4rem; }
+    thead { display: table-header-group; }
+    tr { break-inside: avoid; }
+    .slide { white-space: normal; }
+    .eyebrow { font-size: 7.5pt; }
+    p { margin: 0.35rem 0; }
+  }
+</style>
+</head><body>
+
+<div class="eyebrow">Reference &middot; UCCN1223 &middot; Midterm 25 Nov 2026 (open book)</div>
+<h1>Topic 2: Operating System, Security &amp; Software Security</h1>
+<p><strong>Open-book index for Topic 2: find it, don't memorise it.</strong></p>
+<p>Order below = dependency order: each block uses ideas from the blocks before it. Slide numbers are the printed slide numbers in <code>Topic_2.pdf</code> (PDF page = slide number). Slide 35 has a known deck error; see the misconceptions table.</p>
+
+<h2>1. Concepts: what it means and where it is</h2>
+<table>
+<thead><tr><th scope="col">Concept</th><th scope="col">One-line plain meaning</th><th scope="col">Slide no(s)</th></tr></thead>
+<tbody>
+<tr class="part"><th colspan="3" scope="colgroup">A. How the OS sits in the machine</th></tr>
+<tr><td>Operating system (OS)</td><td>The layer between users and computer hardware; manages it for programs and people.</td><td class="slide">4</td></tr>
+<tr><td>Computer parts the OS manages</td><td>CPU, RAM, I/O devices, long-term storage.</td><td class="slide">6</td></tr>
+<tr><td>Kernel</td><td>The core of the OS; manages communication between hardware and software (memory, processors, I/O).</td><td class="slide">7</td></tr>
+<tr><td>Layer model</td><td>Hardware at the bottom, users and applications at the top. The OS sits in between.</td><td class="slide">8, 12</td></tr>
+<tr><td>Program vs process</td><td>A program is stored on disk; a process is that program running (loaded into RAM).</td><td class="slide">9</td></tr>
+<tr><td>Process ID (PID)</td><td>Unique non-negative number for each running process; the OS links it to CPU time, memory, user ID, program name.</td><td class="slide">9</td></tr>
+<tr><td>API</td><td>Rules and protocols that let software applications talk to each other and exchange data; lets apps request OS services.</td><td class="slide">10, 12</td></tr>
+<tr><td>File system</td><td>An abstraction (a model) of how non-volatile storage is organised into files and folders.</td><td class="slide">11</td></tr>
+<tr><td>Root folder and tree</td><td>Folders nest inside folders; the topmost folder is the root. A drive is a tree of folders.</td><td class="slide">11</td></tr>
+<tr><td>File handle</td><td>An opaque identifier the OS gives an application when it opens a file.</td><td class="slide">18</td></tr>
+<tr><td>File operations</td><td>Open (returns a handle), read/write/execute, close (invalidates the handle). Apps reach files through an API.</td><td class="slide">18</td></tr>
+
+<tr class="part"><th colspan="3" scope="colgroup">B. File access control (Unix / Linux)</th></tr>
+<tr><td>Memory and file system protection</td><td>A computer's content is protected by protecting its memory and file system first.</td><td class="slide">14</td></tr>
+<tr><td>File permission matrix</td><td>The OS checks whether a user or group may read, write or execute a file; each file has owner, group and other permissions.</td><td class="slide">13</td></tr>
+<tr><td>ACE and ACL</td><td>ACE = one allow/deny rule for one user or group. ACL = the list of ACEs on one file or folder.</td><td class="slide">18</td></tr>
+<tr><td>What Linux controls access to</td><td>Files and directories, plus devices (/dev), mounted file systems (/mnt), sockets, pipes, symbolic links.</td><td class="slide">25</td></tr>
+<tr><td>Owner and group on every file</td><td>Standard for all UNIXes: each file has one owning user and one group.</td><td class="slide">26</td></tr>
+<tr><td>ls -l</td><td>Shows permissions as a 10-character string, e.g. -rw-r----- (first character = file type).</td><td class="slide">26</td></tr>
+<tr><td>Regular-file permission examples</td><td>Read/write/execute for everyone; read-only for everyone; owner-only; owner rw + group r; owner rw + everyone r.</td><td class="slide">27</td></tr>
+<tr><td>Directory read, write, execute</td><td>Read = list names only. Write = create and delete files inside. Execute = enter the folder and see file properties.</td><td class="slide">28</td></tr>
+<tr><td>Directory listing line</td><td>Starts with d in ls -l output (e.g. drwxr-xr-x).</td><td class="slide">28</td></tr>
+<tr><td>Directory permission examples</td><td>Full access to all; owner full + group can enter; owner and group full; everyone can list, only owner adds/deletes.</td><td class="slide">29</td></tr>
+<tr><td>GUI permission editing</td><td>In a file manager (e.g. KDE Konqueror): right-click, Properties, Permissions tab.</td><td class="slide">30</td></tr>
+<tr><td>Octal notation</td><td>Each class (owner, group, others) gets one digit: read = 4, write = 2, execute = 1; add them up.</td><td class="slide">34, 37</td></tr>
+<tr><td>Octal values 0 to 7</td><td>0 = no permission, 7 = read + write + execute (full table).</td><td class="slide">34, 35</td></tr>
+<tr><td>Octal examples</td><td>664, 775, 640, 777 (777 = everyone full access, marked dangerous).</td><td class="slide">35</td></tr>
+<tr><td>chmod, chown, chgrp examples</td><td>chmod changes permissions (also symbolic: g+w, o-rwx, u=rwx,go=). chown changes owner. chgrp changes group. -R applies to contents too.</td><td class="slide">33</td></tr>
+<tr><td>Unix permission limits</td><td>Groups are restrictive and file creation can be limited, so sometimes more flexibility is needed.</td><td class="slide">36</td></tr>
+<tr><td>POSIX ACLs (Linux)</td><td>Builds on normal Unix permissions and gives finer-grained control for users, groups and other users.</td><td class="slide">36</td></tr>
+<tr><td>Root user (superuser)</td><td>The all-powerful account. Slide 31 is a section heading; the method slide is 32.</td><td class="slide">31, 32</td></tr>
+<tr><td>su, su -, sudo, su [-] user</td><td>Ways to become root or another user (see Lists, list 11 for passwords).</td><td class="slide">32</td></tr>
+<tr><td>Inode</td><td>Data structure storing a file's metadata (size, owner, permissions, disk location), but not its name or content.</td><td class="slide">20</td></tr>
+<tr><td>Hard link</td><td>Another directory entry (name) pointing to the same inode. All hard links share owner, group and permissions. File is deleted only when no hard links remain.</td><td class="slide">19, 20</td></tr>
+<tr><td>Symbolic link (symlink)</td><td>A file that stores the path to a target. Like a Windows shortcut or Mac alias. Removing the target leaves it broken, not deleted.</td><td class="slide">19, 21</td></tr>
+<tr><td>Hard vs symbolic link compared</td><td>Table on slide 22: differences in new inode, linking directories, crossing file systems, and link count (full detail in the misconceptions table).</td><td class="slide">22</td></tr>
+<tr><td>Closed policy</td><td>Deny everything unless explicitly allowed.</td><td class="slide">23, 24</td></tr>
+<tr><td>Open policy</td><td>Allow everything unless explicitly denied.</td><td class="slide">23, 24</td></tr>
+
+<tr class="part"><th colspan="3" scope="colgroup">C. Password protection</th></tr>
+<tr><td>Dictionary attack (brute force)</td><td>Hash each candidate word and compare with stored password hashes. About 500,000 words often finds most passwords.</td><td class="slide">15</td></tr>
+<tr><td>Salt</td><td>A random number tied to each user ID and combined with the password before hashing. Makes a dictionary attack more difficult.</td><td class="slide">16</td></tr>
+
+<tr class="part"><th colspan="3" scope="colgroup">D. Software security</th></tr>
+<tr><td>Software security</td><td>Protecting software from attacks and vulnerabilities so it works as intended and protects the data it processes.</td><td class="slide">39</td></tr>
+<tr><td>Four objectives</td><td>Prevent unauthorised access and attacks; protect sensitive data; ensure CIA; maintain reliability.</td><td class="slide">40</td></tr>
+<tr><td>CIA</td><td>Confidentiality (only authorised users access data), Integrity (data stays accurate, not changed without permission), Availability (accessible when needed).</td><td class="slide">40</td></tr>
+<tr><td>Recent scenarios</td><td>2026 Android banking malware (Malaysia); 2025 Malaysia Airports cyberattack; 2025 Jaguar and Land Rover attack.</td><td class="slide">42</td></tr>
+<tr><td>Key principles</td><td>Secure by design; least privilege; defense in depth; fail securely.</td><td class="slide">43</td></tr>
+<tr><td>Common software threats</td><td>SQL injection, cross-site scripting (XSS), buffer overflow, broken authentication.</td><td class="slide">44</td></tr>
+<tr><td>Security mechanisms</td><td>Authentication and authorisation; input validation and sanitisation; encryption and secure key management; secure API usage.</td><td class="slide">45</td></tr>
+<tr><td>Security testing types</td><td>SAST (source code, before running), DAST (running app), penetration testing (simulated attacker, with permission).</td><td class="slide">46</td></tr>
+<tr><td>Why software security matters</td><td>Software has flaws; threats keep coming; convenience beats security; vulnerabilities grow; everyone's job; same mistakes repeat.</td><td class="slide">41, 47</td></tr>
+
+<tr class="part"><th colspan="3" scope="colgroup">E. Secure coding</th></tr>
+<tr><td>Secure coding</td><td>Techniques developers use to write code that resists vulnerabilities, attacks and misuse.</td><td class="slide">53</td></tr>
+<tr><td>Why secure coding</td><td>Prevents common attacks; protects sensitive data; reduces downtime and costly breaches; makes apps reliable.</td><td class="slide">53</td></tr>
+<tr><td>Eight secure coding practices</td><td>Input validation; authentication and authorisation; error handling; session management; secure APIs and libraries; data protection; prevent common vulnerabilities; code review and testing.</td><td class="slide">54, 55</td></tr>
+<tr><td>Common vulnerabilities secure coding prevents</td><td>SQL injection, XSS, buffer overflow, CSRF (cross-site request forgery), broken authentication.</td><td class="slide">56</td></tr>
+<tr><td>Insider attack</td><td>Someone inside the organisation misuses their access to harm the system or steal data.</td><td class="slide">57</td></tr>
+<tr><td>Secure coding vs insiders</td><td>Secure coding cannot stop all insider attacks, but it reduces the damage (access control, least privilege, input validation, audit logging, secure authentication).</td><td class="slide">57</td></tr>
+
+<tr class="part"><th colspan="3" scope="colgroup">F. Secure SDLC</th></tr>
+<tr><td>SDLC</td><td>Software Development Life Cycle: the stages a software project goes through.</td><td class="slide">49</td></tr>
+<tr><td>Secure SDLC (SSDLC)</td><td>The SDLC with security activities built into every phase, not added at the end.</td><td class="slide">50</td></tr>
+<tr><td>Six SSDLC phases</td><td>Planning and security requirements; secure design; secure development; security and testing; secure deployment; maintenance and monitoring.</td><td class="slide">50</td></tr>
+<tr><td>Case studies</td><td>Equifax (2017, unpatched Apache Struts) and WannaCry (2017, unpatched Windows). Both show how SSDLC would reduce risk.</td><td class="slide">51</td></tr>
+</tbody></table>
+
+<h2>2. Pre-empted misconceptions</h2>
+<table>
+<thead><tr><th scope="col">Looks-like pair, or wrong belief</th><th scope="col">The difference / correction</th><th scope="col">Slide no</th></tr></thead>
+<tbody>
+<tr><td>Hard link vs symbolic link: "both are just links, they behave the same"</td><td>Hard link = another name for the same inode, so the data survives if the original name is deleted. Symlink = a small file holding a path, so it breaks if the target is deleted.</td><td class="slide">19, 20, 21</td></tr>
+<tr><td>Can a hard link point to a folder, or cross drives?</td><td>Hard link: no for folders (only root can, the deck says), and no across file systems. Symlink: yes to both.</td><td class="slide">22</td></tr>
+<tr><td>"Closed policy" = closed to the public; "open policy" = open to the public</td><td>Closed = deny by default, allow only what is explicitly allowed. Open = allow by default, deny only what is explicitly denied.</td><td class="slide">23, 24</td></tr>
+<tr><td>Directory "read" means you can open the files inside</td><td>Directory read only lists names. You need execute to enter and see file properties. Write lets you add or delete names in the folder.</td><td class="slide">28</td></tr>
+<tr><td>Octal 664 on slide 35</td><td>Slide 35 says 664 is "read-only for everyone else". That is wrong: 664 = owner rw, group rw, others r. Treat the slide label as a deck error.</td><td class="slide">35</td></tr>
+<tr><td>su vs sudo: both ask for a password, so they are the same</td><td>su and su - ask for the root password. sudo &lt;command&gt; asks for your own password, and only runs one command as root (you must be in the sudoers group).</td><td class="slide">32</td></tr>
+<tr><td>Authentication vs authorisation</td><td>Authentication = verify who the user is. Authorisation = decide what that verified user may access. The deck lists both under one mechanism.</td><td class="slide">45</td></tr>
+<tr><td>Salt stops dictionary attacks</td><td>Salt makes the attack more difficult. The deck does not say it stops the attack completely.</td><td class="slide">15, 16</td></tr>
+<tr><td>SAST vs DAST vs penetration testing</td><td>SAST reads source code before the app runs. DAST tests the running app from outside. Penetration testing simulates a real attacker (with permission).</td><td class="slide">46</td></tr>
+<tr><td>Tree or DAG? (Linux folder structure)</td><td>Slide 18 says Windows is a tree and Linux is a directed acyclic graph. Slides 11 and 19 call the file system a tree. The deck is inconsistent here; check with the lecturer which one they want.</td><td class="slide">11, 18, 19</td></tr>
+</tbody></table>
+
+<h2>3. Lists to copy straight from slides</h2>
+<table>
+<thead><tr><th scope="col">#</th><th scope="col">List (count)</th><th scope="col">Items, in slide order</th><th scope="col">Slide no</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>3 OS functions</td><td>Resource management; program management; user management</td><td class="slide">4</td></tr>
+<tr><td>2</td><td>5 OS examples</td><td>Windows, Linux, macOS, Android, iOS</td><td class="slide">5</td></tr>
+<tr><td>3</td><td>6 layers, top to bottom</td><td>User; Application; API; Operating System Kernel; File System; Computer Hardware</td><td class="slide">12</td></tr>
+<tr><td>4</td><td>4 reasons APIs are used</td><td>Enable communication; allow reuse of services; simplify development; support integration across platforms</td><td class="slide">10</td></tr>
+<tr><td>5</td><td>3 file operations</td><td>Open file (returns handle); read/write/execute; close file (invalidates handle)</td><td class="slide">18</td></tr>
+<tr><td>6</td><td>3 permission classes</td><td>Owner; group; other</td><td class="slide">13</td></tr>
+<tr><td>7</td><td>3 permission values</td><td>Read = 4; write = 2; execute = 1</td><td class="slide">34</td></tr>
+<tr><td>8</td><td>8 octal digits</td><td>0 to 7 (0 = ---, 7 = rwx)</td><td class="slide">35</td></tr>
+<tr><td>9</td><td>2 link types</td><td>Hard link; symbolic link (symlink)</td><td class="slide">19</td></tr>
+<tr><td>10</td><td>2 access policies</td><td>Closed policy (deny unless allowed); open policy (allow unless denied)</td><td class="slide">23</td></tr>
+<tr><td>11</td><td>4 ways to get root or another user</td><td>su; su - (full login); sudo &lt;command&gt; (one command); su [-] &lt;user&gt;. Passwords: su and su - need root's; sudo needs your own; su user needs the target's.</td><td class="slide">32</td></tr>
+<tr><td>12</td><td>5 regular-file examples</td><td>-rwxrwxrwx; -r--r--r--; -rwx------; -rw-r-----; -rw-r--r--</td><td class="slide">27</td></tr>
+<tr><td>13</td><td>4 objectives of software security</td><td>Prevent unauthorised access and attacks; protect sensitive data; ensure CIA; maintain reliability</td><td class="slide">40</td></tr>
+<tr><td>14</td><td>3 CIA parts</td><td>Confidentiality; integrity; availability</td><td class="slide">40</td></tr>
+<tr><td>15</td><td>6 reasons software security is needed</td><td>Software has flaws and bugs; new threats emerge every day; convenience trumps security; vulnerabilities are increasing; software security is everybody's job; the same mistakes keep happening</td><td class="slide">41</td></tr>
+<tr><td>16</td><td>3 recent scenarios</td><td>2026 Android banking malware; 2025 Malaysia Airports cyberattack; 2025 Jaguar and Land Rover cyberattack</td><td class="slide">42</td></tr>
+<tr><td>17</td><td>4 key principles</td><td>Secure by design; least privilege; defense in depth; fail securely</td><td class="slide">43</td></tr>
+<tr><td>18</td><td>4 common software threats</td><td>SQL injection; cross-site scripting (XSS); buffer overflow; broken authentication</td><td class="slide">44</td></tr>
+<tr><td>19</td><td>4 security mechanisms</td><td>Authentication and authorisation; input validation and sanitisation; encryption and secure key management; secure API usage</td><td class="slide">45</td></tr>
+<tr><td>20</td><td>3 testing types</td><td>SAST; DAST; penetration testing</td><td class="slide">46</td></tr>
+<tr><td>21</td><td>6 reasons software security matters (importance)</td><td>Prevents attacks; protects important data; reduces attack opportunities; meets rules and builds trust; avoids financial loss; keeps users confident</td><td class="slide">47</td></tr>
+<tr><td>22</td><td>4 reasons for secure coding</td><td>Prevents common attacks; protects sensitive data; reduces downtime and breaches; makes apps reliable and trustworthy</td><td class="slide">53</td></tr>
+<tr><td>23</td><td>8 secure coding practices</td><td>Input validation; authentication and authorisation; proper error handling; secure session management; secure APIs and libraries; data protection; prevent common vulnerabilities; code review and testing</td><td class="slide">54, 55</td></tr>
+<tr><td>24</td><td>5 common vulnerabilities</td><td>SQL injection; XSS; buffer overflow; CSRF; broken authentication</td><td class="slide">56</td></tr>
+<tr><td>25</td><td>5 insider-attack controls</td><td>Access control; least privilege; input validation; audit logging; secure authentication</td><td class="slide">57</td></tr>
+<tr><td>26</td><td>6 SSDLC phases</td><td>Planning and security requirements; secure design; secure development (implementation); security and testing; secure deployment; maintenance and monitoring</td><td class="slide">50</td></tr>
+<tr><td>27</td><td>2 case studies</td><td>Equifax data breach (2017); WannaCry ransomware (2017)</td><td class="slide">51</td></tr>
+</tbody></table>
+
+<h2>Practice and lessons</h2>
+<p>Permission strings and ls -l: <a href="../lessons/0004-reading-permissions.html">0004-reading-permissions.html</a> (slides 26-27). Octal and chmod: <a href="../lessons/0005-octal-and-chmod.html">0005-octal-and-chmod.html</a> (slides 33-35). Directory permissions: <a href="../lessons/0006-permissions-on-directories.html">0006-permissions-on-directories.html</a> (slides 28-29). Topic 2 practice questions: <a href="../lessons/0024-topic-2-quiz-mcq.html">0024-topic-2-quiz-mcq.html</a>.</p>
+
+<footer>
+<p class="note">Source: Topic_2.pdf</p>
+</footer>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+
+</body></html>

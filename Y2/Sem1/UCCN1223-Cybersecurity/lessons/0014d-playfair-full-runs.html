@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 14d &mdash; Playfair: two full runs</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 14d &middot; Topic 3a &middot; UCCN1223</div>
+<h1>Playfair part 4: two full runs</h1>
+<p><strong>To encrypt a whole message, cut it into pairs, run each pair through the rule that its grid positions pick, and join the outputs in order. The grid stays the same for the whole message.</strong></p>
+
+<div class="note"><strong>Bridge:</strong> lesson 14b cut a message into pairs, and lesson 14c gave the three rules for one pair. This lesson runs the rules on each pair in turn.</div>
+
+<p>The three rules for each pair are in <a href="0014c-playfair-three-rules.html">lesson 14c</a>.</p>
+
+<p>Every run below uses this MONARCHY grid, built in lesson 14a:</p>
+<table><tbody>
+<tr><td>M</td><td>O</td><td>N</td><td>A</td><td>R</td></tr>
+<tr><td>C</td><td>H</td><td>Y</td><td>B</td><td>D</td></tr>
+<tr><td>E</td><td>F</td><td>G</td><td>I/J</td><td>K</td></tr>
+<tr><td>L</td><td>P</td><td>Q</td><td>S</td><td>T</td></tr>
+<tr><td>U</td><td>V</td><td>W</td><td>X</td><td>Z</td></tr>
+</tbody></table>
+
+<h2>1. A full run: INSTRUMENTS (slide 44)</h2>
+<p>INSTRUMENTS has eleven letters, so the pad Z completes the last pair (SZ).</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Pair 1: IN. Neither row nor column, so rectangle. I takes row 3, column 3 (G). N takes row 1, column 4 (A). Running: GA."><pre><code>IN: rectangle   I &rarr; G,  N &rarr; A   =  GA
+Running: GA</code></pre></div>
+<div class="walk-stage" data-caption="Pair 2: ST. Same row 4. S takes T. T wraps to L. Running: GA TL."><pre><code>ST: same row   S &rarr; T,  T &rarr; L   =  TL
+Running: GA TL</code></pre></div>
+<div class="walk-stage" data-caption="Pair 3: RU. Rectangle. R takes row 1, column 1 (M). U takes row 5, column 5 (Z). Running: GA TL MZ."><pre><code>RU: rectangle   R &rarr; M,  U &rarr; Z   =  MZ
+Running: GA TL MZ</code></pre></div>
+<div class="walk-stage" data-caption="Pair 4: ME. Same column 1. M takes C. E takes L. Running: GA TL MZ CL."><pre><code>ME: same column   M &rarr; C,  E &rarr; L   =  CL
+Running: GA TL MZ CL</code></pre></div>
+<div class="walk-stage" data-caption="Pair 5: NT. Rectangle. N takes R, T takes Q. Running: GA TL MZ CL RQ."><pre><code>NT: rectangle   N &rarr; R,  T &rarr; Q   =  RQ
+Running: GA TL MZ CL RQ</code></pre></div>
+<div class="walk-stage" data-caption="Pair 6: SZ, the Z is the pad. Rectangle. S takes row 4, column 5 (T). Z takes row 5, column 4 (X). Final: GATLMZCLRQTX."><pre><code>SZ: rectangle   S &rarr; T,  Z &rarr; X   =  TX
+Final: GATLMZCLRQTX</code></pre></div>
+</div>
+<div class="note"><strong>General rule (a run):</strong> cut the message into pairs, apply the rule to each pair in order, and append each output. The final running output is the ciphertext.</div>
+
+<h2>2. A second run: ATTACK (slide 45)</h2>
+<p>ATTACK runs as three pairs (AT TA CK).</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Pair 1: AT. Rectangle. A takes row 1, column 5 (R). T takes row 4, column 4 (S). Running: RS."><pre><code>AT: rectangle   A &rarr; R,  T &rarr; S   =  RS
+Running: RS</code></pre></div>
+<div class="walk-stage" data-caption="Pair 2: TA, the same two letters in the other order. T takes S, A takes R. Running: RS SR. The output differs from AT, because the order of the pair matters."><pre><code>TA: rectangle   T &rarr; S,  A &rarr; R   =  SR
+Running: RS SR</code></pre></div>
+<div class="walk-stage" data-caption="Pair 3: CK. Rectangle. C takes row 2, column 5 (D). K takes row 3, column 1 (E). Final: RSSRDE."><pre><code>CK: rectangle   C &rarr; D,  K &rarr; E   =  DE
+Final: RSSRDE</code></pre></div>
+</div>
+
+<h2>3. Check: a fresh message</h2>
+<p>Run the same steps on a message the deck does not use. OPEN GATE has no double letter, so it makes four pairs with no filler: OP, EN, GA, TE.</p>
+<div class="quiz short" data-quiz-short data-answer="HVGMINLK|HV GM IN LK">
+<p class="prompt">Encrypt <code>OPEN GATE</code> with MONARCHY. Type the ciphertext.</p>
+<input type="text" placeholder="eight letters">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. The pairs are OP EN GA TE, giving HV GM IN LK.</div>
+<div class="feedback bad" data-feedback-bad>Cut the message into pairs first: OP EN GA TE. Then apply a rule to each pair in order, using the grid.</div>
+</div>
+<details class="reveal"><summary>Show the steps</summary>
+<ol>
+<li><code>OP</code>: O is at row 1, column 2. P is at row 4, column 2. Same column. O takes the letter below it: H. P takes the letter below it: V. Output HV.</li>
+<li><code>EN</code>: E is at row 3, column 1. N is at row 1, column 3. Rectangle. E takes row 3, column 3: G. N takes row 1, column 1: M. Output GM.</li>
+<li><code>GA</code>: G is at row 3, column 3. A is at row 1, column 4. Rectangle. G takes row 3, column 4: I. A takes row 1, column 3: N. Output IN.</li>
+<li><code>TE</code>: T is at row 4, column 5. E is at row 3, column 1. Rectangle. T takes row 4, column 1: L. E takes row 3, column 5: K. Output LK.</li>
+</ol>
+<p>Ciphertext: HV GM IN LK, written as HVGMINLK.</p>
+</details>
+
+<p>Next: lesson 14e, practice on six blank pairs and on a longer message, TREE IS GREEN.</p>
+
+<p class="source">Source: Topic 3a slides 44 and 45 (INSTRUMENTS and ATTACK). The check is new, not from the deck. Slides teach encryption only. Values checked by a Python implementation of Playfair.</p>
+<div class="nav"><span>&larr; <a href="0014c-playfair-three-rules.html">Lesson 14c</a></span><span><a href="0014e-playfair-practice.html">Lesson 14e</a> &rarr;</span></div>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+</body>
+</html>

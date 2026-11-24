@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1 &mdash; The shell and the shape of a command</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 1 of 7 &middot; Lab 1 prep &middot; UCCN1223</div>
+<h1>The shell and the shape of a command</h1>
+<p><strong>The shell is the program that reads the line you type and runs the command it names.</strong></p>
+<div class="note"><strong>Looks like</strong> the Command Prompt or a C++ <code>cin</code> loop: it waits, reads a line, acts, then waits again. The difference is that each line starts a separate program.</div><h2>What the shell is</h2>
+<p>The <strong>shell</strong> is an ordinary program. It (1) is a text-based interface, (2) holds a current folder and a history of commands, and (3) exists so you can control the machine with no mouse. The window it runs in is the <strong>terminal</strong>. Your Lab 1 sheet uses the two words loosely, and for this lab that causes no harm.</p>
+<p>The <strong>prompt</strong> is the text the shell prints when it is ready. In the handout it is <code>$</code>. You never type the <code>$</code>; when the sheet shows <code>$ pwd</code>, you type <code>pwd</code> and press Enter.</p>
+<h2>Every line has the same shape</h2><div class="svg-container"><svg viewBox="0 0 620 170" role="img" aria-label="ls -l /home split into prompt, command, option and argument">
+<g font-family="var(--mono)" font-size="24" text-anchor="middle" fill="var(--ink)">
+<rect x="20" y="30" width="60" height="50" fill="none" stroke="var(--border)" stroke-width="2"/><text x="50" y="63">$</text>
+<rect x="110" y="30" width="100" height="50" fill="none" stroke="var(--red)" stroke-width="2"/><text x="160" y="63">ls</text>
+<rect x="240" y="30" width="100" height="50" fill="none" stroke="var(--cyan)" stroke-width="2"/><text x="290" y="63">-l</text>
+<rect x="370" y="30" width="200" height="50" fill="none" stroke="var(--ink-soft)" stroke-width="2"/><text x="470" y="63">/home</text></g>
+<g font-size="14" text-anchor="middle" fill="var(--ink-soft)"><text x="50" y="108">prompt</text><text x="50" y="128">(not typed)</text>
+<text x="160" y="108">command</text><text x="160" y="128">which program</text>
+<text x="290" y="108">option</text><text x="290" y="128">how it behaves</text>
+<text x="470" y="108">argument</text><text x="470" y="128">what it works on</text></g></svg></div><p>The spaces matter: the shell uses them to split the line into pieces. The piece <code>-l</code> starts with <code>-</code>, which by convention marks an <strong>option</strong>. Here <code>-l</code> asks <code>ls</code> for the long listing. The piece <code>/home</code> is the <strong>argument</strong>, and lesson 2 explains its <code>/</code>.</p>
+<p>You might reasonably wonder: must every command have all the parts? No. Only the command is required, so plain <code>ls</code> is valid.</p><div class="exam-trap"><strong class="title">Critical Exam Trap &bull; The Space Before the Option</strong><p>The shell splits on spaces, so a missing space makes one unknown command name.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td><code>ls -l</code></td><td><code>ls-l</code></td></tr></tbody></table></div><div class="quiz" data-quiz><p class="prompt">In <code>mkdir test</code>, which piece is the argument?</p><button class="opt" data-correct>the <code>test</code></button><button class="opt">the <code>mkdir</code></button><button class="opt">the <code>$</code></button><div class="feedback good" data-feedback-good>Yes. <code>mkdir</code> is the program, and <code>test</code> is what it works on.</div><div class="feedback bad" data-feedback-bad>The command comes first. The argument follows it.</div></div><div class="paper-task"><strong class="title">Paper task</strong><p>Label each piece of <code>chmod 750 test.txt</code> as command or argument. You do not need to know what it does yet.</p><details class="reveal"><summary>Reveal the answer</summary><p><code>chmod</code> is the command. <code>750</code> and <code>test.txt</code> are both arguments, because neither starts with <code>-</code>.</p></details></div>
+<p class="source">Primary source: <a href="https://www.gnu.org/software/bash/manual/html_node/What-is-a-shell_003f.html">GNU Bash manual: What is a shell?</a>. Terms are in the <a href="../reference/glossary.html">glossary</a>.</p>
+<div class="ask-agent"><p>Stuck on anything here? Ask me in the chat, even if it feels small.</p></div>
+<div class="nav"><span></span><span><a href="0002-paths-pwd-cd.html">Lesson 2</a> &rarr;</span></div>
+</body>
+</html>

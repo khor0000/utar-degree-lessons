@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 14e &mdash; Playfair: practice</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 14e &middot; Topic 3a &middot; UCCN1223</div>
+<h1>Playfair part 5: practice</h1>
+<p><strong>Practice means encrypting each pair from the grid, not from the worked runs, and then running a longer message with its own keyword grid.</strong></p>
+
+<div class="note"><strong>Bridge:</strong> lesson 14d ran two full messages with the MONARCHY grid. This lesson gives you blank pairs and a longer message to run yourself.</div>
+
+
+<h2>1. Slide 43: six blank pairs</h2>
+<p>Slide 43 leaves six pairs blank: <code>in</code>, <code>ru</code>, <code>sz</code>, <code>AT</code>, <code>TA</code>, <code>CK</code>, all with MONARCHY. The runs in lesson 14d already give their answers, so work from the grid and not the table when you answer.</p>
+
+<div class="quiz short" data-quiz-short data-answer="GA">
+<p class="prompt">Encrypt the pair <code>in</code> with MONARCHY.</p>
+<input type="text" placeholder="two letters">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. I and N are a rectangle: GA.</div>
+<div class="feedback bad" data-feedback-bad>I and N share no row or column. I takes its own row at N's column, so the output starts with G.</div>
+</div>
+<div class="quiz short" data-quiz-short data-answer="MZ">
+<p class="prompt">Encrypt the pair <code>ru</code> with MONARCHY.</p>
+<input type="text" placeholder="two letters">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. R takes column 1 of its row (M), and U takes column 5 of its row (Z).</div>
+<div class="feedback bad" data-feedback-bad>R and U form a rectangle. R stays in row 1 and takes column 1: M. Work out U the same way.</div>
+</div>
+<div class="quiz short" data-quiz-short data-answer="TX">
+<p class="prompt">Encrypt the pair <code>sz</code> with MONARCHY.</p>
+<input type="text" placeholder="two letters">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. S takes T, and Z takes X.</div>
+<div class="feedback bad" data-feedback-bad>S is in row 4 and Z in row 5, so they form a rectangle. S takes column 5 of row 4: T.</div>
+</div>
+<div class="quiz short" data-quiz-short data-answer="RS">
+<p class="prompt">Encrypt the pair <code>AT</code> with MONARCHY.</p>
+<input type="text" placeholder="two letters">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. A takes R, T takes S.</div>
+<div class="feedback bad" data-feedback-bad>A and T form a rectangle. A is in row 1, so it takes the letter in row 1 at T's column: R.</div>
+</div>
+<div class="quiz short" data-quiz-short data-answer="SR">
+<p class="prompt">Encrypt the pair <code>TA</code> with MONARCHY.</p>
+<input type="text" placeholder="two letters">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. T takes S, then A takes R. The order of the pair decides the order of the output.</div>
+<div class="feedback bad" data-feedback-bad>Same corners as AT, but in the other order. T is in row 4, so it takes the letter in row 4 at A's column: S.</div>
+</div>
+<div class="quiz short" data-quiz-short data-answer="DE">
+<p class="prompt">Encrypt the pair <code>CK</code> with MONARCHY.</p>
+<input type="text" placeholder="two letters">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. C takes D, K takes E.</div>
+<div class="feedback bad" data-feedback-bad>C is in row 2 and K in row 3, so they form a rectangle. C takes the letter in row 2 at K's column: D.</div>
+</div>
+<details class="reveal"><summary>Show the steps for in, ru, sz</summary>
+<ol>
+<li><code>in</code>: I is at row 3, column 4. N is at row 1, column 3. Rectangle. I takes row 3, column 3: G. N takes row 1, column 4: A. Answer GA.</li>
+<li><code>ru</code>: R is at row 1, column 5. U is at row 5, column 1. Rectangle. R takes row 1, column 1: M. U takes row 5, column 5: Z. Answer MZ.</li>
+<li><code>sz</code>: S is at row 4, column 4. Z is at row 5, column 5. Rectangle. S takes row 4, column 5: T. Z takes row 5, column 4: X. Answer TX.</li>
+</ol>
+</details>
+<details class="reveal"><summary>Show the steps for AT, TA, CK</summary>
+<ol>
+<li><code>AT</code>: A is at row 1, column 4. T is at row 4, column 5. Rectangle. A takes row 1, column 5: R. T takes row 4, column 4: S. Answer RS.</li>
+<li><code>TA</code>: the same corners in the other order. T takes row 4, column 4: S. A takes row 1, column 5: R. Answer SR.</li>
+<li><code>CK</code>: C is at row 2, column 1. K is at row 3, column 5. Rectangle. C takes row 2, column 5: D. K takes row 3, column 1: E. Answer DE.</li>
+</ol>
+</details>
+
+<h2>2. Pick the pair's output order</h2>
+<div class="quiz" data-quiz>
+<p class="prompt">For the rectangle pair TA, which row decides the first output letter?</p>
+<button class="opt" data-correct>The row of the first letter, T</button>
+<button class="opt">The row of the second letter, A</button>
+<button class="opt">Whichever row is higher on the grid</button>
+<button class="opt">The column of the first letter, T</button>
+<div class="feedback good" data-feedback-good>Yes. Each letter's output comes from its own row, and the first output letter comes from the first letter's row. T is in row 4, so TA starts with S.</div>
+<div class="feedback bad" data-feedback-bad>The first output letter comes from the first letter's row, which is T's row. T is in row 4, so the output starts with S, not R. Row 1 belongs to A, which comes second.</div>
+</div>
+
+<h2>3. Slide 46: TREE IS GREEN</h2>
+<p>Slide 46 runs a longer message with a different keyword, ENVIRONMENT.</p>
+
+<div class="quiz short" data-quiz-short data-answer="BVVUNRQHENNV|BV VU NR QH EN NV">
+<p class="prompt">Encrypt <code>TREE IS GREEN</code> with the keyword ENVIRONMENT. Use the filler X. Type the ciphertext.</p>
+<input type="text" placeholder="six pairs">
+<button>Check</button>
+<div class="feedback good" data-feedback-good>Yes. The pairs are TR EX EI SG RE EN.</div>
+<div class="feedback bad" data-feedback-bad>First cut the message into pairs with the filler X: TR EX EI SG RE EN. Then apply a rule to each pair, using the grid.</div>
+</div>
+<details class="reveal"><summary>Show the steps</summary>
+<table><tbody>
+<tr><td>E</td><td>N</td><td>V</td><td>I/J</td><td>R</td></tr>
+<tr><td>O</td><td>M</td><td>T</td><td>A</td><td>B</td></tr>
+<tr><td>C</td><td>D</td><td>F</td><td>G</td><td>H</td></tr>
+<tr><td>K</td><td>L</td><td>P</td><td>Q</td><td>S</td></tr>
+<tr><td>U</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
+</tbody></table>
+<ol>
+<li><code>TR</code>: rectangle. T is at row 2, column 3. R is at row 1, column 5. T takes row 2, column 5: B. R takes row 1, column 3: V. Output BV.</li>
+<li><code>EX</code>: rectangle. E is at row 1, column 1. X is at row 5, column 3. E takes row 1, column 3: V. X takes row 5, column 1: U. Output VU.</li>
+<li><code>EI</code>: same row 1. E takes N. I (column 4) takes R (column 5). Output NR.</li>
+<li><code>SG</code>: rectangle. S is at row 4, column 5. G is at row 3, column 4. S takes row 4, column 4: Q. G takes row 3, column 5: H. Output QH.</li>
+<li><code>RE</code>: same row 1. R is in the last column, so it wraps to column 1: E. E takes the letter to its right: N. Output EN.</li>
+<li><code>EN</code>: same row 1. E takes N. N takes V. Output NV.</li>
+</ol>
+<p>Ciphertext: BV VU NR QH EN NV.</p>
+</details>
+
+<p>Next: lesson 15a, modular arithmetic, which is the wrap-around you used here, written as a formula.</p>
+
+<p class="source">Source: Topic 3a slides 43 and 46. Slide 43 is the blank exercise, and slide 46 gives TREE IS GREEN. The slides teach Playfair encryption only; no slide teaches decryption, so it is not covered here. Every value was checked by a Python implementation of Playfair.</p>
+<div class="nav"><span>&larr; <a href="0014d-playfair-full-runs.html">Lesson 14d</a></span><span><a href="0015a-modular-arithmetic.html">Lesson 15a</a> &rarr;</span></div>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+</body>
+</html>

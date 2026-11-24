@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 13b &mdash; Columnar transposition: decrypt</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 13b &middot; Topic 3a &middot; UCCN1223</div>
+<h1>Columnar transposition: decrypt</h1>
+<p><strong>To decrypt a columnar ciphertext, rebuild the same grid: count the rows, fill the columns in number order, then read the rows left to right.</strong></p>
+
+<p><strong>Bridge:</strong> this is lesson 13a run in reverse: same keyword, numbers and grid; only the fill and read directions swap. (The slides show encryption only, so this runs slide 14 backwards.)</p>
+
+<div class="note"><strong>Looks like 13a encryption, but run backwards:</strong> same grid, reverse fill and read order.</div>
+
+<h2>1. Count the rows first</h2>
+<p>The receiver knows the keyword, so they know how many columns there are. The number of letters in the ciphertext gives the number of rows: the ciphertext length divided by the keyword length.</p>
+
+<h2>2. The decryption walk</h2>
+<p>Use the slide 14 ciphertext, <code>NALEHWDTTEELDSXFEA</code>, with key <code>GERMAN</code>. Press Next to see each step:</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="The ciphertext has 18 letters. The keyword has 6 letters, so there are 18 / 6 = 3 rows."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td>4</td><td>1</td><td>5</td></tr></tbody></table><p>Ciphertext: <code>NALEHWDTTEELDSXFEA</code></p></div>
+<div class="walk-stage" data-caption="Draw an empty grid: 3 rows, 6 columns, with the numbers above."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td>4</td><td>1</td><td>5</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Number 1 is the A column, 3 cells tall. Its first 3 letters are N, A, L, top to bottom."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td>4</td><td><mark>1</mark></td><td>5</td></tr><tr><td></td><td></td><td></td><td></td><td><mark>N</mark></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td><mark>A</mark></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td><mark>L</mark></td><td></td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Number 2 is the E column. Its next 3 letters are E, H, W."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td><mark>2</mark></td><td>6</td><td>4</td><td>1</td><td>5</td></tr><tr><td></td><td><mark>E</mark></td><td></td><td></td><td>N</td><td></td></tr><tr><td></td><td><mark>H</mark></td><td></td><td></td><td>A</td><td></td></tr><tr><td></td><td><mark>W</mark></td><td></td><td></td><td>L</td><td></td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Number 3 is the G column. Its next 3 letters are D, T, T."><table><thead><tr><th><mark>G</mark></th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td><mark>3</mark></td><td>2</td><td>6</td><td>4</td><td>1</td><td>5</td></tr><tr><td><mark>D</mark></td><td>E</td><td></td><td></td><td>N</td><td></td></tr><tr><td><mark>T</mark></td><td>H</td><td></td><td></td><td>A</td><td></td></tr><tr><td><mark>T</mark></td><td>W</td><td></td><td></td><td>L</td><td></td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Number 4 is the M column. Its next 3 letters are E, E, L."><table><thead><tr><th>G</th><th>E</th><th>R</th><th><mark>M</mark></th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td><mark>4</mark></td><td>1</td><td>5</td></tr><tr><td>D</td><td>E</td><td></td><td><mark>E</mark></td><td>N</td><td></td></tr><tr><td>T</td><td>H</td><td></td><td><mark>E</mark></td><td>A</td><td></td></tr><tr><td>T</td><td>W</td><td></td><td><mark>L</mark></td><td>L</td><td></td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Number 5 is the N column. Its next 3 letters are D, S, X."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th><mark>N</mark></th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td>4</td><td>1</td><td><mark>5</mark></td></tr><tr><td>D</td><td>E</td><td></td><td>E</td><td>N</td><td><mark>D</mark></td></tr><tr><td>T</td><td>H</td><td></td><td>E</td><td>A</td><td><mark>S</mark></td></tr><tr><td>T</td><td>W</td><td></td><td>L</td><td>L</td><td><mark>X</mark></td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Number 6 is the R column. Its last 3 letters are F, E, A. The grid is full."><table><thead><tr><th>G</th><th>E</th><th><mark>R</mark></th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td><mark>6</mark></td><td>4</td><td>1</td><td>5</td></tr><tr><td>D</td><td>E</td><td><mark>F</mark></td><td>E</td><td>N</td><td>D</td></tr><tr><td>T</td><td>H</td><td><mark>E</mark></td><td>E</td><td>A</td><td>S</td></tr><tr><td>T</td><td>W</td><td><mark>A</mark></td><td>L</td><td>L</td><td>X</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Read the rows left to right: DEFEND, THEEAS, TWALLX. Drop the last X, which is padding."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td>4</td><td>1</td><td>5</td></tr><tr><td>D</td><td>E</td><td>F</td><td>E</td><td>N</td><td>D</td></tr><tr><td>T</td><td>H</td><td>E</td><td>E</td><td>A</td><td>S</td></tr><tr><td>T</td><td>W</td><td>A</td><td>L</td><td>L</td><td>X</td></tr></tbody></table><p>Plaintext: <code>DEFEND THE EAST WALL</code></p></div>
+</div>
+
+<h2>3. The rule, and why the number order matters</h2>
+<div class="note"><strong>General rule (decrypt):</strong> (1) number the keyword's letters alphabetically; (2) rows = ciphertext length &divide; keyword length; (3) fill the columns in number order, top to bottom, giving each column the next block of letters; (4) read the rows left to right; (5) drop the padding <code>X</code> at the end.</div>
+<details><summary>Why fill in number order?</summary><p>The ciphertext is the columns joined end to end, so each block goes back in its own column.</p></details>
+
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Fill the Numbered Column</strong><p>On decryption, the first block of letters goes into the column numbered 1, not the first column on the page.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td>Number 1 is the A column: put <code>N A L</code> in it</td><td>Put <code>N A L</code> in the first column on the page, G</td></tr></tbody></table></div>
+
+<h2>Check yourself</h2>
+<p>Do this on a blank page first. The keyword is <code>PLANET</code> and the ciphertext is <code>ETDMEEETITHGMAREBX</code>. Decrypt it, then reveal each step.</p>
+<details class="reveal"><summary>Reveal the answer, step by step</summary>
+<ol>
+<li>Number the keyword: P is 5, L is 3, A is 1, N is 4, E is 2, T is 6.</li>
+<li>Rows: 18 letters &divide; 6 letters per keyword = 3 rows. Draw an empty grid, 3 rows by 6 columns, with the numbers <code>5 3 1 4 2 6</code> above <code>P L A N E T</code>.</li>
+<li>Number 1 is the A column (column 3). Its 3 letters are <code>E T D</code>, top to bottom.</li>
+<li>Number 2 is the E column (column 5). Its next 3 letters are <code>M E E</code>.</li>
+<li>Number 3 is the L column (column 2): <code>E T I</code>. Number 4 is the N column (column 4): <code>T H G</code>. Number 5 is the P column (column 1): <code>M A R</code>. Number 6 is the T column (column 6): <code>E B X</code>.</li>
+<li>Read the rows: <code>MEETME</code> / <code>ATTHEB</code> / <code>RIDGEX</code>. Joined, that is <code>MEETMEATTHEBRIDGEX</code>.</li>
+<li>Drop the padding <code>X</code>: the message is <code>MEETMEATTHEBRIDGE</code>.</li>
+</ol>
+</details>
+
+<div class="quiz" data-quiz>
+<p class="prompt">A receiver gets an 18-letter ciphertext and the keyword <code>GERMAN</code>. Which grid do they draw?</p>
+<button class="opt" data-correct>Three rows and six columns, filled column by column in number order</button>
+<button class="opt">Six rows and three columns, filled row by row in letter order</button>
+<button class="opt">Three rows and six columns, filled row by row from the left</button>
+<button class="opt">Six rows and three columns, filled column by column from the left</button>
+<div class="feedback good" data-feedback-good>Yes. The keyword has 6 letters, so there are 6 columns and 18 / 6 = 3 rows. The columns are filled in number order, not left to right.</div>
+<div class="feedback bad" data-feedback-bad>No. The keyword has 6 letters, so the grid has 6 columns, and 18 / 6 = 3 rows. Fill each column in number order, not row by row and not left to right.</div>
+</div>
+
+<p>Next is Playfair, the cipher that encrypts pairs of letters from a 5 by 5 grid. It also starts from a keyword, but it works on pairs, not on a column order.</p>
+<p class="source">Source: Topic 3a slides 10, 11, 12 and 14. Slide 14 shows encryption only. The decryption walk here is slide 14 run in reverse, and every value was checked in Python. Dropping the padding X is the lesson's own step: the slides do not show how the receiver removes it, and the lesson says only that the X is padding. Repeated letters in a keyword: not on the slides, so this lesson does not cover them.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0013a-columnar-encrypt.html">Lesson 13a</a></span><span><a href="0014a-playfair-grid.html">Lesson 14a</a> &rarr;</span></div>
+</body>
+</html>

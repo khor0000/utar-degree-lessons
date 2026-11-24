@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 24 &mdash; Topic 2 quiz check</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 24 &middot; Quiz prep (Tue 17 Nov) &middot; UCCN1223</div>
+<h1>Topic 2 quiz check: files, links and passwords</h1>
+<p><strong>Topic 2 for the quiz is four ideas: a file system is a tree of folders, a hard link is a second name for the same data, a dictionary attack is beaten by salt, and octal codes give permissions.</strong> This lesson skips the permission drills, which Lesson 0004 to 0006 already cover.</p>
+
+<div class="note"><strong>Looks like</strong> a Windows shortcut. A hard link is a second name for the same inode.</div>
+
+<h2>Hard link vs symbolic link</h2>
+<table>
+<thead><tr><th></th><th>Hard link</th><th>Symbolic (soft) link</th></tr></thead>
+<tbody>
+<tr><td>The difference</td><td>Points to the same inode as the original</td><td>Creates its own new inode</td></tr>
+<tr><td>Why both matter</td><td>Keeps the data alive after one name is deleted</td><td>Can link across file systems and to folders</td></tr>
+<tr><td>When to use which</td><td>Slide 22 says a hard link cannot cross file systems</td><td>Slide 22 says a symbolic link can cross file systems</td></tr>
+</tbody>
+</table>
+
+<h2>The four ideas</h2>
+<table>
+<thead><tr><th>Idea</th><th>What to remember (Topic 2, slides 11, 15, 16, 20, 22)</th></tr></thead>
+<tbody>
+<tr><td>Inode</td><td>The record the system keeps for each file: size, owner, permissions and disk location. It does not store the name.</td></tr>
+<tr><td>Hash</td><td>A fixed-length fingerprint of data. It cannot be reversed to get the data back.</td></tr>
+<tr><td>File system tree</td><td>Folders hold files and subfolders. The topmost folder is the root.</td></tr>
+<tr><td>Hard link</td><td>Points to the original inode. Deleting the original leaves the link holding the data.</td></tr>
+<tr><td>Dictionary attack</td><td>Hash each word, compare with stored hashes. Slide 15 says a 500,000-word dictionary is "often enough" to find most passwords.</td></tr>
+<tr><td>Salt</td><td>A random number per user ID, stored with the hash. It makes a precomputed dictionary useless.</td></tr>
+</tbody>
+</table>
+
+<h2>Check yourself</h2>
+<div class="quiz" data-quiz>
+<p class="prompt">What is the topmost folder of a file system tree called?</p>
+<button class="opt">The root</button>
+<button class="opt">An inode</button>
+<button class="opt">A salt</button>
+<button class="opt">Hard link</button>
+<div class="feedback good" data-feedback-good>Yes. The topmost folder is the root folder.</div>
+<div class="feedback bad" data-feedback-bad>The topmost folder is the root. An inode is metadata about one file, and salt belongs to passwords.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">You create a hard link to a file, then delete the original. What happens to the hard link?</p>
+<button class="opt">It still holds data</button>
+<button class="opt">It is deleted too</button>
+<button class="opt">It points to nothing</button>
+<button class="opt">It becomes a folder</button>
+<div class="feedback good" data-feedback-good>Yes. A hard link points to the same inode, so the data stays while any link remains.</div>
+<div class="feedback bad" data-feedback-bad>A hard link points to the same inode as the original, so deleting the original name does not remove the data.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">Which link type creates a new inode?</p>
+<button class="opt">The hard link</button>
+<button class="opt" data-correct>Symbolic (soft) link</button>
+<button class="opt">Both of them</button>
+<button class="opt">Neither of them</button>
+<div class="feedback good" data-feedback-good>Yes. Slide 22: a symbolic link creates a new inode, while a hard link does not.</div>
+<div class="feedback bad" data-feedback-bad>Slide 22 says a symbolic link creates a new inode. A hard link does not.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">Why is salt used for passwords?</p>
+<button class="opt">It stops a precomputed dictionary being reused</button>
+<button class="opt">It makes the stored password much shorter</button>
+<button class="opt">It removes the need for a hash</button>
+<button class="opt">It encrypts the password with a key</button>
+<div class="feedback good" data-feedback-good>Yes. Each user has a random salt, so the same word gives a different hash for each user.</div>
+<div class="feedback bad" data-feedback-bad>Salt is a random value stored with each user ID. It makes the same dictionary of hashes useless against each user.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">What does octal <code>640</code> mean for a file?</p>
+<button class="opt">Owner read/write, group read, others forbidden</button>
+<button class="opt">Everyone can read, write and execute</button>
+<button class="opt">Owner read/write/execute, group none, others read</button>
+<button class="opt">Owner none, group read/write, others forbidden</button>
+<div class="feedback good" data-feedback-good>Yes. Slide 35: 640 is read/write for the owner, read-only for the group, and forbidden to others.</div>
+<div class="feedback bad" data-feedback-bad>Read the digits one by one: owner 6 (rw-), group 4 (r--), others 0 (---). Slide 35 gives that meaning.</div>
+</div>
+
+<p>Back to <a href="0023-lecture-1-quiz-mcq.html">Lesson 23, Lecture 1</a>. Ask me anything that is unclear.</p>
+</body>
+</html>

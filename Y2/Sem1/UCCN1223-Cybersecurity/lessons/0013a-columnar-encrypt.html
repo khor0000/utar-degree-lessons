@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 13a &mdash; Columnar transposition: encrypt</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 13a &middot; Topic 3a &middot; UCCN1223</div>
+<h1>Columnar transposition: write in rows, read in columns</h1>
+<p><strong>Columnar transposition writes the message in rows under a keyword, then reads the columns in the alphabetical order of the keyword's letters. The letters never change. Only their positions do.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> lesson 9 showed <code>HELLO</code> becoming <code>HLOEL</code>, a rearrangement with no key. This is the version with a keyword that you can do by hand. <strong>Focus on:</strong> the grid, the column order, and reading columns in number order. <strong>Skip for now:</strong> the theory of why rearranging helps (slide 15). <strong>How you'll be tested:</strong> by hand, no calculator. The old-format May 2026 Q2 had an 8-mark columnar question. Whether the new format keeps it is not confirmed.</div>
+
+<p><strong>Bridge:</strong> lesson 9's <code>HLOEL</code> (the rail fence) was a rearrangement with a fixed pattern, and it was called transposition on slide 12. Here the keyword sets the pattern, and the grid does the rearranging.</p>
+
+<div class="note"><strong>Looks like the keyword ciphers (<a href="0012a-keyword-cipher.html">lessons 12a to 12d</a>), but...</strong> they also start from a keyword, so the key looks the same. They <em>substitute</em>: each letter is swapped for another letter, and the letters change. Columnar transposition swaps no letters. The name "keyword transposed" on slide 33 is misleading: its letters change too.</div>
+
+<div class="note"><strong>Looks like the two-row strip (lesson 11), but...</strong> the strip swaps letters; columnar moves them, and the letters stay the same.</div>
+
+<h2>1. The keyword sets the column order</h2>
+<p>A <strong>keyword</strong> is a word both sides agree on in advance. Its letters decide the order in which the columns are read. Take <code>GERMAN</code>. Number its letters in alphabetical order: A is 1, E is 2, G is 3, M is 4, N is 5, R is 6. Those numbers, not the letters, tell you what to read first.</p>
+<p>Repeated letters in a keyword are not on the slides, so this lesson uses only keywords with no repeats.</p>
+<p>Work through the slide 14 example, <code>DEFEND THE EAST WALL</code> with key <code>GERMAN</code>. Press Next to see each step:</p>
+
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Write the keyword. Under it, write its number: A is 1, E is 2, and so on."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td>4</td><td>1</td><td>5</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Write the message in rows, six letters per row. Row 1 is D E F E N D."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td>4</td><td>1</td><td>5</td></tr><tr><td>D</td><td>E</td><td>F</td><td>E</td><td>N</td><td>D</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Row 2 is T H E E A S."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td>4</td><td>1</td><td>5</td></tr><tr><td>D</td><td>E</td><td>F</td><td>E</td><td>N</td><td>D</td></tr><tr><td>T</td><td>H</td><td>E</td><td>E</td><td>A</td><td>S</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Row 3 is T W A L L and one empty cell. Fill that cell with the padding letter X."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td>4</td><td>1</td><td>5</td></tr><tr><td>D</td><td>E</td><td>F</td><td>E</td><td>N</td><td>D</td></tr><tr><td>T</td><td>H</td><td>E</td><td>E</td><td>A</td><td>S</td></tr><tr><td>T</td><td>W</td><td>A</td><td>L</td><td>L</td><td>X</td></tr></tbody></table></div>
+<div class="walk-stage" data-caption="Number 1 is the A column. Read it top to bottom: N, A, L."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td>4</td><td><mark>1</mark></td><td>5</td></tr><tr><td>D</td><td>E</td><td>F</td><td>E</td><td><mark>N</mark></td><td>D</td></tr><tr><td>T</td><td>H</td><td>E</td><td>E</td><td><mark>A</mark></td><td>S</td></tr><tr><td>T</td><td>W</td><td>A</td><td>L</td><td><mark>L</mark></td><td>X</td></tr></tbody></table><p>Ciphertext so far: <code>NAL</code></p></div>
+<div class="walk-stage" data-caption="Number 2 is the E column. Read it: E, H, W."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td><mark>2</mark></td><td>6</td><td>4</td><td>1</td><td>5</td></tr><tr><td>D</td><td><mark>E</mark></td><td>F</td><td>E</td><td>N</td><td>D</td></tr><tr><td>T</td><td><mark>H</mark></td><td>E</td><td>E</td><td>A</td><td>S</td></tr><tr><td>T</td><td><mark>W</mark></td><td>A</td><td>L</td><td>L</td><td>X</td></tr></tbody></table><p>Ciphertext so far: <code>NAL EHW</code></p></div>
+<div class="walk-stage" data-caption="Number 3 is the G column, the first column on the page. Read it: D, T, T."><table><thead><tr><th><mark>G</mark></th><th>E</th><th>R</th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td><mark>3</mark></td><td>2</td><td>6</td><td>4</td><td>1</td><td>5</td></tr><tr><td><mark>D</mark></td><td>E</td><td>F</td><td>E</td><td>N</td><td>D</td></tr><tr><td><mark>T</mark></td><td>H</td><td>E</td><td>E</td><td>A</td><td>S</td></tr><tr><td><mark>T</mark></td><td>W</td><td>A</td><td>L</td><td>L</td><td>X</td></tr></tbody></table><p>Ciphertext so far: <code>NAL EHW DTT</code></p></div>
+<div class="walk-stage" data-caption="Number 4 is the M column. Read it: E, E, L."><table><thead><tr><th>G</th><th>E</th><th>R</th><th><mark>M</mark></th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td><mark>4</mark></td><td>1</td><td>5</td></tr><tr><td>D</td><td>E</td><td>F</td><td><mark>E</mark></td><td>N</td><td>D</td></tr><tr><td>T</td><td>H</td><td>E</td><td><mark>E</mark></td><td>A</td><td>S</td></tr><tr><td>T</td><td>W</td><td>A</td><td><mark>L</mark></td><td>L</td><td>X</td></tr></tbody></table><p>Ciphertext so far: <code>NAL EHW DTT EEL</code></p></div>
+<div class="walk-stage" data-caption="Number 5 is the N column. Read it: D, S, X."><table><thead><tr><th>G</th><th>E</th><th>R</th><th>M</th><th>A</th><th><mark>N</mark></th></tr></thead><tbody><tr><td>3</td><td>2</td><td>6</td><td>4</td><td>1</td><td><mark>5</mark></td></tr><tr><td>D</td><td>E</td><td>F</td><td>E</td><td>N</td><td><mark>D</mark></td></tr><tr><td>T</td><td>H</td><td>E</td><td>E</td><td>A</td><td><mark>S</mark></td></tr><tr><td>T</td><td>W</td><td>A</td><td>L</td><td>L</td><td><mark>X</mark></td></tr></tbody></table><p>Ciphertext so far: <code>NAL EHW DTT EEL DSX</code></p></div>
+<div class="walk-stage" data-caption="Number 6 is the R column, the third column on the page. Read it: F, E, A. The ciphertext is complete."><table><thead><tr><th>G</th><th>E</th><th><mark>R</mark></th><th>M</th><th>A</th><th>N</th></tr></thead><tbody><tr><td>3</td><td>2</td><td><mark>6</mark></td><td>4</td><td>1</td><td>5</td></tr><tr><td>D</td><td>E</td><td><mark>F</mark></td><td>E</td><td>N</td><td>D</td></tr><tr><td>T</td><td>H</td><td><mark>E</mark></td><td>E</td><td>A</td><td>S</td></tr><tr><td>T</td><td>W</td><td><mark>A</mark></td><td>L</td><td>L</td><td>X</td></tr></tbody></table><p>Ciphertext: <code>NALEHWDTTEELDSXFEA</code></p></div>
+</div>
+
+<h2>2. The rule, and where the padding goes</h2>
+<div class="note"><strong>General rule (encrypt):</strong> (1) number the keyword's letters alphabetically; (2) write the message in rows, as many letters per row as the keyword has letters; (3) fill the empty cells of the last row with the <strong>padding letter</strong>; (4) read the columns in number order, top to bottom.</div>
+<p>A <strong>padding letter</strong> is a filler, here <code>X</code>.</p>
+<p>Slide 14 says the message has 16 letters. Count it: <code>DEFENDTHEEASTWALL</code> has 17. So there is one padding letter, not two. The grid on the slide is correct; only its count is wrong.</p>
+
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Start with the Numbered Column</strong><p>Columns are read in number order, not left to right. The first column read is the one under number 1.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td>Start with the A column: <code>NAL</code></td><td>Start with the first column on the page: <code>DTT</code></td></tr></tbody></table></div>
+
+<h2>Check yourself</h2>
+<p>Do this on a blank page first. The keyword is <code>CHAIR</code> and the message is <code>MEET ME AT NOON</code>. Encrypt it, then reveal each step.</p>
+<details class="reveal"><summary>Reveal the answer, step by step</summary>
+<ol>
+<li>Number the keyword: C is 2, H is 3, A is 1, I is 4, R is 5.</li>
+<li>Remove the spaces: <code>MEETMEATNOON</code> has 12 letters. Five per row gives 3 rows, 15 cells, so 3 padding letters.</li>
+<li>Rows: <code>MEETM</code> / <code>EATNO</code> / <code>ONXXX</code>.</li>
+<li>Read in number order. Number 1 is the A column (column 3): <code>E T X</code>. Number 2 is the C column (column 1): <code>M E O</code>.</li>
+<li>Number 3 is the H column (column 2): <code>E A N</code>. Number 4 is the I column (column 4): <code>T N X</code>. Number 5 is the R column (column 5): <code>M O X</code>.</li>
+<li>Join the pieces: <code>ETXMEOEANTNXMOX</code>.</li>
+</ol>
+</details>
+
+<div class="quiz" data-quiz>
+<p class="prompt">In columnar transposition with keyword <code>GERMAN</code>, what happens to the first <code>D</code> of <code>DEFEND</code>?</p>
+<button class="opt">It is swapped for a different letter of the alphabet</button>
+<button class="opt" data-correct>It keeps its identity but moves to a new place</button>
+<button class="opt">It moves forward by the number of its keyword letter</button>
+<button class="opt">It is dropped from the grid and replaced by X</button>
+<div class="feedback good" data-feedback-good>Yes. The letters never change. This D is in the G column, which is read third, so it becomes the seventh letter of the ciphertext.</div>
+<div class="feedback bad" data-feedback-bad>No letter is swapped or shifted in columnar transposition. Only X is ever added, as padding, at the end of the last row. The D keeps its identity and changes position.</div>
+</div>
+
+<p>Next, in lesson 13b, the same grid runs backwards: a receiver who knows the keyword rebuilds it from the ciphertext and reads the message back.</p>
+<p class="source">Source: Topic 3a slides 10, 11, 12 and 14. Slide 14 shows encryption only; the decryption walk in lesson 13b is the same grid run in reverse, and every value was checked in Python. Slide 12 lists columnar under "keyless" transposition, but slide 14 uses a keyword; this lesson follows slide 14. Slide 14 says the message has 16 letters; it has 17. Repeated letters in a keyword: not on the slides, so this lesson does not cover them.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0012d-interrupted-keyword.html">Lesson 12d</a></span><span><a href="0013b-columnar-decrypt.html">Lesson 13b</a> &rarr;</span></div>
+</body>
+</html>

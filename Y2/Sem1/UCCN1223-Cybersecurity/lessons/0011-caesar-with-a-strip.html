@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 11 &mdash; Caesar with a strip</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 11 &middot; Topic 3a &middot; UCCN1223</div>
+<h1>The Caesar cipher with a two-row strip</h1>
+<p><strong>Write the alphabet on top. Under it, write the alphabet again, starting at the letter the key lands on (key 3 lands on D). To encrypt, find the letter on top and read the one below it. To decrypt, find the letter on the bottom and read the one above it. You never count backwards.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> Caesar is the "move every letter 3 forward" recipe from <a href="0008-what-a-cipher-is.html">lesson 8</a>. The strip turns that recipe into lookups, and the keyword ciphers reuse it. <strong>Focus on:</strong> building the strip and reading it both ways. <strong>Skip for now:</strong> the number method (A=0 and so on). It comes in <a href="0015a-modular-arithmetic.html">lesson 15a</a>, modular arithmetic. <strong>How you'll be tested:</strong> encrypt and decrypt <strong>by hand</strong>, with no calculator (old-format papers: May 26 Q2a, 4 marks; Oct 25 Q1a&ndash;b, 8 marks). Also Lab 2 Q1.</div>
+
+<p>Lesson 8 gave the recipe. Here it becomes a strip you read with your eyes.</p>
+
+<div class="note"><strong>Looks like the recipe in lesson 8 and the "shift LEFT" rule on slide 21, but&hellip;</strong>
+<table>
+<thead><tr><th></th><th>Recipe (8, slide 21)</th><th>Strip (this lesson)</th></tr></thead>
+<tbody>
+<tr><td>Same</td><td colspan="2">The shift is the same: 3 places, forward to encrypt, back to decrypt</td></tr>
+<tr><td>Different</td><td>You count the places, forward or back</td><td>You look the letter up in a table</td></tr>
+<tr><td>Why</td><td colspan="2">Counting backwards is the step you said you cannot do, so the strip replaces it with a lookup</td></tr>
+</tbody>
+</table></div>
+
+<h2>1. Encrypt HELLO with key 3</h2>
+<p>Press Next, or the arrow keys:</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="The key 3 strip. The top row is the alphabet. The bottom row starts at D, 3 places after A, and wraps back round to A, B, C at the end.">
+<table><tbody>
+<tr><th>plain</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td></tr>
+<tr><th>cipher</th><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td></tr>
+</tbody></table>
+<table><tbody>
+<tr><th>plain</th><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
+<tr><th>cipher</th><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Find H on the top row. The letter below it is K. So H becomes K.">
+<table><tbody>
+<tr><th>plain</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td style="background:var(--cyan-well);font-weight:bold">H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td></tr>
+<tr><th>cipher</th><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td style="background:var(--cyan-well);font-weight:bold">K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td></tr>
+</tbody></table>
+<table><tbody>
+<tr><th>plain</th><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
+<tr><th>cipher</th><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Do the other letters the same way. HELLO becomes KHOOR.">
+<table><tbody>
+<tr><th>top</th><td>H</td><td>E</td><td>L</td><td>L</td><td>O</td></tr>
+<tr><th>below</th><td>K</td><td>H</td><td>O</td><td>O</td><td>R</td></tr>
+</tbody></table>
+</div>
+</div>
+<p>So <code>HELLO &rarr; KHOOR</code>. Spaces and punctuation stay where they are, in the same place.</p>
+
+<h2>2. Decrypt KHOOR: bottom to top</h2>
+<p>Use the <strong>same strip</strong>. Find each letter on the bottom row and read the letter above it.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Find K on the bottom row. The letter above it is H.">
+<table><tbody>
+<tr><th>plain</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td style="background:var(--cyan-well);font-weight:bold">H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td></tr>
+<tr><th>cipher</th><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td style="background:var(--cyan-well);font-weight:bold">K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Do the rest the same way. KHOOR becomes HELLO.">
+<table><tbody>
+<tr><th>above</th><td>H</td><td>E</td><td>L</td><td>L</td><td>O</td></tr>
+<tr><th>bottom</th><td>K</td><td>H</td><td>O</td><td>O</td><td>R</td></tr>
+</tbody></table>
+</div>
+</div>
+<div class="note"><strong>You might reasonably wonder:</strong> can I decrypt KHOOR by encrypting it again with key 3? No. That gives <code>NKRRU</code>. Decrypting is the same strip read the other way, not a second encryption.</div>
+
+<h2>3. The end of the alphabet takes care of itself</h2>
+<p>Encrypt <code>ZOO</code> with key 3: Z has C under it, so <code>ZOO &rarr; CRR</code>.</p>
+
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Show the Strip</strong><p>Old-format questions say "show your steps". Write the two-row strip at the top of your answer: that is your working. An answer with no strip can lose the method marks.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td>The strip, then <code>HELLO &rarr; KHOOR</code></td><td>Only <code>KHOOR</code></td></tr></tbody></table></div>
+
+<h2>4. Check yourself</h2>
+<div class="paper-task"><strong class="title">Check 1: slide 22, key 6 (fresh input)</strong>
+<p>Encrypt <code>KNOWLEDGE IS THE KEY TO SUCCESS</code> with key 6. Try it on paper before you open the reveal.</p>
+<details class="reveal"><summary>Reveal, step by step</summary>
+<ol>
+<li>Key 6: the bottom row starts at G, so the bottom row is G H I&hellip; F.</li>
+<li>First word, letter by letter: K&rarr;Q, N&rarr;T, O&rarr;U, W&rarr;C, L&rarr;R, E&rarr;K, D&rarr;J, G&rarr;M, E&rarr;K. So <code>KNOWLEDGE</code> becomes <code>QTUCRKJMK</code>.</li>
+<li>Full answer: <code>QTUCRKJMK OY ZNK QKE ZU YAIIKYY</code>. The spaces stay put.</li>
+</ol></details></div>
+
+<div class="paper-task"><strong class="title">Check 2: slide 23, decrypt (fresh input)</strong>
+<p>Slide 23 gives <code>IEHKX YKIAXOZE OY YCKKZ</code> and says key 4. Decrypt only the first word, <code>IEHKX</code>, with key 4. Does it read as English?</p>
+<details class="reveal"><summary>Reveal, step by step</summary>
+<ol>
+<li>Key 4: the bottom row starts at E. Pairs: I&rarr;E, E&rarr;A, H&rarr;D, K&rarr;G, X&rarr;T.</li>
+<li>Result: <code>EADGT</code>. That is not a word, so key 4 is not the key.</li>
+<li>Try key 6, the bottom row starts at G. Pairs: I&rarr;C, E&rarr;Y, H&rarr;B, K&rarr;E, X&rarr;R. Result: <code>CYBER</code>.</li>
+<li>The full line with key 6 is <code>CYBER SECURITY IS SWEET</code>. The slide's key 4 does not give English. Only key 6 does.</li>
+</ol></details></div>
+
+<div class="quiz" data-quiz>
+<p class="prompt"><code>KHOOR</code> was made with key 3. Which step gets <code>HELLO</code> back?</p>
+<button class="opt" data-correct>Read the key 3 strip bottom to top</button>
+<button class="opt">Read the key 3 strip top to bottom</button>
+<button class="opt">Encrypt the whole message again using key 3</button>
+<button class="opt">Count each letter three places forward from it</button>
+<div class="feedback good" data-feedback-good>Yes. Find K on the bottom row and read above it: H. (Counting 3 places back by hand gives the same answer.)</div>
+<div class="feedback bad" data-feedback-bad>Not this one. Reading top to bottom, encrypting again, or counting forward all move each letter 3 more places forward and give NKRRU. Decryption goes back: read bottom to top.</div>
+</div>
+
+<div class="paper-task"><strong class="title">Paper practice (answers hidden)</strong>
+<p>Old-format questions. Do each with a strip, then open the reveal.</p>
+<ul>
+<li>Oct 25 Q1a: encrypt <code>BUILD TRUST, BUILD SUCCESS</code> with key 5.</li>
+<li>May 26 Q2a: encrypt <code>CYBERSECURITY IS FUN AT UTAR</code> with key 5.</li>
+<li>Oct 25 Q1b: decrypt <code>VXUZKIZ</code> with key 6. The bottom row starts at G.</li>
+</ul>
+<details class="reveal"><summary>Reveal the answers</summary>
+<ul>
+<li><code>GZNQI YWZXY, GZNQI XZHHJXX</code></li>
+<li><code>HDGJWXJHZWNYD NX KZS FY ZYFW</code></li>
+<li><code>PROTECT</code></li>
+</ul></details></div>
+
+<p class="source">Source: Topic 3a slides 12, 21&ndash;23 (slides 22 and 23 print no answers). Old-format papers Oct 25 Q1, May 26 Q2. Every value checked by Python.</p>
+<p>Next: lesson 12a, the keyword cipher. It builds its strip from a word instead of a shift.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0010-how-attackers-break-ciphers.html">Lesson 10</a></span><span><a href="0012a-keyword-cipher.html">Lesson 12a</a> &rarr;</span></div>
+</body>
+</html>

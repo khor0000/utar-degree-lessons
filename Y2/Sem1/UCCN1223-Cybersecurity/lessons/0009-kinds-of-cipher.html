@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 9 &mdash; The two kinds of cipher</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 9 &middot; Topic 3a &middot; UCCN1223</div>
+<h1>The two kinds of cipher</h1>
+<p><strong>Ciphers are sorted two ways: by how they scramble (replacing letters or shuffling them) and by how many keys they use (one shared key, or a matched pair).</strong></p>
+
+<p>Lesson 8 showed the five elements of a cryptosystem, using one example: moving each letter 3 places forward, which is the Caesar cipher covered in full in lesson 11. This lesson sorts ciphers by how they scramble, and by how many keys they use.</p>
+
+<h2>1. Two ways to scramble: replace, or shuffle</h2>
+<div class="note"><strong>Looks like lesson 8's CYBER SECURITY example, but&hellip;</strong>
+<table>
+<thead><tr><th></th><th><strong>Substitution</strong> (the 8 recipe)</th><th><strong>Transposition</strong> (rail fence)</th></tr></thead>
+<tbody>
+<tr><td>Same</td><td colspan="2">Both change the message with a recipe, and both can be undone by running that recipe backwards</td></tr>
+<tr><td>Different</td><td>Each letter becomes a different letter, so the letters themselves change</td><td>Each letter stays the same letter and only moves, so the letters stay the same</td></tr>
+<tr><td>Why</td><td colspan="2">Count the letters before and after. The same letters in a new order means transposition. A letter swapped for another means substitution</td></tr>
+</tbody>
+</table></div>
+<p>Every Topic 3a cipher does one of these two things (slide 11). Here is one word, <code>HELLO</code>, scrambled both ways. Press Next to go letter by letter:</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Both start with HELLO. Substitution swaps each letter for another, using the 8 recipe with key 3. Rail fence (2 rails) writes the letters in a zigzag. A rail is one row of the zigzag."><table><thead><tr><th></th><th>Letter 1</th><th>Letter 2</th><th>Letter 3</th><th>Letter 4</th><th>Letter 5</th></tr></thead><tbody>
+<tr><th>Plain</th><td>H</td><td>E</td><td>L</td><td>L</td><td>O</td></tr>
+<tr><th>Substitution</th><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td></tr>
+<tr><th>Rail</th><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="Letter 1, H. Substitution moves it 3 places on, to K. Rail fence puts H on rail 1, the top rail."><table><thead><tr><th></th><th>Letter 1</th><th>Letter 2</th><th>Letter 3</th><th>Letter 4</th><th>Letter 5</th></tr></thead><tbody>
+<tr><th>Plain</th><td>H</td><td>E</td><td>L</td><td>L</td><td>O</td></tr>
+<tr><th>Substitution</th><td style="background:var(--cyan-well);font-weight:bold">K</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td></tr>
+<tr><th>Rail</th><td style="background:var(--cyan-well);font-weight:bold">1</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="Letter 2, E. Substitution gives H. Rail fence puts E on rail 2, the bottom rail, so the rails zigzag."><table><thead><tr><th></th><th>Letter 1</th><th>Letter 2</th><th>Letter 3</th><th>Letter 4</th><th>Letter 5</th></tr></thead><tbody>
+<tr><th>Plain</th><td>H</td><td>E</td><td>L</td><td>L</td><td>O</td></tr>
+<tr><th>Substitution</th><td>K</td><td style="background:var(--cyan-well);font-weight:bold">H</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td></tr>
+<tr><th>Rail</th><td>1</td><td style="background:var(--cyan-well);font-weight:bold">2</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="Letter 3, L. Substitution gives O. Rail fence goes back up to rail 1."><table><thead><tr><th></th><th>Letter 1</th><th>Letter 2</th><th>Letter 3</th><th>Letter 4</th><th>Letter 5</th></tr></thead><tbody>
+<tr><th>Plain</th><td>H</td><td>E</td><td>L</td><td>L</td><td>O</td></tr>
+<tr><th>Substitution</th><td>K</td><td>H</td><td style="background:var(--cyan-well);font-weight:bold">O</td><td>&hellip;</td><td>&hellip;</td></tr>
+<tr><th>Rail</th><td>1</td><td>2</td><td style="background:var(--cyan-well);font-weight:bold">1</td><td>&hellip;</td><td>&hellip;</td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="Letter 4, the second L. Substitution gives O again. Rail fence puts it on rail 2."><table><thead><tr><th></th><th>Letter 1</th><th>Letter 2</th><th>Letter 3</th><th>Letter 4</th><th>Letter 5</th></tr></thead><tbody>
+<tr><th>Plain</th><td>H</td><td>E</td><td>L</td><td>L</td><td>O</td></tr>
+<tr><th>Substitution</th><td>K</td><td>H</td><td>O</td><td style="background:var(--cyan-well);font-weight:bold">O</td><td>&hellip;</td></tr>
+<tr><th>Rail</th><td>1</td><td>2</td><td>1</td><td style="background:var(--cyan-well);font-weight:bold">2</td><td>&hellip;</td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="Letter 5, O. Substitution gives R. Rail fence puts it on rail 1."><table><thead><tr><th></th><th>Letter 1</th><th>Letter 2</th><th>Letter 3</th><th>Letter 4</th><th>Letter 5</th></tr></thead><tbody>
+<tr><th>Plain</th><td>H</td><td>E</td><td>L</td><td>L</td><td>O</td></tr>
+<tr><th>Substitution</th><td>K</td><td>H</td><td>O</td><td>O</td><td style="background:var(--cyan-well);font-weight:bold">R</td></tr>
+<tr><th>Rail</th><td>1</td><td>2</td><td>1</td><td>2</td><td style="background:var(--cyan-well);font-weight:bold">1</td></tr>
+</tbody></table></div>
+<div class="walk-stage" data-caption="Read out. Substitution gives KHOOR: the same order, with the letters changed. Rail fence reads rail 1, then rail 2, which gives HLOEL: the same letters, in a new order."><table><thead><tr><th></th><th>Letter 1</th><th>Letter 2</th><th>Letter 3</th><th>Letter 4</th><th>Letter 5</th></tr></thead><tbody>
+<tr><th>Plain</th><td>H</td><td>E</td><td>L</td><td>L</td><td>O</td></tr>
+<tr><th>Substitution</th><td>K</td><td>H</td><td>O</td><td>O</td><td>R</td></tr>
+<tr><th>Rail</th><td>1</td><td>2</td><td>1</td><td>2</td><td>1</td></tr>
+<tr><th>Read out</th><td colspan="5"><code>KHOOR</code> (substitution, read in order) and <code>HLOEL</code> (rail fence: rail 1 is H L O, then rail 2 is E L)</td></tr>
+</tbody></table></div>
+</div>
+<p>The rule for each one, and how to tell them apart:</p>
+<table>
+<thead><tr><th></th><th><strong>Substitution</strong>: replace each letter</th><th><strong>Transposition</strong>: shuffle the order</th></tr></thead>
+<tbody>
+<tr><td>Example with <code>HELLO</code></td><td><code>KHOOR</code>: each letter swapped for another (slide 12)</td><td><code>HLOEL</code>: the same letters in a new order (rail fence, slide 12)</td></tr>
+<tr><td>What stays the same</td><td>The order of the letters</td><td>The letters themselves</td></tr>
+<tr><td>Topic 3a ciphers</td><td>Caesar, the keyword family, Playfair, Hill</td><td>Columnar transposition</td></tr>
+<tr><td>Weakness</td><td>The double <code>L</code> in HELLO becomes a double <code>O</code>, so patterns show through</td><td>Every original letter is still there to count</td></tr>
+</tbody>
+</table>
+<div class="note"><strong>You might reasonably wonder:</strong> if reordering letters scrambles them, is any rearranging encryption? No. Reversing <code>HELLO</code> to <code>OLLEH</code> rearranges the letters, but no secret is involved, so anyone who knows the rule can undo it. Encryption means the scrambling runs with a secret key, so only a key holder can reverse it.</div>
+<p>Slide 15 gives the names for what each one achieves: substitution gives <strong>confusion</strong>, so you cannot tell which letter became which, and transposition gives <strong>diffusion</strong>, which spreads the message over the ciphertext.</p>
+
+<h2>2. One shared key, or a pair of keys</h2>
+<div class="note"><strong>Looks like the password in the ssh login (lesson 7), but&hellip;</strong>
+<table>
+<thead><tr><th></th><th><strong>Password</strong></th><th><strong>Symmetric key</strong></th></tr></thead>
+<tbody>
+<tr><td>Same</td><td colspan="2">Both are secret, and both must stay away from an eavesdropper</td></tr>
+<tr><td>Different</td><td>The server checks it: does what you typed match the stored one?</td><td>The scrambling uses it: the same key must be held by both people to read the message</td></tr>
+<tr><td>Why</td><td colspan="2">A password is only compared with a stored record. A symmetric key is put into the recipe itself, so it changes the output</td></tr>
+</tbody>
+</table></div>
+<div class="note"><strong>You might reasonably wonder:</strong> if the two keys are different, how can one open what the other locked? Because they are a matched pair: each undoes the other.</div>
+<table>
+<thead><tr><th></th><th><strong>Symmetric</strong></th><th><strong>Asymmetric</strong></th></tr></thead>
+<tbody>
+<tr><td>Keys</td><td>One key, shared by both people</td><td>Two different keys: a public one and a private one</td></tr>
+<tr><td>Everyday picture</td><td>A house key: you hand a copy to anyone who needs to get in</td><td>A parcel locker: anyone can drop a parcel in, but only the person with the pickup code can open it</td></tr>
+<tr><td>Advantage (slide 9)</td><td>Gives authenticity, as long as the key stays secret</td><td>Excels at key management</td></tr>
+<tr><td>Problem (slides 9 and 50)</td><td>Key distribution: the shared key has to reach the other person safely</td><td>Covered in Topic 3b</td></tr>
+</tbody>
+</table>
+
+
+<h2>Check yourself</h2>
+<div class="quiz" data-quiz>
+<p class="prompt"><code>HELLO</code> becomes <code>HLOEL</code>. Which kind of cipher made this change?</p>
+<button class="opt" data-correct>Transposition</button>
+<button class="opt">Substitution</button>
+<button class="opt">Asymmetric</button>
+<button class="opt">Hashing</button>
+<div class="feedback good" data-feedback-good>Yes. H, E, L, L and O are all still there. Only the order changed.</div>
+<div class="feedback bad" data-feedback-bad>Count the letters: H, E, L, L, O all appear in HLOEL. No letter was replaced, so it is transposition.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">In asymmetric encryption, what is the relation between the two keys?</p>
+<button class="opt" data-correct>A matched pair of different keys</button>
+<button class="opt">Two copies of one secret key</button>
+<button class="opt">Two keys that are both public</button>
+<button class="opt">One key used for two jobs</button>
+<div class="feedback good" data-feedback-good>Yes. One key locks and the other unlocks. They are not copies, and only one of them is public.</div>
+<div class="feedback bad" data-feedback-bad>The two keys are a matched pair, but they are different, not copies. Two public keys, or one key used twice, would not protect the message.</div>
+</div>
+
+<p>Next, lesson 10 shows how an attacker breaks these two kinds of cipher, by trying every key or by reading patterns in the ciphertext.</p>
+<p class="source">Source: Topic 3a slides 9, 11, 12, 15 and 50, and Topic 3b slides 4&ndash;6 and 8. Read 9 Nov 2026.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0008-what-a-cipher-is.html">Lesson 8</a></span><span><a href="0010-how-attackers-break-ciphers.html">Lesson 10</a> &rarr;</span></div>
+</body>
+</html>

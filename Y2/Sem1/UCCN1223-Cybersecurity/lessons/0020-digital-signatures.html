@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 20 &mdash; Digital signatures</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 20 &middot; Topic 3b &middot; UCCN1223</div>
+<h1>Digital signatures</h1>
+<p><strong>A digital signature lets anyone check who sent a message and that it was not changed. The sender makes it with their private key, and anyone checks it with the sender's public key.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> lesson 19 used the public key to hide a message from everyone except one reader. A signature runs the same numbers the other way, so anyone can read the message while the sender is still proved. <strong>Focus on:</strong> which key signs, which key verifies, and the sign and verify walk. <strong>Skip for now:</strong> how DSA and ECDSA compute their signatures (deck slides 37&ndash;40). <strong>How you'll be tested:</strong> Lab 2 (page 2) asks you to sign with RSA and verify, so do it by hand, with the Casio for the multiplying. The exam format for signatures is not confirmed.</div>
+
+<p>This is the RSA maths from <a href="0019-rsa-public-key.html">lesson 19</a> with the key roles swapped. You already have the pieces: the public pair <code>(e, n) = (7, 33)</code> and the private number <code>d = 3</code>.</p>
+
+<div class="note"><strong>Digital signature (new term).</strong> (1) <strong>What it is:</strong> a number the sender computes from the message, using their private key. (2) <strong>What value it holds:</strong> a whole number smaller than <code>n</code>, for example <code>S = 5</code> when <code>n = 33</code>. (3) <strong>Why it is needed:</strong> anyone can check it with the public key, and nobody can make it without the private key.</div>
+
+<p>A signature is judged on three properties. <strong>Authenticity</strong> proves the origin: the message came from this sender. <strong>Integrity</strong> proves the message was not changed (both met in <a href="0008-what-a-cipher-is.html">lesson 8</a>). <strong>Non-repudiation</strong> is new: the sender cannot later deny sending it, because only their private key could make the signature.</p>
+
+<div class="note"><strong>Looks like lesson 19 (encryption), but&hellip;</strong>
+<table>
+<thead><tr><th></th><th>Encryption (lesson 19)</th><th>Signature (this lesson)</th></tr></thead>
+<tbody>
+<tr><td>Same</td><td colspan="2">The same numbers (n = 33, e = 7, d = 3) and the same step: raise to a power, then take mod n</td></tr>
+<tr><td>Different</td><td>The sender uses the receiver's public key</td><td>The sender uses their own private key</td></tr>
+<tr><td>Why</td><td colspan="2">The private key always sits with the one party who must be the only possible holder. Encryption must let only one person read, so the receiver holds the private key. A signature must let only one person sign, so the sender holds it.</td></tr>
+</tbody>
+</table></div>
+
+<div class="note"><strong>Looks like</strong> a pasted scan of a name, but a scan can be copied onto any file; the digital signature cannot.</div>
+
+<h2>1. Sign and verify, with the lesson 19 keys</h2>
+<p>The deck has no numeric signature example. These numbers reuse lesson 19's keys so you can see the mechanics. Press Next, or use the arrow keys:</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Bob's keys. He holds the private key d = 3 and the public pair (7, 33). Alice holds only the public pair. The message is 14.">
+<table><thead><tr><th>Bob holds</th><th>On the wire</th><th>Alice holds</th></tr></thead><tbody>
+<tr><td><code>d = 3</code> (private), <code>(7, 33)</code> (public)</td><td>nothing yet</td><td><code>(7, 33)</code> (public)</td></tr>
+</tbody></table>
+<p>Message: <code>M = 14</code>.</p>
+</div>
+<div class="walk-stage" data-caption="Bob signs with his private key: S = 14 cubed mod 33. 14 squared is 196, and 196 mod 33 = 31. Then 31 times 14 = 434, and 434 mod 33 = 5. So S = 5.">
+<table><thead><tr><th>Bob holds</th><th>On the wire</th><th>Alice holds</th></tr></thead><tbody>
+<tr><td><code>d = 3</code>, computing <code>14<sup>3</sup></code></td><td>nothing yet</td><td><code>(7, 33)</code> (public)</td></tr>
+</tbody></table>
+<p><code>S = 14<sup>3</sup> mod 33</code>: <code>14<sup>2</sup> &rarr; 31</code>, then <code>31 &times; 14 = 434 &rarr; 5</code>. So <code>S = 5</code>.</p>
+</div>
+<div class="walk-stage" data-caption="Bob sends the message 14 and the signature 5 together. The message is not hidden.">
+<table><thead><tr><th>Bob holds</th><th>On the wire</th><th>Alice holds</th></tr></thead><tbody>
+<tr><td>nothing needed now</td><td><code>14</code> and <code>5</code>, in plain text</td><td><code>(7, 33)</code> (public)</td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Alice verifies with Bob's public key: 5 to the power 7, mod 33. 5 squared is 25; 5 to the 4th is 625, which is 31; 5 to the 6th is 31 times 25 = 775, which is 16; 5 to the 7th is 16 times 5 = 80, which is 14.">
+<table><thead><tr><th>Bob holds</th><th>On the wire</th><th>Alice holds</th></tr></thead><tbody>
+<tr><td>nothing needed</td><td><code>14</code> and <code>5</code></td><td><code>(7, 33)</code>, computing <code>5<sup>7</sup></code></td></tr>
+</tbody></table>
+<p><code>5<sup>7</sup> mod 33</code>: <code>5<sup>2</sup> &rarr; 25</code>, <code>5<sup>4</sup> &rarr; 31</code>, <code>5<sup>6</sup> &rarr; 16</code>, <code>5<sup>7</sup> &rarr; 14</code>.</p>
+</div>
+<div class="walk-stage" data-caption="Alice gets 14, the same as the message 14. The signature is valid.">
+<table><thead><tr><th>Bob holds</th><th>On the wire</th><th>Alice holds</th></tr></thead><tbody>
+<tr><td>nothing needed</td><td><code>14</code> and <code>5</code></td><td>result <code>14 = 14</code>: valid</td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Tamper check. Eve changes the message to 15 and keeps the signature 5. Alice computes 5 to the 7th mod 33 = 14 again. 14 is not 15, so she rejects the message. This comparison is how integrity is checked.">
+<table><thead><tr><th>Eve does</th><th>On the wire</th><th>Alice computes</th></tr></thead><tbody>
+<tr><td>changes the message to <code>15</code>, keeps <code>5</code></td><td><code>15</code> and <code>5</code></td><td><code>5<sup>7</sup> mod 33 = 14</code>, and <code>14 &ne; 15</code>: rejected</td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Only Bob's private key can make a signature for 15. He computes 15 cubed mod 33 = 9. Alice checks 9 to the 7th mod 33 = 15, which matches. Bob cannot later deny it: that is non-repudiation.">
+<table><thead><tr><th>Bob holds</th><th>On the wire</th><th>Alice holds</th></tr></thead><tbody>
+<tr><td><code>d = 3</code>, computing <code>15<sup>3</sup></code></td><td><code>15</code> and <code>9</code></td><td><code>(7, 33)</code>, computing <code>9<sup>7</sup></code></td></tr>
+</tbody></table>
+<p><code>15<sup>3</sup> mod 33 = 9</code>. Check: <code>9<sup>7</sup> mod 33 = 15</code>.</p>
+</div>
+</div>
+
+<div class="note"><strong>The rule:</strong> sign with the sender's <strong>private</strong> key (<code>d</code>). Verify with the sender's <strong>public</strong> key (<code>e</code>). The message travels in plain text, with the signature added beside it.</div>
+
+<h2>2. Check: sign a fresh message</h2>
+<div class="paper-task"><strong class="title">Fresh input: sign, then verify</strong>
+<p>Bob uses the same keys: <code>n = 33</code>, private <code>d = 3</code>, public <code>e = 7</code>. He signs the message <code>M = 2</code>. Find <code>S</code>, then verify it. Try it on paper before you open the reveal.</p>
+<details class="reveal"><summary>Reveal, step by step</summary>
+<ol>
+<li>Sign: <code>S = 2<sup>3</sup> mod 33 = 8</code>. Eight is already below 33, so no reduction is needed.</li>
+<li>Bob sends <code>2</code> and <code>8</code> together. The message <code>2</code> is in plain text.</li>
+<li>Verify: <code>8<sup>7</sup> mod 33</code>. <code>8<sup>2</sup> = 64 &rarr; 31</code>. <code>8<sup>4</sup> = 31 &times; 31 = 961 &rarr; 4</code>. <code>8<sup>6</sup> = 4 &times; 31 = 124 &rarr; 25</code>. <code>8<sup>7</sup> = 25 &times; 8 = 200 &rarr; 2</code>.</li>
+<li>The result is <code>2</code>, the same as the message. The signature is valid.</li>
+</ol></details></div>
+
+<h2>3. Encrypt or sign?</h2>
+<div class="note"><strong>Long messages.</strong> Deck slide 44 says RSA is slow on long messages, so the sender first makes a <strong>message digest</strong> (a short fingerprint of the message) and signs that. The hash function that makes the digest is taught in <a href="0021-hash-functions.html">lesson 21</a>. Until then, treat it as a black box: a short value that changes if the message changes. The walk skips it, so the numbers stay small.</div>
+
+<table>
+<thead><tr><th></th><th>Encryption (lesson 19)</th><th>Digital signature (this lesson)</th></tr></thead>
+<tbody>
+<tr><td>Sender uses</td><td>Receiver's public key</td><td>Sender's private key</td></tr>
+<tr><td>Opened or checked with</td><td>Receiver's private key</td><td>Sender's public key</td></tr>
+<tr><td>Gives</td><td>Confidentiality: only the receiver reads it</td><td>Authenticity, integrity, non-repudiation: the sender is proved, and the message stays readable</td></tr>
+</tbody>
+</table>
+
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Whose key signs?</strong><p>Students copy the encryption recipe into signing and swap in the receiver's key. The numbers look right, but the method is wrong.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td>Sign with the sender's private key; verify with the sender's public key</td><td>Sign with the receiver's public key, which is encryption</td></tr></tbody></table></div>
+
+<h2>4. Check yourself</h2>
+<div class="quiz" data-quiz>
+<p class="prompt">Alice wants proof that a message came from Bob. Which key does Bob use to sign it?</p>
+<button class="opt" data-correct>Bob's private key</button>
+<button class="opt">Alice's public key</button>
+<button class="opt">Bob's public key</button>
+<button class="opt">Alice's private key</button>
+<div class="feedback good" data-feedback-good>Yes. Only Bob holds that key, so only Bob could make the signature. Alice checks it with Bob's public key.</div>
+<div class="feedback bad" data-feedback-bad>Signing uses the sender's private key. Bob is the sender, so Bob's private key signs.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">A friend pastes a scanned picture of a handwritten name under an email. Is this a digital signature?</p>
+<button class="opt" data-correct>No, nobody's private key made it.</button>
+<button class="opt">No, because the message stays plain.</button>
+<button class="opt">Yes, it proves who sent it.</button>
+<button class="opt">Yes, since the name is signed.</button>
+<div class="feedback good" data-feedback-good>Right. A scanned name is a picture anyone can copy. A digital signature is a number that only the private-key holder can make.</div>
+<div class="feedback bad" data-feedback-bad>Not this one. A scanned name is a picture anyone can copy, so no private key made it. A digital signature is a number only the private-key holder can make.</div>
+</div>
+
+<p>Next: <a href="0021-hash-functions.html">lesson 21</a>, the hash function behind the message digest. That is the fingerprint you just treated as a black box.</p>
+<p class="source">Source: Topic 3b slides 8, 13&ndash;14, 30&ndash;36, 43&ndash;44 (text layer, read). Lab 2 page 2 (text layer) asks for RSA signing and verifying. The deck has no numeric signature example: the walk is our own, checked in Python.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0019-rsa-public-key.html">Lesson 19</a></span><span><a href="0021-hash-functions.html">Lesson 21</a> &rarr;</span></div>
+</body>
+</html>

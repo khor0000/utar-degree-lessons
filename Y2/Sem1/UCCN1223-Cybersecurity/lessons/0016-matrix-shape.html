@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 16 &mdash; Matrix shape</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 16 &middot; Topic 3a &middot; UCCN1223</div>
+<h1>Matrix shape: when can two matrices multiply?</h1>
+<p><strong>Two matrices (grids of numbers) can be multiplied only when the columns of the first match the rows of the second. If they match, the result has the rows of the first and the columns of the second.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> a grid of numbers can be multiplied by a column of numbers, but only when the sizes fit. A wrong size gives no answer at all, so the size rule comes before any arithmetic. <strong>Focus on:</strong> the size rule, and reading the size of the result. <strong>Skip for now:</strong> multiplying grids bigger than the 2&times;2 and 2&times;1 shapes used here. <strong>How you'll be tested:</strong> <strong>by hand</strong>, as one step of a later encryption question (old-format paper Oct 25 Q1, 4 marks; the format changed from June 2026, so the exact question is <strong>not confirmed</strong>). The Casio fx-570EX matrix mode is <strong>not confirmed</strong> for this check.</div>
+
+<p>Bridge: <a href="0015a-modular-arithmetic.html">lesson 15a</a> gave the wrap that turns a number into a letter position. This lesson wraps nothing. It asks only whether two grids of numbers can be multiplied at all.</p>
+
+<h2>1. When is a product allowed?</h2>
+<p>A <strong>matrix</strong> is a rectangle of numbers, written rows &times; columns. Each number in it is an <strong>entry</strong>.</p>
+<div class="note"><strong>Matrix.</strong> <em>What it is:</em> a rectangle of numbers. <em>What it holds:</em> one number per entry. <em>Why needed:</em> a key is a matrix, and it does the mixing in a later cipher.</div>
+
+<div class="note"><strong>Looks like</strong> the row-times-column multiply from school, but the size rule decides whether it is allowed at all.</div>
+
+<p>For <code>A &times; B</code>, the <strong>columns of A</strong> must equal the <strong>rows of B</strong>. If they match, the product exists, and its size is <strong>rows of A &times; columns of B</strong>.</p>
+<table>
+<thead><tr><th>A</th><th>B</th><th>Columns of A vs rows of B</th><th>Allowed?</th><th>Result size</th></tr></thead>
+<tbody>
+<tr><td>2&times;2</td><td>2&times;1</td><td>2 vs 2</td><td>Yes</td><td>2&times;1</td></tr>
+<tr><td>3&times;2</td><td>2&times;4</td><td>2 vs 2</td><td>Yes</td><td>3&times;4</td></tr>
+<tr><td>2&times;3</td><td>2&times;2</td><td>3 vs 2</td><td><strong>No</strong></td><td>&mdash;</td></tr>
+</tbody>
+</table>
+<p>A <strong>block</strong> is a group of letters encrypted together. Here it is a <strong>column vector</strong>, one column of numbers, so a 2&times;2 grid times a 2&times;1 block is always allowed. Two letters in, two letters out.</p>
+
+<h2>Check yourself</h2>
+<div class="quiz" data-quiz>
+<p class="prompt">Which pair can be multiplied, A &times; B?</p>
+<button class="opt" data-correct>A is 3&times;2, B is 2&times;4</button>
+<button class="opt">A is 2&times;3, B is 2&times;4</button>
+<button class="opt">A is 3&times;2, B is 3&times;4</button>
+<button class="opt">A is 2&times;2, B is 1&times;2</button>
+<div class="feedback good" data-feedback-good>Yes. A has 2 columns and B has 2 rows, so they match. The product is 3&times;4.</div>
+<div class="feedback bad" data-feedback-bad>Compare the columns of A with the rows of B. Only one pair has the same number on both sides of the multiply.</div>
+</div>
+
+<p>Next: <a href="0017-hill-cipher-mod26.html">lesson 17</a>, the Hill cipher. It uses this size rule on a pair of letters, then wraps each result with mod 26.</p>
+<p class="source">Source: Topic 3a slides 47&ndash;49, which show a 2&times;2 key times a column block. The size rule is standard matrix multiplication, not a quote from a slide.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0015b-negative-numbers-mod.html">Lesson 15b</a></span><span><a href="0017-hill-cipher-mod26.html">Lesson 17</a> &rarr;</span></div>
+</body>
+</html>

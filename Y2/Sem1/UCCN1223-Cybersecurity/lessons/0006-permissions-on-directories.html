@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 6 &mdash; rwx means something else on a directory</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 6 of 7 &middot; Lab 1 prep &middot; UCCN1223</div>
+<h1>rwx means something else on a directory</h1>
+<p><strong>On a directory, r lists the names, w changes what is inside, and x lets you enter.</strong></p>
+<div class="note"><strong>Looks like</strong> lesson 4&rsquo;s file rights. The letters and digits are identical. Only the meaning changes, and the reason is that a directory holds a list of names, so "run it" makes no sense and <code>x</code> gets a new job.</div><h2>Same letters, new jobs</h2>
+<table><thead><tr><th>Bit</th><th>On a file</th><th>On a directory</th></tr></thead><tbody>
+<tr><td><code>r</code></td><td>Read the contents</td><td>List the names inside</td></tr>
+<tr><td><code>w</code></td><td>Change the contents</td><td>Create and delete items inside</td></tr>
+<tr><td><code>x</code></td><td>Run it as a program</td><td>Enter it with <code>cd</code> and reach items inside</td></tr></tbody></table>
+<p>This comes from Topic 2 slide 28.</p>
+<h2>The catch in Lab 1 Question 4</h2>
+<p>Q4 says to make a folder "only readable and writable by you". Reading that literally gives 600, but with <code>x</code> off you cannot enter your own folder. Run it as an ordinary user and watch:</p><div class="walk" data-walk><div class="walk-stage" data-caption="Create the folder and apply the literal answer."><pre><code>$ mkdir ChooAhChooOnly
+$ chmod 600 ChooAhChooOnly
+$ ls -ld ChooAhChooOnly
+drw------- 2 ...</code></pre></div><div class="walk-stage" data-caption="The owner has no x, so entering fails."><pre><code>$ cd ChooAhChooOnly
+bash: cd: ChooAhChooOnly: Permission denied</code></pre></div><div class="walk-stage" data-caption="Turn on x for the owner only: 700."><pre><code>$ chmod 700 ChooAhChooOnly
+$ cd ChooAhChooOnly
+$ pwd
+/home/student/ChooAhChooOnly</code></pre></div></div><p>The <code>-d</code> in <code>ls -ld</code> shows the folder&rsquo;s own line, not its contents. In the lab you may be root from <code>sudo su</code>, and root skips this check, so <code>cd</code> would succeed and hide the problem. Test as a normal user. If the marker wants the literal wording, 600 is what the sheet says; 700 is what works. Tell the instructor why you chose it.</p><div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Folders Need x</strong><p>A private folder you can actually use needs the owner&rsquo;s x.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td><code>chmod 700 mydir</code></td><td><code>chmod 600 mydir</code></td></tr></tbody></table></div><div class="quiz" data-quiz><p class="prompt">A folder is <code>drwxr-xr-x</code>. Who can create a file inside it?</p><button class="opt" data-correct>Only the owner</button><button class="opt">Owner and group</button><button class="opt">All other users</button><div class="feedback good" data-feedback-good>Yes. Only the owner set has <code>w</code>.</div><div class="feedback bad" data-feedback-bad>On a directory, creating an item needs <code>w</code>. Look at which sets have it.</div></div><div class="paper-task"><strong class="title">Procedure drill (fresh input)</strong><p>Write the <code>chmod</code> for a folder <code>shared</code> where the owner has full access, the group can enter and list, and others have nothing.</p><details class="reveal"><summary>Reveal the answer</summary><p><code>chmod 750 shared</code>. Group needs r to list and x to enter, so 4 + 1 = 5.</p></details></div>
+<p class="source">Primary source: <a href="https://www.gnu.org/software/coreutils/manual/html_node/Mode-Structure.html">GNU Coreutils: Structure of file mode bits</a>. Terms are in the <a href="../reference/glossary.html">glossary</a>.</p>
+<div class="ask-agent"><p>Stuck on anything here? Ask me in the chat, even if it feels small.</p></div>
+<div class="nav"><span>&larr; <a href="0005-octal-and-chmod.html">Lesson 5</a></span><span><a href="0007-remote-login-ssh-scp.html">Lesson 7</a> &rarr;</span></div>
+</body>
+</html>

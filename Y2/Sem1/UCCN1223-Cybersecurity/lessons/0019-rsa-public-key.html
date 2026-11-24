@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 19 &mdash; RSA public-key encryption</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 19 &middot; Topic 3b &middot; UCCN1223</div>
+<h1>RSA public-key encryption</h1>
+<p><strong>RSA encrypts with a public pair of numbers, (e, n). Only the private number d can decrypt, because d is the inverse that undoes e.</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> every cipher so far in this topic needs both people to share one secret key first. RSA removes that need: you publish one key, and only your private key opens what people send you. <strong>Focus on:</strong> the three walks, in order: make the keys, encrypt, decrypt. <strong>Skip for now:</strong> why RSA is hard to break, and real key sizes. <strong>How you'll be tested:</strong> <strong>by hand</strong>, reducing <code>mod n</code> at every step. Lab 2 Q4 uses the same steps with n = 77. Neither old-format paper asks it.</div>
+
+<p>Lesson 18a gave you the modular inverse: the number that undoes a multiplication mod a number. RSA uses one to make its private key.</p>
+
+<div class="note"><strong>Looks like</strong> the one shared key of lesson 9, because both are a secret number that scrambles the message. <strong>Why it differs:</strong> RSA has two keys. The public one can be given to anyone, and only its partner, the private one, opens the message. Two people never need to agree on a secret first.</div>
+
+<div class="note"><strong>Looks like</strong> the modular inverse of lesson 18a, because d undoes e the way 7 undoes 3 mod 20. <strong>Why it differs:</strong> d is the inverse mod a helper number z, not mod n. Section 1 builds z.</div>
+
+<h2>1. Make the keys</h2>
+<p>Pick two <strong>primes</strong> (whole numbers whose only factors are 1 and themselves): <code>p = 3</code> and <code>q = 11</code>. Each stage is one step. Press Next, or the arrow keys:</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Start with the two primes, p = 3 and q = 11.">
+<p><code>p = 3</code> and <code>q = 11</code></p>
+</div>
+<div class="walk-stage" data-caption="n = p &times; q = 3 &times; 11 = 33. This is the modulus from lesson 15a. It is public, and both keys use it.">
+<p><code>n = 3 &times; 11 = 33</code></p>
+</div>
+<div class="walk-stage" data-caption="z is a helper number: z = (p &minus; 1)(q &minus; 1) = 2 &times; 10 = 20. It is not p &times; q. Lab 2 writes this same number as &phi; (phi).">
+<p><code>z = 2 &times; 10 = 20</code></p>
+</div>
+<div class="walk-stage" data-caption="Pick e = 7. e must be coprime to z = 20, which means they share no factor except 1. The deck says 5 cannot be used, because 20 is divisible by 5.">
+<p><code>e = 7</code>, and 7 shares no factor with 20</p>
+</div>
+<div class="walk-stage" data-caption="Find d with (d &times; 7) mod 20 = 1. Try d = 3: 3 &times; 7 = 21, and 21 mod 20 = 1. So d = 3.">
+<p><code>3 &times; 7 = 21</code>, and <code>21 mod 20 = 1</code>, so <code>d = 3</code></p>
+</div>
+<div class="walk-stage" data-caption="The public key is (e, n) = (7, 33). The private key is d = 3, with n = 33, and d is kept secret.">
+<p>Public key <code>(7, 33)</code>. Private key <code>d = 3</code>.</p>
+</div>
+</div>
+
+<div class="note"><strong>z (helper number)</strong>: (1) what it is: a number worked out from the two primes; (2) what it holds: <code>(p &minus; 1)(q &minus; 1)</code>, which is 20 here; (3) why it is needed: d must undo e inside z. You never publish it.</div>
+
+<div class="note"><strong>The rule:</strong> <code>n = p &times; q</code>; <code>z = (p &minus; 1)(q &minus; 1)</code>; choose e coprime to z; find d, the inverse of e mod z. Public key <code>(e, n)</code>, private key <code>d</code>.</div>
+
+<div class="exam-trap"><strong class="title">Critical Exam Trap &bull; Find d Mod z, Not Mod n</strong><p>Working d mod n looks just as tidy, and 19 is a true inverse mod 33. But 19 decrypts 20 to 5, not 14.</p><table><thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead><tbody><tr><td><code>3 &times; 7 = 21</code>, and <code>21 mod 20 = 1</code>, so <code>d = 3</code></td><td><code>7 &times; 19 = 133</code>, and <code>133 mod 33 = 1</code>, so <code>d = 19</code></td></tr></tbody></table></div>
+
+<h2>2. Encrypt M = 14 with the public key</h2>
+<p>Here <code>M</code> is the message as a number, and <code>C</code> is the <strong>ciphertext</strong> (the encrypted number). The formula is <code>C = M<sup>e</sup> mod n</code>. The small raised number is the <strong>exponent</strong>, so <code>14<sup>7</sup></code> means 14 multiplied by itself seven times. Do not write that whole product out. Reduce mod 33 at every step instead.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Start: C = 14^7 mod 33. Break 14^7 into small powers that we can square.">
+<p><code>C = 14<sup>7</sup> mod 33</code></p>
+</div>
+<div class="walk-stage" data-caption="Square once: 14^2 = 196, and 196 mod 33 = 31.">
+<p><code>14<sup>2</sup> = 196</code>, and <code>196 mod 33 = 31</code></p>
+</div>
+<div class="walk-stage" data-caption="Square again: 14^4 = 31 &times; 31 = 961, and 961 mod 33 = 4.">
+<p><code>14<sup>4</sup> = 31 &times; 31 = 961</code>, and <code>961 mod 33 = 4</code></p>
+</div>
+<div class="walk-stage" data-caption="14^7 = 14^4 &times; 14^2 &times; 14. Multiply the first two and reduce: 4 &times; 31 = 124, and 124 mod 33 = 25.">
+<p><code>4 &times; 31 = 124</code>, and <code>124 mod 33 = 25</code></p>
+</div>
+<div class="walk-stage" data-caption="Times 14: 25 &times; 14 = 350, and 350 mod 33 = 20. So C = 20.">
+<p><code>25 &times; 14 = 350</code>, and <code>350 mod 33 = 20</code>, so <code>C = 20</code></p>
+</div>
+</div>
+<div class="note"><strong>The rule:</strong> encrypt with <code>C = M<sup>e</sup> mod n</code>, using the public key <code>(e, n)</code>. Anyone can do this.</div>
+
+<h2>3. Decrypt C = 20 with the private key</h2>
+<p>Now use <code>M = C<sup>d</sup> mod n</code> with <code>d = 3</code> and <code>n = 33</code>.</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Start: M = 20^3 mod 33. The private key gives d = 3.">
+<p><code>M = 20<sup>3</sup> mod 33</code></p>
+</div>
+<div class="walk-stage" data-caption="Square: 20^2 = 400, and 400 mod 33 = 4.">
+<p><code>20<sup>2</sup> = 400</code>, and <code>400 mod 33 = 4</code></p>
+</div>
+<div class="walk-stage" data-caption="Times 20: 4 &times; 20 = 80, and 80 mod 33 = 14. We get back M = 14.">
+<p><code>4 &times; 20 = 80</code>, and <code>80 mod 33 = 14</code>, so <code>M = 14</code></p>
+</div>
+</div>
+
+<details><summary>Why does decrypting undo encrypting?</summary>
+<p>Encrypting and then decrypting raises the message to the power <code>e &times; d</code>, which is <code>7 &times; 3 = 21</code>. Because <code>21 mod 20 = 1</code>, the power comes back to the start, and the message returns. The full proof is not needed in this course. We use the result.</p>
+</details>
+
+<h2>Check yourself</h2>
+<div class="paper-task"><strong class="title">Check 1: fresh input, p = 5, q = 11, e = 3, M = 4</strong>
+<p>Make the keys, then encrypt <code>M = 4</code>. Give n, z, d and C. Try it on paper before you open the reveal.</p>
+<details class="reveal"><summary>Reveal, step by step</summary>
+<ol>
+<li><code>n = 5 &times; 11 = 55</code>.</li>
+<li><code>z = (5 &minus; 1)(11 &minus; 1) = 4 &times; 10 = 40</code>.</li>
+<li>Find d with <code>(d &times; 3) mod 40 = 1</code>. Try 27: <code>3 &times; 27 = 81</code>, and <code>81 mod 40 = 1</code>. So <code>d = 27</code>.</li>
+<li>Encrypt: <code>C = 4<sup>3</sup> mod 55</code>. <code>4<sup>3</sup> = 64</code>, and <code>64 mod 55 = 9</code>. So <code>C = 9</code>.</li>
+</ol></details></div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">Bob publishes his public key. Alice encrypts a message with it. Who can decrypt it?</p>
+<button class="opt" data-correct>Only Bob, with his private key</button>
+<button class="opt">Anyone who holds Bob's public key</button>
+<button class="opt">Alice, because she is the sender</button>
+<button class="opt">Any server that stores the message</button>
+<div class="feedback good" data-feedback-good>Yes. A message encrypted with the public key is opened only with the matching private key.</div>
+<div class="feedback bad" data-feedback-bad>Decryption needs the private key. Only Bob holds it, so only Bob can read the message.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">When you find d, which number is the inverse taken mod?</p>
+<button class="opt" data-correct>z, the helper number built from (p&minus;1)(q&minus;1)</button>
+<button class="opt">n, the product of the two primes</button>
+<button class="opt">p, the first of the two primes</button>
+<button class="opt">e, the number that you publish openly</button>
+<div class="feedback good" data-feedback-good>Yes. d is the inverse of e mod z. Using n gives the wrong d, as the trap box showed.</div>
+<div class="feedback bad" data-feedback-bad>d is found mod z. Using n gives d = 19, which turns the ciphertext 20 back into 5, not 14.</div>
+</div>
+
+<p class="source">Source: Topic 3b slides 12 to 24: formulas (12), key making (13 and 14), the browser walk-through (15 to 20), Example 1 (21 to 24, marked 4 and 6 marks). Slide 16 is an image summary of the same numbers. Every value checked by Python.</p>
+<p>Next: <a href="0020-digital-signatures.html">lesson 20, digital signatures</a>, which runs the same two keys the other way round.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0018b-when-there-is-no-inverse.html">Lesson 18b</a></span><span><a href="0020-digital-signatures.html">Lesson 20</a> &rarr;</span></div>
+</body>
+</html>

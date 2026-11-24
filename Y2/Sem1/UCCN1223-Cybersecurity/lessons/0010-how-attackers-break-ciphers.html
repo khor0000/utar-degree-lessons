@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 10 &mdash; How attackers break ciphers</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 10 &middot; Topic 3a &middot; UCCN1223</div>
+<h1>How attackers break ciphers</h1>
+<p><strong>An attacker breaks a cipher either by trying every key until a result reads as a real message, or by reading patterns in the ciphertext.</strong></p>
+
+<p>Lesson 9 turned <code>HELLO</code> into <code>KHOOR</code> by replacing each letter, and into <code>HLOEL</code> by shuffling them. This lesson asks how an attacker gets the message back without the key.</p>
+
+<h2>1. How an attacker breaks a cipher</h2>
+<div class="note"><strong>Looks like the same job, both get the message back without the key, but&hellip;</strong>
+<table>
+<thead><tr><th></th><th><strong>Brute force</strong></th><th><strong>Cryptanalysis</strong></th></tr></thead>
+<tbody>
+<tr><td>Same</td><td colspan="2">Both recover the message without being given the key</td></tr>
+<tr><td>Different</td><td>Tries every key, and checks each result for a readable message</td><td>Uses the recipe and the patterns in the ciphertext, so it does not need to try every key</td></tr>
+<tr><td>Why</td><td colspan="2">Brute force needs no knowledge of the recipe, only a way to recognise a real message. Cryptanalysis needs the recipe, and in return it saves the trying</td></tr>
+</tbody>
+</table></div>
+<p>There are two ways (slide 18):</p>
+<ul>
+<li><strong>Brute force</strong>: try every key until the result reads as a real message. Caesar has only 25 useful keys, since key 0 changes nothing. Slide 23 asks you to decrypt <code>IEHKX YKIAXOZE OY YCKKZ</code> with key 4. Key 4 gives <code>EADGT UGEWTKVA KU UYGGV</code>, which is nonsense. Key 6 gives <code>CYBER SECURITY IS SWEET</code>. The slide has a typo, and brute force found the readable message.</li>
+<li><strong>Cryptanalysis</strong>: use knowledge of the recipe and patterns in the ciphertext, instead of trying every key. The double <code>L</code> in HELLO became a double <code>O</code> in KHOOR, so a double letter in the ciphertext points to a double letter in the plaintext.</li>
+</ul>
+
+<h2>2. What comes next in Topic 3</h2>
+<table>
+<thead><tr><th>Topic</th><th>What it does</th><th>Kind</th></tr></thead>
+<tbody>
+<tr><td>Caesar</td><td>shifts every letter by the key</td><td>substitution</td></tr>
+<tr><td>Keyword cipher</td><td>builds a new alphabet from a keyword</td><td>substitution</td></tr>
+<tr><td>Keyword mixed</td><td>a variant of the keyword cipher</td><td>substitution</td></tr>
+<tr><td>Keyword transposed</td><td>a variant of the keyword cipher; the name says transposed, but it replaces letters</td><td>substitution</td></tr>
+<tr><td>Interrupted keyword</td><td>a variant of the keyword cipher, with blank cells in its grid</td><td>substitution</td></tr>
+<tr><td>Columnar transposition</td><td>writes the message in rows, reads it in columns</td><td>transposition</td></tr>
+<tr><td>Playfair</td><td>swaps pairs of letters using a 5&times;5 grid</td><td>substitution</td></tr>
+<tr><td>Modular arithmetic</td><td>keeps only the remainder after dividing by a number</td><td>tool for the next ciphers</td></tr>
+<tr><td>Hill</td><td>turns letters into numbers and multiplies them</td><td>substitution</td></tr>
+<tr><td>Modular inverse</td><td>the number that undoes a multiplication</td><td>tool for decrypting Hill</td></tr>
+<tr><td>RSA</td><td>uses a public key and a private key</td><td>asymmetric</td></tr>
+<tr><td>Digital signatures</td><td>the private key signs and the public key checks</td><td>asymmetric use</td></tr>
+<tr><td>Hash functions</td><td>turns any message into a short fixed-size fingerprint</td><td>neither: a fingerprint</td></tr>
+<tr><td>Authentication factors</td><td>proves who you are by something you have, know or are</td><td>proving identity</td></tr>
+</tbody>
+</table>
+<p>The ciphers from Caesar to Playfair are done with pen, paper and an alphabet table. Modular arithmetic comes before Hill and RSA, because both need remainders.</p>
+
+<h2>Check yourself</h2>
+<div class="quiz" data-quiz>
+<p class="prompt">An attacker sees that the ciphertext has the same letter twice in a row, and knows the recipe. The attacker guesses that the plaintext has a double letter in the same place. Which method is this?</p>
+<button class="opt">Trying each key until the result reads well</button>
+<button class="opt" data-correct>Using the recipe and patterns in the ciphertext</button>
+<button class="opt">Hashing the message into a short fixed-size fingerprint</button>
+<button class="opt">Guessing the key from the sender's own name</button>
+<div class="feedback good" data-feedback-good>Yes. The attacker reads a pattern in the ciphertext and uses the recipe. No key is tried, so this is cryptanalysis.</div>
+<div class="feedback bad" data-feedback-bad>Not this one. Trying each key is brute force. Here no key is tried: the attacker reads the repeated letter and uses the recipe.</div>
+</div>
+
+<p>Next, lesson 11 runs the first of these ciphers, the Caesar cipher, on a two-row strip.</p>
+<p class="source">Source: Topic 3a slides 18 and 23. Read 9 Nov 2026. The slide 23 key was checked by trying all 25 keys in code. The Caesar values for keys 4 and 6 come from the same check.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0009-kinds-of-cipher.html">Lesson 9</a></span><span><a href="0011-caesar-with-a-strip.html">Lesson 11</a> &rarr;</span></div>
+</body>
+</html>

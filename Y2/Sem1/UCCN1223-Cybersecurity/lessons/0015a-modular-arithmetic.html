@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 15a &mdash; Modular arithmetic part 1</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+<script src="../assets/walk.js" defer></script>
+</head>
+<body>
+<div class="eyebrow">Lesson 15a &middot; Topic 3a &middot; UCCN1223</div>
+<h1>Modular arithmetic part 1: the remainder that wraps</h1>
+<p><strong><code>mod n</code> gives the remainder after dividing by <code>n</code>, and the answer is always from 0 to n&minus;1. Read <code>a &equiv; b (mod n)</code> as "a and b leave the same remainder when divided by n".</strong></p>
+
+<div class="note"><strong>Why this matters:</strong> the Caesar strip in <a href="0011-caesar-with-a-strip.html">lesson 11</a> wraps past Z back to A. Modular arithmetic is the calculation behind that wrap, written with numbers, so a shift that runs past 25 still lands on a letter. <strong>Focus on:</strong> what <code>mod 26</code> returns, and how to read <code>&equiv;</code>. <strong>Skip for now:</strong> negative numbers, which are <a href="0015b-negative-numbers-mod.html">lesson 15b</a>, and finding a modular inverse, which is not needed for the papers and is skipped for now. <strong>How you'll be tested:</strong> by hand. Old-format Oct 25 Q1 used <code>mod 26</code> as one step of a Hill encryption (4 marks, positive numbers only). The Casio fx-570EX: no mod key is confirmed (the notes say unverified), so do it by hand as shown below.</div>
+
+<div class="note"><strong>Bridge:</strong> lesson 11 wrapped letters by reading a strip. This lesson does the same wrap with a division-style calculation, so it works for any number, not just letters.</div>
+
+<div class="note"><strong>Looks like</strong> division, which you already know, but the answer is the leftover, not the whole part. Dividing 30 by 26 gives 1 whole time, with 4 left over. The leftover is the answer: <code>30 mod 26 = 4</code>. The whole part, 1, is the quotient, and <code>mod</code> ignores it.</div>
+
+<div class="note"><strong>Looks like</strong> <code>=</code> from school, but <code>&equiv;</code> does not mean the two sides are the same number. <code>3 &equiv; 29 (mod 26)</code> is true, and 3 is not 29. It means both leave the same remainder when divided by 26.</div>
+
+<h2>1. Work out <code>mod n</code> by counting the wraps</h2>
+<p>Caesar with key 3 turns Y into B. Here is that wrap as arithmetic. Press Next, or the arrow keys:</p>
+<div class="walk" data-walk>
+<div class="walk-stage" data-caption="Count from A = 0. Y is the 25th letter, so its position is 24.">
+<table><tbody>
+<tr><th>letter</th><td>Y</td></tr>
+<tr><th>position</th><td>24</td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Add the key 3: 24 + 3 = 27. Z is position 25, the last one, so 27 has run past the end.">
+<table><tbody>
+<tr><th>step</th><th>working</th><th>result</th></tr>
+<tr><td>1</td><td>24 + 3</td><td>27</td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="How many 26s fit in 27? One. That is the whole part, and we keep the leftover.">
+<table><tbody>
+<tr><th>step</th><th>working</th><th>result</th></tr>
+<tr><td>1</td><td>24 + 3</td><td>27</td></tr>
+<tr><td>2</td><td>26 &times; 1 = 26, which fits once</td><td>1 time</td></tr>
+</tbody></table>
+</div>
+<div class="walk-stage" data-caption="Take the 26 away: 27 &minus; 26 = 1. Position 1 is B, because A is position 0 (A=0, B=1). So Y + 3 wraps to B.">
+<table><tbody>
+<tr><th>step</th><th>working</th><th>result</th></tr>
+<tr><td>1</td><td>24 + 3</td><td>27</td></tr>
+<tr><td>2</td><td>26 &times; 1 = 26, which fits once</td><td>1 time</td></tr>
+<tr><td>3</td><td>27 &minus; 26</td><td><code>1</code>, which is B (A=0, B=1)</td></tr>
+</tbody></table>
+</div>
+</div>
+<p>So <code>27 mod 26 = 1</code>, and Y shifted by 3 is B.</p>
+
+<div class="note"><strong>The rule, in one box.</strong> To work out <code>x mod n</code>: (1) count how many <strong>n</strong> fit in <code>x</code>; (2) take them away; (3) what is left is the answer. The number you divide by, <strong>n</strong>, is the <strong>modulus</strong>: a whole number that sets where the wrap happens. In a Caesar cipher it is 26, the number of letters. Deck example: <code>33 mod 26 = 7</code> (Topic 3a slide 49). 26 fits once, and <code>33 &minus; 26 = 7</code>.</div>
+
+
+<div class="note"><strong>You might reasonably wonder:</strong> why does A count as 0, not 1? Because the wrap has to land on 0 to 25, one number for each letter. The deck uses this (Topic 3a slide 48: "A=0 ... Z=25"), and Lab 2 assumes it too. If A were 1, Z would be 26. Any <code>mod 26</code> result is 0 to 25, and 0 would then have no letter, because the letters would be numbered 1 to 26. With A = 0, the 26 possible results 0 to 25 match the 26 letters exactly.</div>
+
+<div class="exam-trap">
+<strong class="title">Critical Exam Trap &bull; The Remainder Is Never n</strong>
+<p>A remainder is always smaller than the modulus, so the answer runs from 0 to n&minus;1. Writing n as the answer loses the mark.</p>
+<table>
+<thead><tr><th>Correct (earns marks)</th><th>Incorrect (loses marks)</th></tr></thead>
+<tbody><tr><td><code>26 mod 26 = 0</code></td><td><code>26 mod 26 = 26</code></td></tr></tbody>
+</table>
+</div>
+
+<h2>2. <code>&equiv;</code> says two numbers match after the wrap</h2>
+<p>Read <code>a &equiv; b (mod n)</code> as "a is congruent to b, modulo n": a true or false statement that two numbers leave the same remainder. Here <code>3 &equiv; 29 (mod 26)</code> is true, because <code>3 mod 26 = 3</code> and <code>29 mod 26 = 3</code>.</p>
+
+<h2>Check yourself</h2>
+<div class="paper-task"><strong class="title">Check 1: fresh input, Caesar key 9</strong>
+<p>Encrypt the letter <code>W</code> with key 9. Work out the position of W, add 9, and wrap with mod 26. Try it on paper before you open the reveal.</p>
+<details class="reveal"><summary>Reveal, step by step</summary>
+<ol>
+<li>A is 0, so W is position 22.</li>
+<li>Add the key: 22 + 9 = 31.</li>
+<li>How many 26s fit in 31? One. Take it away: 31 &minus; 26 = 5.</li>
+<li>Position 5 is F. So <code>W &rarr; F</code>.</li>
+</ol></details></div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">What is <code>26 mod 26</code>?</p>
+<button class="opt" data-correct>0</button>
+<button class="opt">26</button>
+<button class="opt">1</button>
+<button class="opt">-26</button>
+<div class="feedback good" data-feedback-good>Yes. 26 fits once, and nothing is left: 26 &minus; 26 = 0.</div>
+<div class="feedback bad" data-feedback-bad>Not this one. 26 fits exactly once, so the leftover is 0. The answer always runs from 0 to 25.</div>
+</div>
+
+<div class="quiz" data-quiz>
+<p class="prompt">The statement <code>3 &equiv; 29 (mod 26)</code> means:</p>
+<button class="opt" data-correct>3 and 29 leave the same remainder</button>
+<button class="opt">3 equals 29 exactly, with no remainder</button>
+<button class="opt">26 divided by 29 leaves exactly 3</button>
+<button class="opt">3 is congruent to 26 modulo 29</button>
+<div class="feedback good" data-feedback-good>Yes. Both 3 and 29 wrap to 3 when you take mod 26, so they leave the same remainder.</div>
+<div class="feedback bad" data-feedback-bad>The sign &equiv; means "same remainder", and 26 is the modulus. Read it as "3 and 29 leave the same remainder".</div>
+</div>
+
+<p>Next: <a href="0015b-negative-numbers-mod.html">lesson 15b</a>, which handles negative numbers, the case the Caesar decrypt needs.</p>
+<p class="source">Source: Topic 3a slides 21 (Caesar rule, key shifts), 48 (A=0 to Z=25), 49 (33 mod 26 = 7). Old-format paper: Oct 25 Q1. Every value checked in Python.</p>
+<p class="ask-agent">Anything unclear? Ask me in the session.</p>
+<div class="nav"><span>&larr; <a href="0014e-playfair-practice.html">Lesson 14e</a></span><span><a href="0015b-negative-numbers-mod.html">Lesson 15b</a> &rarr;</span></div>
+</body>
+</html>
